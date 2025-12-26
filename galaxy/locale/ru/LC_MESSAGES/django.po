@@ -1,0 +1,298 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-26 16:55+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\templates\apps_list.html:5
+msgid "List of programs"
+msgstr "Список программ"
+
+#: .\templates\apps_list.html:16
+msgid "Download APK"
+msgstr "Скачать APK"
+
+#: .\templates\apps_list.html:19
+msgid "File not available"
+msgstr "Файл отсутствует"
+
+#: .\templates\apps_list.html:23
+msgid "No programs available yet"
+msgstr "Программ пока нет"
+
+#: .\templates\base.html:171 .\templates\base.html:235
+#: .\templates\base.html:315 .\templates\index.html:23
+#: .\templates\service_detail.html:11
+msgid "Services"
+msgstr "Услуги"
+
+#: .\templates\base.html:172
+msgid "Applications"
+msgstr "Программы"
+
+#: .\templates\base.html:195 .\templates\base.html:316
+#: .\templates\base.html:322
+msgid "Contact"
+msgstr "Связаться"
+
+#: .\templates\base.html:245
+msgid "About"
+msgstr "О нас"
+
+#: .\templates\base.html:255
+msgid "Gallery"
+msgstr ""
+
+#: .\templates\base.html:265
+msgid "Reviews"
+msgstr ""
+
+#: .\templates\base.html:275 .\templates\base.html:367
+msgid "Contact Us"
+msgstr "Свяжитесь с нами"
+
+#: .\templates\base.html:282
+msgid "Need help? Call us:"
+msgstr ""
+
+#: .\templates\base.html:286
+msgid "Mon-Fri: 9:00-18:00"
+msgstr "Понедельник–суббота: 12:00–18:00"
+
+#: .\templates\base.html:307
+msgid ""
+"Professional auto service with years of experience. Quality, trust, and "
+"speed are our priorities."
+msgstr ""
+"Профессиональный автосервис с многолетним опытом. Качество, доверие и "
+"скорость — наши приоритеты."
+
+#: .\templates\base.html:313
+msgid "Quick Links"
+msgstr "Быстрые ссылки"
+
+#: .\templates\base.html:326
+msgid "Aşıq Molla Cümə 44"
+msgstr ""
+
+#: .\templates\base.html:342
+msgid "All rights reserved."
+msgstr "Все права защищены"
+
+#: .\templates\base.html:370
+msgid "Choose your preferred contact method"
+msgstr ""
+
+#: .\templates\base.html:385
+msgid "Phone Call"
+msgstr ""
+
+#: .\templates\base.html:410
+msgid "Chat with us"
+msgstr ""
+
+#: .\templates\base.html:432
+msgid "Message us on Telegram"
+msgstr ""
+
+#: .\templates\base.html:450
+msgid "Email"
+msgstr ""
+
+#: .\templates\base.html:466
+msgid "Working Hours"
+msgstr ""
+
+#: .\templates\base.html:470
+msgid "Monday - Friday"
+msgstr ""
+
+#: .\templates\base.html:474
+msgid "Saturday"
+msgstr ""
+
+#: .\templates\base.html:478
+msgid "Sunday"
+msgstr ""
+
+#: .\templates\base.html:479
+msgid "Closed"
+msgstr ""
+
+#: .\templates\base.html:486
+msgid "We'll respond within 30 minutes during working hours"
+msgstr ""
+
+#: .\templates\index.html:12
+msgid ""
+"Professional auto service for electric vehicles. Quality, trust, and speed "
+"are our top priorities."
+msgstr ""
+"Профессиональный автосервис с многолетним опытом. Качество, доверие и "
+"скорость — наши приоритеты."
+
+#: .\templates\index.html:28
+msgid "Battery Diagnostics"
+msgstr "Диагностика батареи"
+
+#: .\templates\index.html:29
+msgid "Full inspection and health check of electric vehicle batteries."
+msgstr "Полная проверка и оценка состояния аккумуляторов электромобиля."
+
+#: .\templates\index.html:34
+msgid "Electric Motor Repair"
+msgstr "Ремонт электрического мотора"
+
+#: .\templates\index.html:35
+msgid "Professional repair and maintenance by experienced masters."
+msgstr "Профессиональный ремонт и обслуживание опытными мастерами."
+
+#: .\templates\index.html:40
+msgid "Software & Diagnostics"
+msgstr "Программное обеспечение и диагностика"
+
+#: .\templates\index.html:41
+msgid "System updates, error diagnostics, and software optimization."
+msgstr ""
+"Обновления системы, диагностика ошибок и оптимизация программного "
+"обеспечения."
+
+#: .\templates\service_detail.html:61
+msgid "Info"
+msgstr "Информация"
+
+#: .\templates\service_detail.html:64 .\templates\services.html:99
+msgid "Make"
+msgstr "Марка"
+
+#: .\templates\service_detail.html:68
+msgid "Model"
+msgstr "Модель"
+
+#: .\templates\service_detail.html:72
+msgid "Approximate time"
+msgstr "Примерное время"
+
+#: .\templates\service_detail.html:73
+msgid "hours"
+msgstr "часа"
+
+#: .\templates\service_detail.html:76
+msgid "Warranty"
+msgstr "Гарантия"
+
+#: .\templates\service_detail.html:77
+msgid "1 year"
+msgstr "1 год"
+
+#: .\templates\service_detail.html:101
+msgid "Price on request"
+msgstr "Цена по запросу"
+
+#: .\templates\service_detail.html:171
+msgid "Fast"
+msgstr "Быстро"
+
+#: .\templates\service_detail.html:172
+msgid "2-4 hours"
+msgstr "2–4 часа"
+
+#: .\templates\service_detail.html:180
+msgid "Reliable"
+msgstr "Надёжно"
+
+#: .\templates\service_detail.html:181
+msgid "1 year warranty"
+msgstr "Гарантия 1 год"
+
+#: .\templates\service_detail.html:189
+msgid "Professionally"
+msgstr "Профессионально"
+
+#: .\templates\service_detail.html:190
+msgid "Experienced masters"
+msgstr "Опытные мастера"
+
+#: .\templates\service_detail.html:198
+msgid "Transparently"
+msgstr "Прозрачно"
+
+#: .\templates\service_detail.html:199
+#, fuzzy
+#| msgid "Services"
+msgid "Fixed prices"
+msgstr "Услуги"
+
+#: .\templates\services.html:12
+msgid "Makes"
+msgstr "Марки"
+
+#: .\templates\services.html:54
+msgid "No models"
+msgstr ""
+
+#: .\templates\services.html:264
+msgid "Fast execution"
+msgstr "Быстрое выполнение"
+
+#: .\templates\services.html:265
+msgid "Average completion time - 2-4 hours"
+msgstr "Среднее время выполнения – 2–4 часа"
+
+#: .\templates\services.html:273
+msgid "Quality guarantee"
+msgstr "Гарантия качества"
+
+#: .\templates\services.html:274
+msgid "Warranty on all types of work 1 year"
+msgstr "Гарантия на все виды работ 1 год"
+
+#: .\templates\services.html:282
+msgid "Professionals"
+msgstr "Профессионалы"
+
+#: .\templates\services.html:283
+msgid "Experienced masters with over 5 years of experience"
+msgstr "Опытные мастера с более чем 5-летним стажем"
+
+#, fuzzy
+#~| msgid "Fast execution"
+#~ msgid "Fast Execution"
+#~ msgstr "Быстрое выполнение"
+
+#, fuzzy
+#~| msgid "Average completion time - 2-4 hours"
+#~ msgid "Average completion time: 2–4 hours"
+#~ msgstr "Среднее время выполнения – 2–4 часа"
+
+#~ msgid "Quality Guarantee"
+#~ msgstr "Гарантия качества"
+
+#, fuzzy
+#~| msgid "Warranty on all types of work 1 year"
+#~ msgid "Warranty on all services up to 2 years"
+#~ msgstr "Гарантия на все виды работ 1 год"
+
+#, fuzzy
+#~| msgid "Experienced masters with over 5 years of experience"
+#~ msgid "Experienced masters with 5+ years of experience"
+#~ msgstr "Опытные мастера с более чем 5-летним стажем"
+
+#~ msgid "Warranty included"
+#~ msgstr "Гарантия включена"

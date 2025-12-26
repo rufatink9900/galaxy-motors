@@ -1,0 +1,657 @@
+{% load i18n static %}
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="GalaxyMotors Pro - профессиональный автосервис. Trust • Quality • Speed">
+    <title>{% block title %}GalaxyMotors Pro{% endblock %}</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Smooth transitions */
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Custom responsive text sizes */
+        @media (max-width: 640px) {
+            .responsive-text {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Hover effects */
+        .hover-lift {
+            transition: transform 0.2s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Glass effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Mobile menu animation */
+        #mobileMenu {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Modal animations */
+        #contactModal {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #modalBackdrop {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Modal entrance animation */
+        #contactModal > div > div {
+            animation: modalSlideUp 0.3s ease;
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hover effects for contact items */
+        .contact-item-hover {
+            transition: all 0.2s ease;
+        }
+
+        .contact-item-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white antialiased">
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="glass border border-white/10 px-6 sm:px-14 py-8 sm:py-10 text-center rounded-xl shadow-2xl">
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl tracking-[0.25em] mb-4 uppercase font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                Galaxy Motors Pro
+            </h1>
+            <p class="text-sm sm:text-base tracking-widest text-white/60 uppercase mb-6">
+                trust • quality • speed
+            </p>
+            <div class="loader mx-auto"></div>
+            <p class="mt-6 text-xs text-white/40 animate-pulse">
+                Загрузка...
+            </p>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-3 hover-lift">
+                        <span class="text-sm sm:text-lg tracking-[0.2em] font-semibold uppercase hidden xs:inline">
+                            Galaxy Motors Pro
+                        </span>
+                        <span class="text-sm sm:text-lg tracking-[0.2em] font-semibold uppercase inline xs:hidden">
+                            GMP
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-10">
+                    <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest uppercase">
+                        <li><a href="{% url 'services' %}" class="hover:text-white/80 transition-all hover-lift py-2 px-1">{% trans "Services" %}</a></li>
+                        <li><a href="#" class="hover:text-white/80 transition-all hover-lift py-2 px-1">{% trans "Applications" %}</a></li>
+                    </ul>
+                    
+                    <!-- Language Selector Desktop -->
+                    <form action="{% url 'set_language' %}" method="post" class="relative">
+                        {% csrf_token %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        <select name="language" onchange="this.form.submit()" 
+                                class="bg-black/50 border border-white/20 rounded-lg px-3 py-1.5 text-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/20 hover:bg-black/70 transition-all">
+                            {% for lang_code, lang_name in LANGUAGES %}
+                                <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ lang_code|upper }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+                          
+                        </div>
+                    </form>
+                    
+                    <!-- Contact Button Desktop -->
+                    <button id="openModal" class="border border-white/20 px-5 py-2 rounded-lg hover:bg-white hover:text-black transition-all hover-lift text-sm">
+                        {% trans "Contact" %}
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center space-x-4 md:hidden">
+                    <!-- Language Selector Mobile -->
+                    <form action="{% url 'set_language' %}" method="post" class="relative">
+                        {% csrf_token %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <select name="language" onchange="this.form.submit()" 
+                                class="bg-transparent border border-white/20 rounded px-2 py-1 text-xs appearance-none cursor-pointer focus:outline-none">
+                            {% get_available_languages as LANGUAGES %}
+                            {% for lang_code, lang_name in LANGUAGES %}
+                                <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ lang_code|upper }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                    
+                    <button id="menuBtn" class="text-white text-2xl focus:outline-none hover:text-white/80 transition-all p-2">
+                        <span class="sr-only">Open menu</span>
+                        <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-white/10">
+            <div class="px-4 py-6">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="{% url 'services' %}" 
+                           class="block py-3 px-4 rounded-lg hover:bg-white/10 transition-all hover-lift">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm tracking-widest uppercase">{% trans "Services" %}</span>
+                                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-3 px-4 rounded-lg hover:bg-white/10 transition-all hover-lift">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm tracking-widest uppercase">{% trans "About" %}</span>
+                                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-3 px-4 rounded-lg hover:bg-white/10 transition-all hover-lift">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm tracking-widest uppercase">{% trans "Gallery" %}</span>
+                                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-3 px-4 rounded-lg hover:bg-white/10 transition-all hover-lift">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm tracking-widest uppercase">{% trans "Reviews" %}</span>
+                                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pt-4 border-t border-white/10">
+                        <button id="openModalMobile" 
+                           class="block w-full text-center border border-white/20 py-3 px-6 rounded-lg hover:bg-white hover:text-black transition-all hover-lift">
+                            {% trans "Contact Us" %}
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Contact Info Mobile -->
+                <div class="mt-8 pt-6 border-t border-white/10 text-center text-white/60">
+                    <p class="text-xs">{% trans "Need help? Call us:" %}</p>
+                    <a href="tel:+994518400012" class="block text-white text-sm font-medium mt-1 hover:text-white/80">
+                        +994 51 840 00 12
+                    </a>
+                    <p class="text-xs mt-4">{% trans "Mon-Fri: 9:00-18:00" %}</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent" class="hidden pt-16 sm:pt-24 min-h-screen">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-black/50 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Logo and Description -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="text-lg tracking-[0.2em] font-semibold uppercase">Galaxy Motors Pro</span>
+                    </div>
+                    <p class="text-white/60 text-sm">
+                        {% trans "Professional auto service with years of experience. Quality, trust, and speed are our priorities." %}
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-4">{% trans "Quick Links" %}</h3>
+                    <ul class="space-y-2">
+                        <li><a href="{% url 'services' %}" class="text-white/60 hover:text-white text-sm transition">{% trans "Services" %}</a></li>
+                        <li><button id="openModalFooter" class="text-white/60 hover:text-white text-sm transition">{% trans "Contact" %}</button></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-4">{% trans "Contact" %}</h3>
+                    <ul class="space-y-2 text-white/60 text-sm">
+                        <li class="flex items-center space-x-2">
+                            <span>📍</span>
+                            <span>{% trans "Aşıq Molla Cümə 44" %}</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <span>📞</span>
+                            <button id="openModalFooterPhone" class="hover:text-white transition">+994 51 840 00 12</button>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <span>✉️</span>
+                            <button id="openModalFooterEmail" class="hover:text-white transition">info@galaxymotors.pro</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="mt-8 pt-8 border-t border-white/10 text-center text-white/40 text-xs">
+                <p>© {% now "Y" %} Galaxy Motors Pro. {% trans "All rights reserved." %}</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONTACT MODAL -->
+    <div id="contactModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div id="modalBackdrop" class="fixed inset-0 transition-opacity bg-black/80 backdrop-blur-sm"></div>
+
+            <!-- Modal panel -->
+            <div class="inline-block w-full max-w-md p-6 my-8 text-left align-middle transition-all transform bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl border border-white/10 sm:my-16 sm:p-8">
+                <!-- Close button -->
+                <button id="closeModal" class="absolute top-4 right-4 text-white/60 hover:text-white transition-all p-2 hover:bg-white/10 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+
+                <!-- Modal content -->
+                <div class="space-y-6">
+                    <!-- Header -->
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold tracking-wider uppercase mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                            {% trans "Contact Us" %}
+                        </h3>
+                        <p class="text-white/60 text-sm">
+                            {% trans "Choose your preferred contact method" %}
+                        </p>
+                    </div>
+
+                    <!-- Contact methods -->
+                    <div class="space-y-4">
+                        <!-- Phone call -->
+                        <a href="tel:+994518400012" 
+                           class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-gray-900 border border-white/10 hover:border-white/30 transition-all hover-lift hover:scale-[1.02]">
+                            <div class="flex items-center space-x-4">
+                                <div class="p-3 rounded-lg bg-green-900/30 group-hover:bg-green-900/50 transition-all">
+                                    <span class="text-2xl">📞</span>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="font-semibold text-white group-hover:text-green-400 transition-colors">
+                                        {% trans "Phone Call" %}
+                                    </h4>
+                                    <p class="text-sm text-white/60">
+                                        +994 51 840 00 12
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/994518400012?text=Hello%20GalaxyMotors%20Pro%21%20I%20need%20your%20services" 
+                           target="_blank"
+                           class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-gray-900 border border-white/10 hover:border-white/30 transition-all hover-lift hover:scale-[1.02]">
+                            <div class="flex items-center space-x-4">
+                                <div class="p-3 rounded-lg bg-green-900/30 group-hover:bg-green-900/50 transition-all">
+                                    <span class="text-2xl">💬</span>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="font-semibold text-white group-hover:text-green-400 transition-colors">
+                                        WhatsApp
+                                    </h4>
+                                    <p class="text-sm text-white/60">
+                                        {% trans "Chat with us" %}
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+
+                        <!-- Telegram -->
+                        <a href="https://t.me/+994518400012" 
+                           target="_blank"
+                           class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-gray-900 border border-white/10 hover:border-white/30 transition-all hover-lift hover:scale-[1.02]">
+                            <div class="flex items-center space-x-4">
+                                <div class="p-3 rounded-lg bg-blue-900/30 group-hover:bg-blue-900/50 transition-all">
+                                    <span class="text-2xl">✈️</span>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="font-semibold text-white group-hover:text-blue-400 transition-colors">
+                                        Telegram
+                                    </h4>
+                                    <p class="text-sm text-white/60">
+                                        {% trans "Message us on Telegram" %}
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:info@galaxymotors.pro" 
+                           class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-gray-900 border border-white/10 hover:border-white/30 transition-all hover-lift hover:scale-[1.02]">
+                            <div class="flex items-center space-x-4">
+                                <div class="p-3 rounded-lg bg-purple-900/30 group-hover:bg-purple-900/50 transition-all">
+                                    <span class="text-2xl">✉️</span>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="font-semibold text-white group-hover:text-purple-400 transition-colors">
+                                        {% trans "Email" %}
+                                    </h4>
+                                    <p class="text-sm text-white/60">
+                                        info@galaxymotors.pro
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Working hours -->
+                    <div class="p-4 rounded-xl bg-black/30 border border-white/5">
+                        <h4 class="font-semibold text-sm uppercase tracking-wider mb-2 text-white/80">
+                            {% trans "Working Hours" %}
+                        </h4>
+                        <div class="space-y-1 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-white/60">{% trans "Monday - Friday" %}</span>
+                                <span class="text-white">9:00 - 18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-white/60">{% trans "Saturday" %}</span>
+                                <span class="text-white">10:00 - 16:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-white/60">{% trans "Sunday" %}</span>
+                                <span class="text-white">{% trans "Closed" %}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional info -->
+                    <p class="text-center text-xs text-white/40 pt-4 border-t border-white/5">
+                        {% trans "We'll respond within 30 minutes during working hours" %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Preloader
+        document.addEventListener('DOMContentLoaded', () => {
+            const preloader = document.getElementById('preloader');
+            const mainContent = document.getElementById('mainContent');
+            
+            // Hide preloader after 1.5 seconds with fade out
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                }, 500);
+            }, 1500);
+            
+            // Mobile menu functionality
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            
+            if (menuBtn && mobileMenu && menuIcon) {
+                menuBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Change icon based on menu state
+                    if (mobileMenu.classList.contains('hidden')) {
+                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                        document.body.style.overflow = 'auto';
+                    } else {
+                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                            mobileMenu.classList.add('hidden');
+                            menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                            document.body.style.overflow = 'auto';
+                        }
+                    }
+                });
+                
+                // Close mobile menu on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                // Close mobile menu when clicking on a link
+                mobileMenu.querySelectorAll('a, button').forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Don't close if it's the contact modal button
+                        if (link.id !== 'openModalMobile') {
+                            mobileMenu.classList.add('hidden');
+                            menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                });
+            } else {
+                console.error('Mobile menu elements not found');
+            }
+
+            // Contact Modal functionality
+            const contactModal = document.getElementById('contactModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            const closeModalBtn = document.getElementById('closeModal');
+            const openModalBtns = document.querySelectorAll('[id^="openModal"]');
+
+            // Function to open modal
+            function openModal() {
+                contactModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                
+                // Small delay for animation
+                setTimeout(() => {
+                    contactModal.style.opacity = '1';
+                }, 10);
+            }
+
+            // Function to close modal
+            function closeModal() {
+                contactModal.style.opacity = '0';
+                setTimeout(() => {
+                    contactModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+
+            // Open modal on button click
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openModal();
+                });
+            });
+
+            // Close modal on close button click
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            // Close modal on backdrop click
+            if (modalBackdrop) {
+                modalBackdrop.addEventListener('click', closeModal);
+            }
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !contactModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            // Close mobile menu if open when opening modal
+            document.querySelectorAll('[id^="openModal"]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    const menuIcon = document.getElementById('menuIcon');
+                    
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        if (menuIcon) {
+                            menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                        }
+                    }
+                });
+            });
+
+            // Prevent modal close when clicking inside modal content
+            contactModal.querySelector('.inline-block').addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
+        // Also handle window load for preloader
+        window.addEventListener('load', () => {
+            // If page is already loaded, hide preloader faster
+            const preloader = document.getElementById('preloader');
+            if (preloader && preloader.style.display !== 'none') {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        document.getElementById('mainContent').classList.remove('hidden');
+                    }, 300);
+                }, 500);
+            }
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

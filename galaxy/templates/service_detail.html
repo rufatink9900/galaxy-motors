@@ -1,0 +1,204 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ service.title }} | GalaxyMotors Pro{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <!-- Хлебные крошки -->
+    <nav class="flex items-center space-x-2 text-sm text-gray-400 mb-8">
+        <a href="{% url 'services' %}" class="hover:text-white transition">{% trans "Services" %}</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        <a href="{% url 'services_by_category' service.subcategory.category.id %}" class="hover:text-white transition">
+            {{ service.subcategory.category.name }}
+        </a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        <a href="{% url 'services_by_subcategory' service.subcategory.category.id service.subcategory.id %}" class="hover:text-white transition">
+            {{ service.subcategory.name }}
+        </a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        <span class="text-white">{{ service.title|truncatechars:30 }}</span>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <!-- Левая колонка - Изображение и детали -->
+        <div>
+            <!-- Изображение услуги -->
+            <div class="glass border border-white/10 rounded-2xl overflow-hidden mb-6">
+                {% if service.photo %}
+                    <img src="{{ service.photo.url }}" 
+                         alt="{{ service.title }}" 
+                         class="w-full h-auto max-h-[500px] object-cover">
+                {% else %}
+                    <div class="w-full h-96 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
+                        <div class="text-center">
+                            <svg class="w-20 h-20 text-gray-700 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                      
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <!-- Бейдж категории поверх изображения -->
+                <div class="absolute top-4 left-4">
+                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm bg-black/60 backdrop-blur-sm border border-white/20">
+                        {{ service.subcategory.category.name }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Детали услуги -->
+            <div class="glass border border-white/10 rounded-2xl p-6">
+                <h3 class="text-lg font-semibold mb-4 text-gray-300">{% trans "Info" %}</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between py-3 border-b border-white/10">
+                        <span class="text-gray-400">{% trans "Make" %}</span>
+                        <span class="font-medium">{{ service.subcategory.category.name }}</span>
+                    </div>
+                    <div class="flex items-center justify-between py-3 border-b border-white/10">
+                        <span class="text-gray-400">{% trans "Model" %}</span>
+                        <span class="font-medium">{{ service.subcategory.name }}</span>
+                    </div>
+                    <div class="flex items-center justify-between py-3 border-b border-white/10">
+                        <span class="text-gray-400">{% trans "Approximate time" %}</span>
+                        <span class="font-medium">2-4 {% trans "hours" %}</span>
+                    </div>
+                    <div class="flex items-center justify-between py-3">
+                        <span class="text-gray-400">{% trans "Warranty" %}</span>
+                        <span class="font-medium text-green-400">{% trans "1 year" %}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая колонка - Описание и цена -->
+        <div>
+            <!-- Заголовок и цена -->
+            <div class="mb-8">
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">
+                    <span class="bg-gradient-to-r from-white via-gray-300 to-white bg-clip-text text-transparent">
+                        {{ service.title }}
+                    </span>
+                </h1>
+                
+                <div class="flex flex-wrap items-center gap-4 mb-6">
+              
+                    <div class="text-2xl font-bold">
+                        {% if service.price %}
+                            <span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                                {{ service.price }} 
+                            </span>
+                        {% else %}
+                            <span class="text-xl text-gray-400">{% trans "Price on request" %}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Описание услуги -->
+            <div class="glass border border-white/10 rounded-2xl p-6 mb-8">
+      
+                <div class="prose prose-invert max-w-none">
+                    <p class="text-gray-300 leading-relaxed whitespace-pre-line">
+                        {{ service.description }}
+                    </p>
+                </div>
+            </div>
+
+        
+        </div>
+    </div>
+
+    <!-- Похожие услуги -->
+    {% if similar_services %}
+    <div class="mt-16">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold">
+                <span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    Похожие услуги
+                </span>
+            </h2>
+            <a href="{% url 'services_by_subcategory' service.subcategory.category.id service.subcategory.id %}" 
+               class="text-sm text-gray-400 hover:text-white transition flex items-center">
+                Все услуги
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {% for similar in similar_services|slice:":3" %}
+            <a href="{% url 'service_detail' similar.pk %}" 
+               class="group glass border border-white/10 rounded-2xl p-5 hover:border-white/20 hover:scale-[1.02] transition-all duration-300">
+                <div class="flex items-start justify-between mb-4">
+                    <h3 class="font-bold group-hover:text-blue-400 transition">{{ similar.title }}</h3>
+                    {% if similar.price %}
+                        <span class="text-sm font-semibold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                            {{ similar.price }} azn
+                        </span>
+                    {% endif %}
+                </div>
+                <p class="text-sm text-gray-400 mb-4 line-clamp-2">{{ similar.description|truncatewords:15 }}</p>
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                    <span>{{ similar.subcategory.name }}</span>
+                    <span class="group-hover:text-blue-400 transition">Подробнее →</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Баннер качества -->
+    <div class="mt-16 glass border border-white/10 rounded-2xl p-8 bg-gradient-to-r from-white/5 to-transparent">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+            <div>
+                <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="font-bold text-sm mb-1">{% trans "Fast" %}</h4>
+                <p class="text-xs text-gray-400">{% trans "2-4 hours" %}</p>
+            </div>
+            <div>
+                <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="font-bold text-sm mb-1">{% trans "Reliable" %}</h4>
+                <p class="text-xs text-gray-400">{% trans "1 year warranty" %}</p>
+            </div>
+            <div>
+                <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-purple-500/20 border border-purple-500/30 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="font-bold text-sm mb-1">{% trans "Professionally" %}</h4>
+                <p class="text-xs text-gray-400">{% trans "Experienced masters" %}</p>
+            </div>
+            <div>
+                <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h4 class="font-bold text-sm mb-1">{% trans "Transparently" %}</h4>
+                <p class="text-xs text-gray-400">{% trans "Fixed prices" %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
