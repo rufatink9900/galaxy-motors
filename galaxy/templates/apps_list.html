@@ -7,7 +7,13 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for app in apps %}
         <div class="border rounded-lg p-4 shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold mb-2">{{ app.name }}</h2>
+            <h2 class="text-xl font-semibold mb-2">
+    <a href="{% url 'app_detail' app.id %}"
+       class="hover:underline text-blue-600">
+        {{ app.name }}
+    </a>
+</h2>
+
             <p class="text-gray-600 mb-4">{{ app.description|truncatewords:20 }}</p>
 
             {% if app.apk_file %}

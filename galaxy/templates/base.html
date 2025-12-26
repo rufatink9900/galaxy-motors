@@ -169,7 +169,7 @@
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-10">
                     <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest uppercase">
                         <li><a href="{% url 'services' %}" class="hover:text-white/80 transition-all hover-lift py-2 px-1">{% trans "Services" %}</a></li>
-                        <li><a href="#" class="hover:text-white/80 transition-all hover-lift py-2 px-1">{% trans "Applications" %}</a></li>
+                        <li><a href="{% url "apps_list" %}" class="hover:text-white/80 transition-all hover-lift py-2 px-1">{% trans "Applications" %}</a></li>
                     </ul>
                     
                     <!-- Language Selector Desktop -->
@@ -239,30 +239,11 @@
                             </div>
                         </a>
                     </li>
+                
                     <li>
-                        <a href="#" class="block py-3 px-4 rounded-lg hover:bg-white/10 transition-all hover-lift">
+                        <a href="{% url 'apps_list' %}" class="block py-3 px-4 rounded-lg hover:bg-white/10 transition-all hover-lift">
                             <div class="flex items-center justify-between">
-                                <span class="text-sm tracking-widest uppercase">{% trans "About" %}</span>
-                                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-3 px-4 rounded-lg hover:bg-white/10 transition-all hover-lift">
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm tracking-widest uppercase">{% trans "Gallery" %}</span>
-                                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-3 px-4 rounded-lg hover:bg-white/10 transition-all hover-lift">
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm tracking-widest uppercase">{% trans "Reviews" %}</span>
+                                <span class="text-sm tracking-widest uppercase">{% trans "Applications" %}</span>
                                 <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
