@@ -2,28 +2,35 @@
 {% load i18n %}
 {% block content %}
 
-<h1 class="text-2xl font-bold mb-4">{% trans "List of programs" %}</h1>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for app in apps %}
-        <div class="border rounded-lg p-4 shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold mb-2">
-    <a href="{% url 'app_detail' app.id %}"
-       class="hover:underline text-blue-600">
-        {{ app.name }}
-    </a>
-</h2>
-
-            <p class="text-gray-600 mb-4">{{ app.description|truncatewords:20 }}</p>
-
-            {% if app.apk_file %}
-                <a href="{% url 'download_apk' app.id %}" download
-                   class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                   {% trans "Download APK" %}
-                </a>
-            {% else %}
-                <p>{% trans "File not available" %}</p>
+        <div class="border rounded-lg p-4 shadow hover:shadow-lg transition flex flex-col md:flex-row gap-4">
+            
+            <!-- Фото приложения -->
+            {% if app.image %}
+            <div class="md:w-32 flex-shrink-0">
+                <img src="{{ app.image.url }}" alt="{{ app.name }}" class="w-full h-full object-cover rounded-lg">
+            </div>
             {% endif %}
+            
+            <!-- Название и кнопка загрузки -->
+            <div class="flex flex-col justify-between md:flex-1">
+                <h2 class="text-xl font-semibold mb-2">
+                    <a href="{% url 'app_detail' app.id %}" class="hover:underline">
+                        {{ app.name }}
+                    </a>
+                </h2>
+
+                {% if app.apk_file %}
+                    <a href="{% url 'download_apk' app.id %}" download
+                       class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                       {% trans "Download APK" %}
+                    </a>
+                {% else %}
+                    <p class="text-red-500">{% trans "File not available" %}</p>
+                {% endif %}
+            </div>
         </div>
     {% empty %}
         <p>{% trans "No programs available yet" %}</p>

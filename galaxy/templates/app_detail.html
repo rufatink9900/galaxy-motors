@@ -3,38 +3,45 @@
 {% block content %}
 
 <div class="max-w-5xl mx-auto p-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex flex-col md:flex-row gap-8">
 
-      <!-- Левая часть -->
-<div class="space-y-4">
-    {% if app.image %}
-        <img src="{{ app.image.url }}" alt="{{ app.name }}" class="w-full rounded-lg mb-4">
-    {% endif %}
+        <!-- Левая часть: Фото -->
+        {% if app.image %}
+        <div class="md:w-1/2 flex-shrink-0">
+            <img src="{{ app.image.url }}" alt="{{ app.name }}" class="w-full h-auto rounded-lg object-cover">
+        </div>
+        {% endif %}
 
-    <h1 class="text-3xl font-bold">{{ app.name }}</h1>
-    <p class="text-gray-600">{{ app.description }}</p>
+        <!-- Правая часть: Информация и описание -->
+        <div class="md:w-1/2 flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+                <h1 class="text-3xl font-bold">{{ app.name }}</h1>
+                <p class="">{{ app.description }}</p>
 
-    {% if app.apk_file %}
-        <a href="{% url 'download_apk' app.id %}" 
-           class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-            {% trans "Donwload APK" %}
-        </a>
-    {% else %}
-        <p class="text-red-500">{% trans "File not available" %}</p>
-    {% endif %}
-</div>
+                {% if app.apk_file %}
+                <a href="{% url 'download_apk' app.id %}" 
+                   class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                    {% trans "Download APK" %}
+                </a>
+                {% else %}
+                <p class="text-red-500">{% trans "File not available" %}</p>
+                {% endif %}
+            </div>
 
-
-        <!-- Правая часть (информация) -->
-        <div class="border rounded-lg p-6  space-y-3">
-            <h2 class="text-xl font-semibold">{% trans "Info" %}</h2>
-
-            <p>
-                <span class="font-medium">{% trans "Added date" %}</span>
-                {{ app.created_at|date:"d M Y" }}
-            </p>
-
-        
+            <!-- Информация о приложении -->
+            <div class="border rounded-lg p-6 space-y-3">
+                <h2 class="text-xl font-semibold">{% trans "Info" %}</h2>
+                <p>
+                    <span class="font-medium">{% trans "Added date" %}:</span>
+                    {{ app.created_at|date:"d M Y" }}
+                </p>
+                <p>
+                    <span class="font-medium">{% trans "Format" %}:</span> APK
+                </p>
+                <p>
+                    <span class="font-medium">{% trans "Platform" %}:</span> Android
+                </p>
+            </div>
         </div>
     </div>
 

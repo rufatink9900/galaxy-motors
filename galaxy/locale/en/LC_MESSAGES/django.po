@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 16:55+0400\n"
+"POT-Creation-Date: 2025-12-26 23:42+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,120 +18,124 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: .\templates\app_detail.html:24 .\templates\apps_list.html:22
+msgid "Download APK"
+msgstr ""
+
+#: .\templates\app_detail.html:27 .\templates\apps_list.html:25
+msgid "File not available"
+msgstr ""
+
+#: .\templates\app_detail.html:33 .\templates\service_detail.html:61
+msgid "Info"
+msgstr ""
+
+#: .\templates\app_detail.html:35
+msgid "Added date"
+msgstr ""
+
+#: .\templates\app_detail.html:39
+msgid "Format"
+msgstr ""
+
+#: .\templates\app_detail.html:42
+msgid "Platform"
+msgstr ""
+
 #: .\templates\apps_list.html:5
 msgid "List of programs"
 msgstr ""
 
-#: .\templates\apps_list.html:16
-msgid "Download APK"
-msgstr ""
-
-#: .\templates\apps_list.html:19
-msgid "File not available"
-msgstr ""
-
-#: .\templates\apps_list.html:23
+#: .\templates\apps_list.html:29
 msgid "No programs available yet"
 msgstr ""
 
 #: .\templates\base.html:171 .\templates\base.html:235
-#: .\templates\base.html:315 .\templates\index.html:23
+#: .\templates\base.html:296 .\templates\index.html:23
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr ""
 
-#: .\templates\base.html:172
+#: .\templates\base.html:172 .\templates\base.html:246
 msgid "Applications"
 msgstr ""
 
-#: .\templates\base.html:195 .\templates\base.html:316
-#: .\templates\base.html:322
+#: .\templates\base.html:195 .\templates\base.html:297
+#: .\templates\base.html:303
 msgid "Contact"
 msgstr ""
 
-#: .\templates\base.html:245
-msgid "About"
-msgstr ""
-
-#: .\templates\base.html:255
-msgid "Gallery"
-msgstr ""
-
-#: .\templates\base.html:265
-msgid "Reviews"
-msgstr ""
-
-#: .\templates\base.html:275 .\templates\base.html:367
+#: .\templates\base.html:256 .\templates\base.html:348
 msgid "Contact Us"
 msgstr ""
 
-#: .\templates\base.html:282
+#: .\templates\base.html:263
 msgid "Need help? Call us:"
 msgstr ""
 
-#: .\templates\base.html:286
+#: .\templates\base.html:267
 msgid "Mon-Fri: 9:00-18:00"
 msgstr ""
 
-#: .\templates\base.html:307
+#: .\templates\base.html:288
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
 msgstr ""
 
-#: .\templates\base.html:313
+#: .\templates\base.html:294
 msgid "Quick Links"
 msgstr ""
 
-#: .\templates\base.html:326
+#: .\templates\base.html:307
 msgid "Aşıq Molla Cümə 44"
 msgstr ""
 
-#: .\templates\base.html:342
+#: .\templates\base.html:323
 msgid "All rights reserved."
 msgstr ""
 
-#: .\templates\base.html:370
+#: .\templates\base.html:351
 msgid "Choose your preferred contact method"
 msgstr ""
 
-#: .\templates\base.html:385
+#: .\templates\base.html:366
 msgid "Phone Call"
 msgstr ""
 
-#: .\templates\base.html:410
+#: .\templates\base.html:391
 msgid "Chat with us"
 msgstr ""
 
-#: .\templates\base.html:432
+#: .\templates\base.html:413
 msgid "Message us on Telegram"
 msgstr ""
 
-#: .\templates\base.html:450
+#: .\templates\base.html:431
 msgid "Email"
 msgstr ""
 
-#: .\templates\base.html:466
+#: .\templates\base.html:447
 msgid "Working Hours"
 msgstr ""
 
-#: .\templates\base.html:470
+#: .\templates\base.html:451
 msgid "Monday - Friday"
 msgstr ""
 
-#: .\templates\base.html:474
+#: .\templates\base.html:455
 msgid "Saturday"
 msgstr ""
 
-#: .\templates\base.html:478
+#: .\templates\base.html:459
 msgid "Sunday"
 msgstr ""
 
-#: .\templates\base.html:479
+#: .\templates\base.html:460
 msgid "Closed"
 msgstr ""
 
-#: .\templates\base.html:486
+#: .\templates\base.html:467
 msgid "We'll respond within 30 minutes during working hours"
 msgstr ""
 
@@ -163,10 +167,6 @@ msgstr ""
 
 #: .\templates\index.html:41
 msgid "System updates, error diagnostics, and software optimization."
-msgstr ""
-
-#: .\templates\service_detail.html:61
-msgid "Info"
 msgstr ""
 
 #: .\templates\service_detail.html:64 .\templates\services.html:99

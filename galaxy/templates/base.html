@@ -347,9 +347,6 @@
                         <h3 class="text-2xl font-bold tracking-wider uppercase mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                             {% trans "Contact Us" %}
                         </h3>
-                        <p class="text-white/60 text-sm">
-                            {% trans "Choose your preferred contact method" %}
-                        </p>
                     </div>
 
                     <!-- Contact methods -->
@@ -362,9 +359,7 @@
                                     <span class="text-2xl">📞</span>
                                 </div>
                                 <div class="text-left">
-                                    <h4 class="font-semibold text-white group-hover:text-green-400 transition-colors">
-                                        {% trans "Phone Call" %}
-                                    </h4>
+                                  
                                     <p class="text-sm text-white/60">
                                         +994 51 840 00 12
                                     </p>
@@ -387,9 +382,7 @@
                                     <h4 class="font-semibold text-white group-hover:text-green-400 transition-colors">
                                         WhatsApp
                                     </h4>
-                                    <p class="text-sm text-white/60">
-                                        {% trans "Chat with us" %}
-                                    </p>
+                                  
                                 </div>
                             </div>
                             <svg class="w-5 h-5 text-white/40 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -397,7 +390,7 @@
                             </svg>
                         </a>
 
-                        <!-- Telegram -->
+                        {% comment %} <!-- Telegram -->
                         <a href="https://t.me/+994518400012" 
                            target="_blank"
                            class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-gray-900 border border-white/10 hover:border-white/30 transition-all hover-lift hover:scale-[1.02]">
@@ -417,7 +410,7 @@
                             <svg class="w-5 h-5 text-white/40 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
-                        </a>
+                        </a> {% endcomment %}
 
                         <!-- Email -->
                         <a href="mailto:info@galaxymotors.pro" 
@@ -443,29 +436,13 @@
 
                     <!-- Working hours -->
                     <div class="p-4 rounded-xl bg-black/30 border border-white/5">
-                        <h4 class="font-semibold text-sm uppercase tracking-wider mb-2 text-white/80">
-                            {% trans "Working Hours" %}
-                        </h4>
+
                         <div class="space-y-1 text-sm">
                             <div class="flex justify-between">
-                                <span class="text-white/60">{% trans "Monday - Friday" %}</span>
-                                <span class="text-white">9:00 - 18:00</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-white/60">{% trans "Saturday" %}</span>
-                                <span class="text-white">10:00 - 16:00</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-white/60">{% trans "Sunday" %}</span>
-                                <span class="text-white">{% trans "Closed" %}</span>
+                                <span class="text-white/60">{% trans "Mon-Fri: 9:00-18:00" %}</span>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Additional info -->
-                    <p class="text-center text-xs text-white/40 pt-4 border-t border-white/5">
-                        {% trans "We'll respond within 30 minutes during working hours" %}
-                    </p>
                 </div>
             </div>
         </div>
