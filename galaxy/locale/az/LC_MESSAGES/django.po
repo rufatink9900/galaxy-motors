@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 15:50+0400\n"
+"POT-Creation-Date: 2025-12-27 17:56+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,9 @@ msgstr ""
 msgid "Download"
 msgstr "Yüklə"
 
-#: .\templates\app_detail.html:27
-msgid "File not available"
-msgstr "Fayl mövcud deyil"
+#: .\templates\app_detail.html:27 .\templates\apps_list.html:78
+msgid "Paid. Contact us to purchase."
+msgstr "Ödənişlidir. Almaq üçün bizimlə əlaqə saxlayın"
 
 #: .\templates\app_detail.html:33 .\templates\service_detail.html:61
 msgid "Info"
@@ -46,10 +46,6 @@ msgstr "Platforma"
 msgid "Search applications..."
 msgstr "Tətbiqləri axtar…"
 
-#: .\templates\apps_list.html:78
-msgid "Paid. Contact us to purchase."
-msgstr "Ödənişlidir. Almaq üçün bizimlə əlaqə saxlayın"
-
 #: .\templates\apps_list.html:89
 msgid "Nothing found"
 msgstr ""
@@ -59,7 +55,7 @@ msgid "Try another search query"
 msgstr ""
 
 #: .\templates\base.html:171 .\templates\base.html:235
-#: .\templates\base.html:295 .\templates\index.html:23
+#: .\templates\base.html:295 .\templates\index.html:32
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Xidmətlər"
@@ -111,7 +107,13 @@ msgstr ""
 msgid "Mon-Fri: 9:00-18:00"
 msgstr "Bazar ertəsi–Şənbə: 12:00–18:00"
 
-#: .\templates\index.html:12
+#: .\templates\index.html:11
+msgid ""
+"Soon you’ll be able to connect your car and download apps directly from our "
+"website."
+msgstr "Tezliklə avtomobilinizə qoşularaq tətbiqləri birbaşa saytımızdan yükləyə biləcəksiniz."
+
+#: .\templates\index.html:21
 msgid ""
 "Professional auto service for electric vehicles. Quality, trust, and speed "
 "are our top priorities."
@@ -119,29 +121,29 @@ msgstr ""
 "Peşəkar avtomobil xidməti illərin təcrübəsi ilə. Keyfiyyət, etimad və sürət "
 "bizim prioritetimizdir."
 
-#: .\templates\index.html:28
+#: .\templates\index.html:37
 msgid "Battery Diagnostics"
 msgstr "Batareya diaqnostikası"
 
-#: .\templates\index.html:29
+#: .\templates\index.html:38
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr ""
 "Elektrik avtomobillərinin batareyalarının tam yoxlanışı və sağlamlıq "
 "yoxlaması"
 
-#: .\templates\index.html:34
+#: .\templates\index.html:43
 msgid "Electric Motor Repair"
 msgstr "Elektrik mühərrikinin təmiri"
 
-#: .\templates\index.html:35
+#: .\templates\index.html:44
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Təcrübəli ustalar tərəfindən peşəkar təmir və xidmət."
 
-#: .\templates\index.html:40
+#: .\templates\index.html:49
 msgid "Software & Diagnostics"
 msgstr "Proqram təminatı və diaqnostika"
 
-#: .\templates\index.html:41
+#: .\templates\index.html:50
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Sistem yeniləmələri, səhv diaqnostikası və proqram təminatının "
@@ -217,29 +219,32 @@ msgstr "Markalar"
 msgid "No models"
 msgstr ""
 
-#: .\templates\services.html:264
+#: .\templates\services.html:256
 msgid "Fast execution"
 msgstr "Tez icra"
 
-#: .\templates\services.html:265
+#: .\templates\services.html:257
 msgid "Average completion time - 2-4 hours"
 msgstr "Orta tamamlama müddəti – 2–4 saat"
 
-#: .\templates\services.html:273
+#: .\templates\services.html:265
 msgid "Quality guarantee"
 msgstr "Keyfiyyət zəmanəti"
 
-#: .\templates\services.html:274
+#: .\templates\services.html:266
 msgid "Warranty on all types of work 1 year"
 msgstr "Bütün iş növlərinə 1 il zəmanət"
 
-#: .\templates\services.html:282
+#: .\templates\services.html:274
 msgid "Professionals"
 msgstr "Peşəkarlar"
 
-#: .\templates\services.html:283
+#: .\templates\services.html:275
 msgid "Experienced masters with over 5 years of experience"
 msgstr "5 ildən çox təcrübəyə malik təcrübəli ustalar"
+
+#~ msgid "File not available"
+#~ msgstr "Fayl mövcud deyil"
 
 #~ msgid "Download APK"
 #~ msgstr "APK yüklə"

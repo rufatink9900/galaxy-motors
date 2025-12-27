@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 15:50+0400\n"
+"POT-Creation-Date: 2025-12-27 17:56+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: .\templates\app_detail.html:27
-msgid "File not available"
+#: .\templates\app_detail.html:27 .\templates\apps_list.html:78
+msgid "Paid. Contact us to purchase."
 msgstr ""
 
 #: .\templates\app_detail.html:33 .\templates\service_detail.html:61
@@ -46,10 +46,6 @@ msgstr ""
 msgid "Search applications..."
 msgstr ""
 
-#: .\templates\apps_list.html:78
-msgid "Paid. Contact us to purchase."
-msgstr ""
-
 #: .\templates\apps_list.html:89
 msgid "Nothing found"
 msgstr ""
@@ -59,7 +55,7 @@ msgid "Try another search query"
 msgstr ""
 
 #: .\templates\base.html:171 .\templates\base.html:235
-#: .\templates\base.html:295 .\templates\index.html:23
+#: .\templates\base.html:295 .\templates\index.html:32
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr ""
@@ -107,33 +103,39 @@ msgstr ""
 msgid "Mon-Fri: 9:00-18:00"
 msgstr ""
 
-#: .\templates\index.html:12
+#: .\templates\index.html:11
+msgid ""
+"Soon you’ll be able to connect your car and download apps directly from our "
+"website."
+msgstr ""
+
+#: .\templates\index.html:21
 msgid ""
 "Professional auto service for electric vehicles. Quality, trust, and speed "
 "are our top priorities."
 msgstr ""
 
-#: .\templates\index.html:28
+#: .\templates\index.html:37
 msgid "Battery Diagnostics"
 msgstr ""
 
-#: .\templates\index.html:29
+#: .\templates\index.html:38
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr ""
 
-#: .\templates\index.html:34
+#: .\templates\index.html:43
 msgid "Electric Motor Repair"
 msgstr ""
 
-#: .\templates\index.html:35
+#: .\templates\index.html:44
 msgid "Professional repair and maintenance by experienced masters."
 msgstr ""
 
-#: .\templates\index.html:40
+#: .\templates\index.html:49
 msgid "Software & Diagnostics"
 msgstr ""
 
-#: .\templates\index.html:41
+#: .\templates\index.html:50
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 
@@ -205,26 +207,26 @@ msgstr ""
 msgid "No models"
 msgstr ""
 
-#: .\templates\services.html:264
+#: .\templates\services.html:256
 msgid "Fast execution"
 msgstr ""
 
-#: .\templates\services.html:265
+#: .\templates\services.html:257
 msgid "Average completion time - 2-4 hours"
 msgstr ""
 
-#: .\templates\services.html:273
+#: .\templates\services.html:265
 msgid "Quality guarantee"
 msgstr ""
 
-#: .\templates\services.html:274
+#: .\templates\services.html:266
 msgid "Warranty on all types of work 1 year"
 msgstr ""
 
-#: .\templates\services.html:282
+#: .\templates\services.html:274
 msgid "Professionals"
 msgstr ""
 
-#: .\templates\services.html:283
+#: .\templates\services.html:275
 msgid "Experienced masters with over 5 years of experience"
 msgstr ""
