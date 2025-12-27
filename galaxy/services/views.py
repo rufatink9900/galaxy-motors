@@ -11,7 +11,7 @@ def services(request, category_id=None, subcategory_id=None):
     active_subcategory = None
     subcategories = []
 
-    services_list = Service.objects.filter(is_active=True).select_related('subcategory__category')
+    services_list = Service.objects.filter(is_active=True).select_related('subcategory__category').order_by('-id')
 
     if category_id:
         active_category = category_id
