@@ -30,17 +30,12 @@
 
             <!-- Информация о приложении -->
             <div class="border rounded-lg p-6 space-y-3">
-                <h2 class="text-xl font-semibold">{% trans "Info" %}</h2>
+              
                 <p>
                     <span class="font-medium">{% trans "Added date" %}:</span>
                     {{ app.created_at|date:"d M Y" }}
                 </p>
-                <p>
-                    <span class="font-medium">{% trans "Format" %}:</span> APK
-                </p>
-                <p>
-                    <span class="font-medium">{% trans "Platform" %}:</span> Android
-                </p>
+          
             </div>
         </div>
     </div>
