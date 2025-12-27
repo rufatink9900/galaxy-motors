@@ -3,38 +3,122 @@
 {% block content %}
 
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-    {% for app in apps %}
-        <div class="border rounded-lg p-4 shadow hover:shadow-lg transition flex flex-col md:flex-row gap-4">
-            
-            <!-- Фото приложения -->
-            {% if app.image %}
-            <div class="md:w-32 flex-shrink-0">
-                <img src="{{ app.image.url }}" alt="{{ app.name }}" class="w-full h-full object-cover rounded-lg">
+    <!-- Сетка приложений -->
+    <div class="px-4 pb-20">
+        <div class="max-w-7xl mx-auto">
+            {% if apps %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for app in apps %}
+                <div class="group relative bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 hover:-translate-y-2">
+                    <!-- Неоновый акцент -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    
+                    
+                    <!-- Изображение приложения -->
+                    <div class="h-52 relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+                        {% if app.image %}
+                        <img src="{{ app.image.url }}" alt="{{ app.name }}" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent"></div>
+                        {% else %}
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="relative">
+                                <div class="w-20 h-20 bg-gradient-to-br from-cyan-600/20 to-blue-600/20 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Контент карточки -->
+                    <div class="p-6">
+                        <!-- Заголовок и рейтинг -->
+                        <div class="flex justify-between items-start mb-4">
+                        
+                                <a href="{% url 'app_detail' app.id %}" class="hover:text-cyan-400 transition group-hover:text-cyan-400 underline">
+                                    {{ app.name }}
+                                </a>
+                    
+              
+                        </div>
+                        
+                        <!-- Описание -->
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">
+                            {{ app.description|default:"Premium application with advanced features and modern design."|truncatechars:100 }}
+                        </p>
+                        
+             
+                        
+                        <!-- Кнопка загрузки -->
+                        <div class="pt-4 border-t border-gray-700/50">
+                            {% if app.apk_file %}
+                            <a href="{% url 'download_apk' app.id %}" download
+                               class="block w-full px-6 py-3.5 bg-gradient-to-r from-cyan-700 to-blue-700 hover:from-cyan-600 hover:to-blue-600 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 flex items-center justify-center gap-3 group/btn">
+                                <svg class="w-5 h-5 group-hover/btn:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                                <span>{% trans "Download" %}</span>
+                                <span class="text-xs opacity-70"></span>
+                            </a>
+                            {% else %}
+                            <div class="w-full px-6 py-3.5 bg-gray-900/50 border border-gray-700 rounded-xl text-center">
+                                <div class="text-gray-400 font-medium">{% trans "Coming Soon" %}</div>
+                                <div class="text-xs text-gray-500 mt-1">{% trans "In development" %}</div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
+            {% else %}
+       
             {% endif %}
             
-            <!-- Название и кнопка загрузки -->
-            <div class="flex flex-col justify-between md:flex-1">
-                <h2 class="text-xl font-semibold mb-2">
-                    <a href="{% url 'app_detail' app.id %}" class="underline">
-                        {{ app.name }}
-                    </a>
-                </h2>
-
-                {% if app.apk_file %}
-                    <a href="{% url 'download_apk' app.id %}" download
-                       class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                       {% trans "Download APK" %}
-                    </a>
-                {% else %}
-                    <p class="text-red-500">{% trans "File not available" %}</p>
-                {% endif %}
-            </div>
+      
         </div>
-    {% empty %}
-        <p>{% trans "No programs available yet" %}</p>
-    {% endfor %}
+    </div>
 </div>
+
+<style>
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* Анимация для неонового свечения */
+    @keyframes pulse-glow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+    
+    .hover\\:shadow-cyan-500\\/20:hover {
+        box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.2);
+    }
+    
+    /* Стили для скроллбара */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #1f2937;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #374151;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #4b5563;
+    }
+</style>
 
 {% endblock %}

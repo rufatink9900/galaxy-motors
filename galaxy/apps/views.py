@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 
 def apps_list(request):
-    apps = App.objects.all()
+    apps = App.objects.all().order_by('-id')
     return render(request, 'apps_list.html', {'apps': apps})
 
 def app_detail(request, pk):
