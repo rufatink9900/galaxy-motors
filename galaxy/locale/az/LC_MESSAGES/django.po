@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 13:13+0400\n"
+"POT-Creation-Date: 2025-12-27 13:50+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\templates\app_detail.html:24
-msgid "Download APK"
-msgstr "APK yüklə"
+#: .\templates\app_detail.html:24 .\templates\apps_list.html:74
+msgid "Download"
+msgstr "Yüklə"
 
 #: .\templates\app_detail.html:27
 msgid "File not available"
@@ -42,21 +42,29 @@ msgstr ""
 msgid "Platform"
 msgstr "Platforma"
 
-#: .\templates\apps_list.html:64
+#: .\templates\apps_list.html:12
 
-msgid "Download"
-msgstr "Yüklə"
+msgid "Search applications..."
+msgstr "Tətbiqləri axtar…"
 
-#: .\templates\apps_list.html:69
+#: .\templates\apps_list.html:78
 msgid "Coming Soon"
 msgstr ""
 
-#: .\templates\apps_list.html:70
+#: .\templates\apps_list.html:79
 msgid "In development"
 msgstr ""
 
+#: .\templates\apps_list.html:89
+msgid "Nothing found"
+msgstr ""
+
+#: .\templates\apps_list.html:90
+msgid "Try another search query"
+msgstr ""
+
 #: .\templates\base.html:171 .\templates\base.html:235
-#: .\templates\base.html:296 .\templates\index.html:23
+#: .\templates\base.html:295 .\templates\index.html:23
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Xidmətlər"
@@ -65,12 +73,12 @@ msgstr "Xidmətlər"
 msgid "Applications"
 msgstr "Tətbiqlər"
 
-#: .\templates\base.html:195 .\templates\base.html:297
-#: .\templates\base.html:303
+#: .\templates\base.html:195 .\templates\base.html:296
+#: .\templates\base.html:302
 msgid "Contact"
 msgstr "Əlaqə"
 
-#: .\templates\base.html:256 .\templates\base.html:348
+#: .\templates\base.html:256 .\templates\base.html:347
 msgid "Contact Us"
 msgstr "Əlaqə"
 
@@ -78,13 +86,7 @@ msgstr "Əlaqə"
 msgid "Need help? Call us:"
 msgstr ""
 
-#: .\templates\base.html:267 .\templates\base.html:443
-#, fuzzy
-#| msgid "Monday-Saturday: 12:00-18:00"
-msgid "Mon-Fri: 9:00-18:00"
-msgstr "Bazar ertəsi–Şənbə: 12:00–18:00"
-
-#: .\templates\base.html:288
+#: .\templates\base.html:287
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
@@ -92,21 +94,27 @@ msgstr ""
 "Peşəkar avtomobil xidməti illərin təcrübəsi ilə. Keyfiyyət, etimad və sürət "
 "bizim prioritetimizdir."
 
-#: .\templates\base.html:294
+#: .\templates\base.html:293
 msgid "Quick Links"
 msgstr "Tez keçidlər"
 
-#: .\templates\base.html:307
+#: .\templates\base.html:306
 msgid "Aşıq Molla Cümə 44"
 msgstr ""
 
-#: .\templates\base.html:323
+#: .\templates\base.html:322
 msgid "All rights reserved."
 msgstr "Bütün hüquqlar qorunur"
 
-#: .\templates\base.html:425
+#: .\templates\base.html:424
 msgid "Email"
 msgstr ""
+
+#: .\templates\base.html:442
+#, fuzzy
+#| msgid "Monday-Saturday: 12:00-18:00"
+msgid "Mon-Fri: 9:00-18:00"
+msgstr "Bazar ertəsi–Şənbə: 12:00–18:00"
 
 #: .\templates\index.html:12
 msgid ""
@@ -237,6 +245,9 @@ msgstr "Peşəkarlar"
 #: .\templates\services.html:283
 msgid "Experienced masters with over 5 years of experience"
 msgstr "5 ildən çox təcrübəyə malik təcrübəli ustalar"
+
+#~ msgid "Download APK"
+#~ msgstr "APK yüklə"
 
 #~ msgid "List of programs"
 #~ msgstr "Tətbiqlərin siyahısı"
