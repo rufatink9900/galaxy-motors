@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 13:49+0400\n"
+"POT-Creation-Date: 2025-12-27 15:50+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,17 +45,12 @@ msgid "Platform"
 msgstr "Платформа"
 
 #: .\templates\apps_list.html:12
-
 msgid "Search applications..."
 msgstr "Поиск приложений…"
 
 #: .\templates\apps_list.html:78
-msgid "Coming Soon"
-msgstr ""
-
-#: .\templates\apps_list.html:79
-msgid "In development"
-msgstr ""
+msgid "Paid. Contact us to purchase."
+msgstr "Платно. Свяжитесь с нами для покупки"
 
 #: .\templates\apps_list.html:89
 msgid "Nothing found"
