@@ -21,7 +21,7 @@
                 {% if app.apk_file %}
                 <a href="{% url 'download_apk' app.id %}" 
                    class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-                    {% trans "Download APK" %}
+                    {% trans "Download" %}
                 </a>
                 {% else %}
                 <p class="text-red-500">{% trans "File not available" %}</p>
