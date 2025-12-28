@@ -58,11 +58,7 @@
                         </a>
                     </div>
                     
-                    <!-- Описание -->
-                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">
-                        {{ app.description|default:"Premium application with advanced features and modern design."|truncatechars:100 }}
-                    </p>
-                    
+
                     <!-- Кнопка загрузки -->
                     <div class="pt-4 border-t border-gray-700/50">
                         {% if app.apk_file %}
@@ -75,7 +71,7 @@
                         </a>
                         {% else %}
                         <div class="w-full px-6 py-3.5 bg-gray-900/50 border border-gray-700 rounded-xl text-center">
-                            <div class="text-gray-400 font-medium">{% trans "Paid. Contact us to purchase." %}</div>
+                            <div class="text-gray-400 text-xs">{% trans "Paid. Contact us to purchase." %}</div>
                            
                         </div>
                         {% endif %}
