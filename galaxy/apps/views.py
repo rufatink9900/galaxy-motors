@@ -40,3 +40,7 @@ def download_apk(request, app_id):
     )
     response['Content-Disposition'] = f'attachment; filename="{app.apk_filename}"'
     return response
+
+
+def q07(request):
+    return render(request, 'q07.html')
