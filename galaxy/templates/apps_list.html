@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-
+<div class="mt-6 text-center">
+    <a href="{% url 'q07_adb' %}"
+       class="inline-flex items-center gap-2 px-6 py-3 rounded-xl
+              bg-gradient-to-r from-indigo-500 to-purple-600
+              text-white font-semibold shadow-lg
+              hover:from-indigo-600 hover:to-purple-700
+              transition-all duration-300">
+        🚗 Changan Qiyuan Q07 1.2.0 ADB and Language
+    </a>
+</div>
 <!-- Форма поиска -->
 <form method="get" class="max-w-xl mx-auto mb-10 mt-12">
     <div class="relative">
