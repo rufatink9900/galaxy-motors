@@ -2,98 +2,12 @@
 {% load i18n %}
 {% block content %}
 
-{% comment %} <div class="marquee">
-  {% trans "New app available! Changan Q07 Flagship Plus Right Screen App Opening" %}
-</div> {% endcomment %}
-<!-- HERO SECTION -->
- {% comment %} <p class='px-2'>
-  {% trans "Soon you’ll be able to connect your car and download apps directly from our website." %}
- </p> {% endcomment %}
-
-
-
-<section class="relative py-28">
-
-  <div class="max-w-7xl mx-auto px-6 text-center">
- 
-    <h1 class="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">
-      Luxury ElectroCar Service
-    </h1>
-    <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto drop-shadow">
+<!-- GALAXY BACKGROUND -->
+<div class="relative overflow-hidden  text-white">
+  <div class="flex justify-center text-5xl p-4">
       {% trans "Professional auto service for electric vehicles. Quality, trust, and speed are our top priorities." %}
-    </p>
- 
   </div>
-</section>
-
-
-
-<!-- SERVICES SECTION -->
-<section id="services" class="py-12 ">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-4xl font-extrabold text-center mb-16">{% trans "Services" %}</h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-      <div class=" rounded-3xl shadow-lg p-8 hover:shadow-2xl transform hover:scale-105 transition">
-        <div class="text-blue-600 text-5xl mb-4">🔋</div>
-        <h3 class="text-2xl font-bold mb-2">{% trans "Battery Diagnostics" %}</h3>
-        <p class="text-white mb-4">{% trans "Full inspection and health check of electric vehicle batteries." %}</p>
-      </div>
-
-      <div class=" rounded-3xl shadow-lg p-8 hover:shadow-2xl transform hover:scale-105 transition">
-        <div class="text-blue-600 text-5xl mb-4">⚙️</div>
-        <h3 class="text-2xl font-bold mb-2">{% trans "Electric Motor Repair" %}</h3>
-        <p class="text-white mb-4">{% trans "Professional repair and maintenance by experienced masters." %}</p>
-      </div>
-
-      <div class=" rounded-3xl shadow-lg p-8 hover:shadow-2xl transform hover:scale-105 transition">
-        <div class="text-blue-600 text-5xl mb-4">💻</div>
-        <h3 class="text-2xl font-bold mb-2">{% trans "Software & Diagnostics" %}</h3>
-        <p class="text-white mb-4">{% trans "System updates, error diagnostics, and software optimization." %}</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT SECTION -->
-{% comment %} <section id="contact" class="py-20 bg-zinc-900">
-  <div class="max-w-4xl mx-auto px-6">
-    <h2 class="text-4xl font-extrabold text-center mb-10">Contact Us</h2>
-
-    <div class=" p-10 rounded-3xl shadow-xl">
-      <form method="post" class="space-y-6">
-        {% csrf_token %}
-        <input type="text" placeholder="Your Name" class="w-full p-4 rounded-xl">
-        <input type="tel" placeholder="Phone Number" class="w-full p-4 rounded-xl">
-        <textarea placeholder="Your Message" rows="5" class="w-full p-4 rounded-xl"></textarea>
-        <button class="w-full  text-blue-900 font-bold py-4 rounded-xl hover:scale-105 transition transform">
-          Send Request
-        </button>
-      </form>
-    </div>
-  </div>
-</section> {% endcomment %}
-
-<style>
-.marquee {
-  width: 300px;            /* ширина блока */
-  overflow: hidden;        /* скрыть лишнее */
-  white-space: nowrap;     /* не переносить текст */
-  box-sizing: border-box;
-}
-
-.marquee::after {
-  content: '';
-}
-
-.marquee {
-  animation: marquee 10s linear infinite;
-}
-
-@keyframes marquee {
-  0%   { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-</style>
+  <img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767019368/lyncandco900_xwbjgi.png" alt="">
+</div>
 
 {% endblock %}
