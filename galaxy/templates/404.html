@@ -1,64 +1,42 @@
+{% extends "base.html" %}
 {% load i18n %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Страница не найдена</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block content %}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-        }
+<section class="min-h-[70vh] flex items-center justify-center px-4">
+    <div class="text-center max-w-md">
 
-        .box {
-            max-width: 500px;
-            padding: 40px;
-        }
+        <!-- Logo -->
+        <img 
+            src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767018595/logo_gg20i6.png"
+            alt="Galaxy Motors"
+            class="mx-auto mb-6 w-40 opacity-90"
+        >
 
-        h1 {
-            font-size: 120px;
-            margin: 0;
-            color: #00e5ff;
-        }
+        <!-- 404 -->
+        <h1 class="text-6xl font-extrabold text-cyan-400 mb-4">
+            404
+        </h1>
 
-        h2 {
-            margin: 10px 0;
-        }
+        <!-- Message -->
+        <p class="text-lg text-gray-300 mb-6">
+            {% trans "Page not found" %}
+        </p>
 
-        p {
-            opacity: 0.8;
-            margin-bottom: 30px;
-        }
+        <p class="text-sm text-gray-500 mb-8">
+            {% trans "The page you are looking for doesn’t exist or has been moved." %}
+        </p>
 
-        a {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #00e5ff;
-            color: #000;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-        }
+        <!-- Button -->
+        <a 
+            href="/"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl
+                   bg-cyan-500 text-black font-semibold
+                   hover:bg-cyan-400 transition-all duration-300 shadow-lg"
+        >
+            ← {% trans "Back to homepage" %}
+        </a>
 
-        a:hover {
-            background: #00bcd4;
-        }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <h1>404</h1>
-        <h2>{% trans "Page not found" %}</h2>
-        <a href="/">{% trans "Home" %}</a>
     </div>
-</body>
-</html>
+</section>
+
+{% endblock %}

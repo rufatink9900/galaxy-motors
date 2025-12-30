@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 17:57+0400\n"
+"POT-Creation-Date: 2025-12-30 14:22+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,66 +20,62 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\templates\app_detail.html:24 .\templates\apps_list.html:74
+#: .\templates\404.html:22
+msgid "Page not found"
+msgstr ""
+
+#: .\templates\404.html:26
+msgid "The page you are looking for doesn’t exist or has been moved."
+msgstr "Страница, которую вы ищете, не существует или была перемещена."
+
+#: .\templates\404.html:36
+msgid "Back to homepage"
+msgstr "Вернуться на главную страницу"
+
+#: .\templates\app_detail.html:24 .\templates\apps_list.html:70
 msgid "Download"
 msgstr "Скачать"
 
-#: .\templates\app_detail.html:27 .\templates\apps_list.html:78
+#: .\templates\app_detail.html:27 .\templates\apps_list.html:74
 msgid "Paid. Contact us to purchase."
 msgstr "Платно. Свяжитесь с нами для покупки"
-
-#: .\templates\app_detail.html:33 .\templates\service_detail.html:61
-msgid "Info"
-msgstr "Информация"
 
 #: .\templates\app_detail.html:35
 msgid "Added date"
 msgstr "Дата добавления"
 
-#: .\templates\app_detail.html:39
-msgid "Format"
-msgstr "Формат"
-
-#: .\templates\app_detail.html:42
-msgid "Platform"
-msgstr "Платформа"
-
 #: .\templates\apps_list.html:12
 msgid "Search applications..."
 msgstr "Поиск приложений…"
 
-#: .\templates\apps_list.html:89
+#: .\templates\apps_list.html:85
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:90
+#: .\templates\apps_list.html:86
 msgid "Try another search query"
 msgstr ""
 
-#: .\templates\base.html:171 .\templates\base.html:235
-#: .\templates\base.html:295 .\templates\index.html:32
+#: .\templates\base.html:212 .\templates\base.html:277
+#: .\templates\base.html:336 .\templates\index.html:37
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Услуги"
 
-#: .\templates\base.html:172 .\templates\base.html:246
+#: .\templates\base.html:213 .\templates\base.html:288
 msgid "Applications"
 msgstr "Приложения"
 
-#: .\templates\base.html:195 .\templates\base.html:296
-#: .\templates\base.html:302
+#: .\templates\base.html:233 .\templates\base.html:337
+#: .\templates\base.html:343
 msgid "Contact"
 msgstr "Связаться"
 
-#: .\templates\base.html:256 .\templates\base.html:347
+#: .\templates\base.html:298 .\templates\base.html:388
 msgid "Contact Us"
 msgstr "Свяжитесь с нами"
 
-#: .\templates\base.html:263
-msgid "Need help? Call us:"
-msgstr ""
-
-#: .\templates\base.html:287
+#: .\templates\base.html:328
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
@@ -87,33 +83,27 @@ msgstr ""
 "Профессиональный автосервис с многолетним опытом. Качество, доверие и "
 "скорость — наши приоритеты."
 
-#: .\templates\base.html:293
+#: .\templates\base.html:334
 msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
-#: .\templates\base.html:306
+#: .\templates\base.html:347
 msgid "Aşıq Molla Cümə 44"
 msgstr ""
 
-#: .\templates\base.html:322
+#: .\templates\base.html:363
 msgid "All rights reserved."
 msgstr "Все права защищены"
 
-#: .\templates\base.html:424
+#: .\templates\base.html:440
 msgid "Email"
 msgstr ""
 
-#: .\templates\base.html:442
+#: .\templates\base.html:458
 msgid "Mon-Fri: 9:00-18:00"
 msgstr "Понедельник–суббота: 12:00–18:00"
 
-#: .\templates\index.html:11
-msgid ""
-"Soon you’ll be able to connect your car and download apps directly from our "
-"website."
-msgstr "Скоро вы сможете подключаться к автомобилю и скачивать приложения напрямую через наш сайт."
-
-#: .\templates\index.html:21
+#: .\templates\index.html:13
 msgid ""
 "Professional auto service for electric vehicles. Quality, trust, and speed "
 "are our top priorities."
@@ -121,33 +111,37 @@ msgstr ""
 "Профессиональный автосервис с многолетним опытом. Качество, доверие и "
 "скорость — наши приоритеты."
 
-#: .\templates\index.html:37
+#: .\templates\index.html:47
 msgid "Battery Diagnostics"
 msgstr "Диагностика батареи"
 
-#: .\templates\index.html:38
+#: .\templates\index.html:50
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr "Полная проверка и оценка состояния аккумуляторов электромобиля."
 
-#: .\templates\index.html:43
+#: .\templates\index.html:57
 msgid "Electric Motor Repair"
 msgstr "Ремонт электрического мотора"
 
-#: .\templates\index.html:44
+#: .\templates\index.html:60
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Профессиональный ремонт и обслуживание опытными мастерами."
 
-#: .\templates\index.html:49
+#: .\templates\index.html:67
 msgid "Software & Diagnostics"
 msgstr "Программное обеспечение и диагностика"
 
-#: .\templates\index.html:50
+#: .\templates\index.html:70
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Обновления системы, диагностика ошибок и оптимизация программного "
 "обеспечения."
 
-#: .\templates\service_detail.html:64 .\templates\services.html:99
+#: .\templates\service_detail.html:61
+msgid "Info"
+msgstr "Информация"
+
+#: .\templates\service_detail.html:64 .\templates\services.html:78
 msgid "Make"
 msgstr "Марка"
 
@@ -171,7 +165,7 @@ msgstr "Гарантия"
 msgid "1 year"
 msgstr "1 год"
 
-#: .\templates\service_detail.html:101
+#: .\templates\service_detail.html:101 .\templates\services.html:149
 msgid "Price on request"
 msgstr "Цена по запросу"
 
@@ -213,33 +207,70 @@ msgstr "Услуги"
 msgid "Makes"
 msgstr "Марки"
 
-#: .\templates\services.html:54
+#: .\templates\services.html:52
 msgid "No models"
 msgstr ""
 
-#: .\templates\services.html:256
+#: .\templates\services.html:87
+#, fuzzy
+#| msgid "Services"
+msgid "services"
+msgstr "Услуги"
+
+#: .\templates\services.html:114
+msgid "No image"
+msgstr ""
+
+#: .\templates\services.html:171
+msgid "No services found"
+msgstr ""
+
+#: .\templates\services.html:173
+msgid "Try selecting a different category or check back later"
+msgstr ""
+
+#: .\templates\services.html:180
+#, fuzzy
+#| msgid "Services"
+msgid "All services"
+msgstr "Услуги"
+
+#: .\templates\services.html:199
 msgid "Fast execution"
 msgstr "Быстрое выполнение"
 
-#: .\templates\services.html:257
+#: .\templates\services.html:200
 msgid "Average completion time - 2-4 hours"
 msgstr "Среднее время выполнения – 2–4 часа"
 
-#: .\templates\services.html:265
+#: .\templates\services.html:208
 msgid "Quality guarantee"
 msgstr "Гарантия качества"
 
-#: .\templates\services.html:266
+#: .\templates\services.html:209
 msgid "Warranty on all types of work 1 year"
 msgstr "Гарантия на все виды работ 1 год"
 
-#: .\templates\services.html:274
+#: .\templates\services.html:217
 msgid "Professionals"
 msgstr "Профессионалы"
 
-#: .\templates\services.html:275
+#: .\templates\services.html:218
 msgid "Experienced masters with over 5 years of experience"
 msgstr "Опытные мастера с более чем 5-летним стажем"
+
+#~ msgid "Format"
+#~ msgstr "Формат"
+
+#~ msgid "Platform"
+#~ msgstr "Платформа"
+
+#~ msgid ""
+#~ "Soon you’ll be able to connect your car and download apps directly from "
+#~ "our website."
+#~ msgstr ""
+#~ "Скоро вы сможете подключаться к автомобилю и скачивать приложения "
+#~ "напрямую через наш сайт."
 
 #~ msgid "File not available"
 #~ msgstr "Файл отсутствует"
