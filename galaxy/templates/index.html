@@ -2,47 +2,48 @@
 {% load i18n %}
 {% block content %}
 
-<!-- HERO / GALAXY SECTION -->
+<!-- HERO SECTION -->
 <section class="relative overflow-hidden text-white">
-    
-    <div class="relative z-10 max-w-7xl mx-auto px-4 py-12 sm:py-16 lg:py-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-16 sm:py-20 lg:py-28">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
             <!-- Text -->
-            <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight text-center lg:text-left">
-                {% trans "Professional auto service for electric vehicles. Quality, trust, and speed are our top priorities." %}
-            </h1>
+            <div class="space-y-6">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-snug text-center lg:text-left">
+                    {% trans "Professional auto service with years of experience. Quality, trust, and speed are our priorities." %}
+                </h1>
+           
+            </div>
 
             <!-- Image -->
             <div class="flex justify-center lg:justify-end">
                 <img 
                     src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767019368/lyncandco900_xwbjgi.png"
                     alt="Electric Vehicle"
-                    class="w-full max-w-sm sm:max-w-md lg:max-w-lg object-contain"
+                    class="w-full max-w-sm sm:max-w-md lg:max-w-lg object-contain drop-shadow-xl"
                 >
             </div>
 
         </div>
     </div>
-
 </section>
 
 <!-- SERVICES SECTION -->
-<section class=" text-white py-16 sm:py-20">
+<section class="text-white py-16 sm:py-20 bg-gradient-to-b from-transparent to-gray-900">
     <div class="max-w-7xl mx-auto px-4">
 
         <!-- Title -->
         <div class="text-center mb-12">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-wide">
                 {% trans "Services" %}
             </h2>
         </div>
 
         <!-- Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <!-- Card 1 -->
-            <div class=" border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400 transition">
+            <div class="border border-cyan-500/20 rounded-2xl p-6 bg-white/5 backdrop-blur-sm hover:scale-105 hover:border-cyan-400 transition-transform duration-300 shadow-lg">
                 <h3 class="text-lg font-semibold mb-3">
                     {% trans "Battery Diagnostics" %}
                 </h3>
@@ -52,7 +53,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class=" border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400 transition">
+            <div class="border border-cyan-500/20 rounded-2xl p-6 bg-white/5 backdrop-blur-sm hover:scale-105 hover:border-cyan-400 transition-transform duration-300 shadow-lg">
                 <h3 class="text-lg font-semibold mb-3">
                     {% trans "Electric Motor Repair" %}
                 </h3>
@@ -62,7 +63,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class=" border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400 transition">
+            <div class="border border-cyan-500/20 rounded-2xl p-6 bg-white/5 backdrop-blur-sm hover:scale-105 hover:border-cyan-400 transition-transform duration-300 shadow-lg">
                 <h3 class="text-lg font-semibold mb-3">
                     {% trans "Software & Diagnostics" %}
                 </h3>
