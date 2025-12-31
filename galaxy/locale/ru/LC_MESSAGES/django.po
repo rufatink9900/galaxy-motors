@@ -121,7 +121,7 @@ msgstr "Полная проверка и оценка состояния акк�
 
 #: .\templates\index.html:57
 msgid "Electric Motor Repair"
-msgstr "Ремонт электрического мотора"
+msgstr "Ремонт электродвигателя"
 
 #: .\templates\index.html:60
 msgid "Professional repair and maintenance by experienced masters."
