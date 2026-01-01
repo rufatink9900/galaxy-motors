@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 17:56+0400\n"
+"POT-Creation-Date: 2026-01-01 19:33+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,128 +18,130 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\templates\app_detail.html:24 .\templates\apps_list.html:74
+#: .\templates\404.html:22
+msgid "Page not found"
+msgstr ""
+
+#: .\templates\404.html:26
+msgid "The page you are looking for doesn’t exist or has been moved."
+msgstr ""
+
+#: .\templates\404.html:36
+msgid "Back to homepage"
+msgstr ""
+
+#: .\templates\app_detail.html:24 .\templates\apps_list.html:70
 msgid "Download"
 msgstr ""
 
-#: .\templates\app_detail.html:27 .\templates\apps_list.html:78
+#: .\templates\app_detail.html:27 .\templates\apps_list.html:74
 msgid "Paid. Contact us to purchase."
-msgstr ""
-
-#: .\templates\app_detail.html:33 .\templates\service_detail.html:61
-msgid "Info"
 msgstr ""
 
 #: .\templates\app_detail.html:35
 msgid "Added date"
 msgstr ""
 
-#: .\templates\app_detail.html:39
-msgid "Format"
-msgstr ""
-
-#: .\templates\app_detail.html:42
-msgid "Platform"
-msgstr ""
-
 #: .\templates\apps_list.html:12
 msgid "Search applications..."
 msgstr ""
 
-#: .\templates\apps_list.html:89
+#: .\templates\apps_list.html:85
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:90
+#: .\templates\apps_list.html:86
 msgid "Try another search query"
 msgstr ""
 
-#: .\templates\base.html:171 .\templates\base.html:235
-#: .\templates\base.html:295 .\templates\index.html:32
+#: .\templates\base.html:224 .\templates\base.html:296
+#: .\templates\base.html:357 .\templates\index.html:45
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr ""
 
-#: .\templates\base.html:172 .\templates\base.html:246
+#: .\templates\base.html:225 .\templates\base.html:307
 msgid "Applications"
 msgstr ""
 
-#: .\templates\base.html:195 .\templates\base.html:296
-#: .\templates\base.html:302
+#: .\templates\base.html:245 .\templates\base.html:358
+#: .\templates\base.html:364
 msgid "Contact"
 msgstr ""
 
-#: .\templates\base.html:256 .\templates\base.html:347
+#: .\templates\base.html:317 .\templates\base.html:409
 msgid "Contact Us"
 msgstr ""
 
-#: .\templates\base.html:263
-msgid "Need help? Call us:"
+#: .\templates\base.html:324
+msgid "Call us directly:"
 msgstr ""
 
-#: .\templates\base.html:287
+#: .\templates\base.html:328 .\templates\base.html:478
+msgid "Mon-Fri: 9:00-18:00"
+msgstr ""
+
+#: .\templates\base.html:349 .\templates\index.html:13 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
 msgstr ""
 
-#: .\templates\base.html:293
+#: .\templates\base.html:355
 msgid "Quick Links"
 msgstr ""
 
-#: .\templates\base.html:306
+#: .\templates\base.html:368
 msgid "Aşıq Molla Cümə 44"
 msgstr ""
 
-#: .\templates\base.html:322
+#: .\templates\base.html:384
 msgid "All rights reserved."
 msgstr ""
 
-#: .\templates\base.html:424
+#: .\templates\base.html:461
 msgid "Email"
 msgstr ""
 
-#: .\templates\base.html:442
-msgid "Mon-Fri: 9:00-18:00"
-msgstr ""
-
-#: .\templates\index.html:11
-msgid ""
-"Soon you’ll be able to connect your car and download apps directly from our "
-"website."
-msgstr ""
-
-#: .\templates\index.html:21
-msgid ""
-"Professional auto service for electric vehicles. Quality, trust, and speed "
-"are our top priorities."
-msgstr ""
-
-#: .\templates\index.html:37
+#: .\templates\index.html:55
 msgid "Battery Diagnostics"
 msgstr ""
 
-#: .\templates\index.html:38
+#: .\templates\index.html:58
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr ""
 
-#: .\templates\index.html:43
+#: .\templates\index.html:65
 msgid "Electric Motor Repair"
 msgstr ""
 
-#: .\templates\index.html:44
+#: .\templates\index.html:68
 msgid "Professional repair and maintenance by experienced masters."
 msgstr ""
 
-#: .\templates\index.html:49
+#: .\templates\index.html:75
 msgid "Software & Diagnostics"
 msgstr ""
 
-#: .\templates\index.html:50
+#: .\templates\index.html:78
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 
-#: .\templates\service_detail.html:64 .\templates\services.html:99
+#: .\templates\index.html:90
+msgid "Our Team"
+msgstr ""
+
+#: .\templates\index.html:91
+msgid ""
+"We are a dynamic team, passionate about what we do and committed to "
+"delivering the best results for our clients."
+msgstr ""
+
+#: .\templates\service_detail.html:61
+msgid "Info"
+msgstr ""
+
+#: .\templates\service_detail.html:64 .\templates\services.html:78
 msgid "Make"
 msgstr ""
 
@@ -163,7 +165,7 @@ msgstr ""
 msgid "1 year"
 msgstr ""
 
-#: .\templates\service_detail.html:101
+#: .\templates\service_detail.html:101 .\templates\services.html:149
 msgid "Price on request"
 msgstr ""
 
@@ -203,30 +205,50 @@ msgstr ""
 msgid "Makes"
 msgstr ""
 
-#: .\templates\services.html:54
+#: .\templates\services.html:52
 msgid "No models"
 msgstr ""
 
-#: .\templates\services.html:256
+#: .\templates\services.html:87
+msgid "services"
+msgstr ""
+
+#: .\templates\services.html:114
+msgid "No image"
+msgstr ""
+
+#: .\templates\services.html:171
+msgid "No services found"
+msgstr ""
+
+#: .\templates\services.html:173
+msgid "Try selecting a different category or check back later"
+msgstr ""
+
+#: .\templates\services.html:180
+msgid "All services"
+msgstr ""
+
+#: .\templates\services.html:199
 msgid "Fast execution"
 msgstr ""
 
-#: .\templates\services.html:257
+#: .\templates\services.html:200
 msgid "Average completion time - 2-4 hours"
 msgstr ""
 
-#: .\templates\services.html:265
+#: .\templates\services.html:208
 msgid "Quality guarantee"
 msgstr ""
 
-#: .\templates\services.html:266
+#: .\templates\services.html:209
 msgid "Warranty on all types of work 1 year"
 msgstr ""
 
-#: .\templates\services.html:274
+#: .\templates\services.html:217
 msgid "Professionals"
 msgstr ""
 
-#: .\templates\services.html:275
+#: .\templates\services.html:218
 msgid "Experienced masters with over 5 years of experience"
 msgstr ""

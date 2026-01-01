@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-30 14:22+0400\n"
+"POT-Creation-Date: 2026-01-01 19:33+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,26 +56,34 @@ msgstr ""
 msgid "Try another search query"
 msgstr ""
 
-#: .\templates\base.html:212 .\templates\base.html:277
-#: .\templates\base.html:336 .\templates\index.html:37
+#: .\templates\base.html:224 .\templates\base.html:296
+#: .\templates\base.html:357 .\templates\index.html:45
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Услуги"
 
-#: .\templates\base.html:213 .\templates\base.html:288
+#: .\templates\base.html:225 .\templates\base.html:307
 msgid "Applications"
 msgstr "Приложения"
 
-#: .\templates\base.html:233 .\templates\base.html:337
-#: .\templates\base.html:343
+#: .\templates\base.html:245 .\templates\base.html:358
+#: .\templates\base.html:364
 msgid "Contact"
 msgstr "Связаться"
 
-#: .\templates\base.html:298 .\templates\base.html:388
+#: .\templates\base.html:317 .\templates\base.html:409
 msgid "Contact Us"
 msgstr "Свяжитесь с нами"
 
-#: .\templates\base.html:328
+#: .\templates\base.html:324
+msgid "Call us directly:"
+msgstr ""
+
+#: .\templates\base.html:328 .\templates\base.html:478
+msgid "Mon-Fri: 9:00-18:00"
+msgstr "Понедельник–суббота: 12:00–18:00"
+
+#: .\templates\base.html:349 .\templates\index.html:13 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
@@ -83,59 +91,59 @@ msgstr ""
 "Профессиональный автосервис с многолетним опытом. Качество, доверие и "
 "скорость — наши приоритеты."
 
-#: .\templates\base.html:334
+#: .\templates\base.html:355
 msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
-#: .\templates\base.html:347
+#: .\templates\base.html:368
 msgid "Aşıq Molla Cümə 44"
 msgstr ""
 
-#: .\templates\base.html:363
+#: .\templates\base.html:384
 msgid "All rights reserved."
 msgstr "Все права защищены"
 
-#: .\templates\base.html:440
+#: .\templates\base.html:461
 msgid "Email"
 msgstr ""
 
-#: .\templates\base.html:458
-msgid "Mon-Fri: 9:00-18:00"
-msgstr "Понедельник–суббота: 12:00–18:00"
-
-#: .\templates\index.html:13
-msgid ""
-"Professional auto service for electric vehicles. Quality, trust, and speed "
-"are our top priorities."
-msgstr ""
-"Профессиональный автосервис с многолетним опытом. Качество, доверие и "
-"скорость — наши приоритеты."
-
-#: .\templates\index.html:47
+#: .\templates\index.html:55
 msgid "Battery Diagnostics"
 msgstr "Диагностика батареи"
 
-#: .\templates\index.html:50
+#: .\templates\index.html:58
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr "Полная проверка и оценка состояния аккумуляторов электромобиля."
 
-#: .\templates\index.html:57
+#: .\templates\index.html:65
 msgid "Electric Motor Repair"
 msgstr "Ремонт электродвигателя"
 
-#: .\templates\index.html:60
+#: .\templates\index.html:68
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Профессиональный ремонт и обслуживание опытными мастерами."
 
-#: .\templates\index.html:67
+#: .\templates\index.html:75
 msgid "Software & Diagnostics"
 msgstr "Программное обеспечение и диагностика"
 
-#: .\templates\index.html:70
+#: .\templates\index.html:78
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Обновления системы, диагностика ошибок и оптимизация программного "
 "обеспечения."
+
+#: .\templates\index.html:90
+msgid "Our Team"
+msgstr "Наша Команда"
+
+#: .\templates\index.html:91
+msgid ""
+"We are a dynamic team, passionate about what we do and committed to "
+"delivering the best results for our clients."
+msgstr ""
+"Мы — динамичная команда, увлечённых своим делом и нацеленных на достижение "
+"наилучших результатов для наших клиентов."
 
 #: .\templates\service_detail.html:61
 msgid "Info"
@@ -258,6 +266,13 @@ msgstr "Профессионалы"
 #: .\templates\services.html:218
 msgid "Experienced masters with over 5 years of experience"
 msgstr "Опытные мастера с более чем 5-летним стажем"
+
+#~ msgid ""
+#~ "Professional auto service for electric vehicles. Quality, trust, and "
+#~ "speed are our top priorities."
+#~ msgstr ""
+#~ "Профессиональный автосервис с многолетним опытом. Качество, доверие и "
+#~ "скорость — наши приоритеты."
 
 #~ msgid "Format"
 #~ msgstr "Формат"

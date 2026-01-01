@@ -167,28 +167,43 @@
             from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
             to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
         }
+
+        /* Анимация для mobile menu */
+        .menu-slide-down {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-slide-up {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
     </style>
 </head>
 
 <body class="bg-black text-white antialiased overflow-x-hidden">
     <!-- Галактический фон со звездами -->
     <div id="stars-container"></div>
-
-    <!-- PRELOADER -->
-    {% comment %} <div id="preloader">
-        <div class="glass-galaxy px-6 sm:px-14 py-8 sm:py-10 text-center rounded-xl shadow-2xl">
-            <h1 class="text-2xl sm:text-4xl lg:text-5xl tracking-[0.25em] mb-4 uppercase font-bold bg-gradient-to-r from-white via-cyan-100 to-blue-300 bg-clip-text text-transparent neon-glow">
-                Galaxy Motors Pro
-            </h1>
-            <p class="text-sm sm:text-base tracking-widest text-cyan-200/80 uppercase mb-6 animate-pulse">
-                trust • quality • speed
-            </p>
-            <div class="loader mx-auto"></div>
-            <div class="orbit mx-auto mt-6">
-                <div class="planet bg-cyan-400/50"></div>
-            </div>
-        </div>
-    </div> {% endcomment %}
 
     <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 w-full z-40 glass-galaxy border-b border-cyan-500/10">
@@ -197,10 +212,8 @@
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
                     <a href="/" class="flex items-center space-x-3 transition-all delay-200">
-                   
-                        <span class=" ">
-                                                      <img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767018595/logo_gg20i6.png" class='w-[55px] rounded-full' alt="">
-
+                        <span class="">
+                            <img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767281160/alaxy_unidhu.png" class='w-[55px] rounded-full' alt="">
                         </span>
                     </a>
                 </div>
@@ -208,8 +221,8 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-10 delay-300">
                     <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest uppercase">
-                        <li><a href="{% url 'services' %}" class="   py-2 px-1 delay-100">{% trans "Services" %}</a></li>
-                        <li><a href="{% url 'apps_list' %}" class="   py-2 px-1 delay-200">{% trans "Applications" %}</a></li>
+                        <li><a href="{% url 'services' %}" class="text-white hover:text-cyan-300 transition-colors py-2 px-1 delay-100">{% trans "Services" %}</a></li>
+                        <li><a href="{% url 'apps_list' %}" class="text-white hover:text-cyan-300 transition-colors py-2 px-1 delay-200">{% trans "Applications" %}</a></li>
                     </ul>
                     
                     <!-- Language Selector Desktop -->
@@ -218,7 +231,7 @@
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         <select name="language" onchange="this.form.submit()" 
-                                class="bg-black/30 border border-cyan-500/20 rounded-lg px-3 py-1.5 text-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500/30  transition-all">
+                                class="bg-black/30 border border-cyan-500/20 rounded-lg px-3 py-1.5 text-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500/30 text-white transition-all">
                             {% for lang_code, lang_name in LANGUAGES %}
                                 <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
                                     {{ lang_code|upper }}
@@ -228,7 +241,7 @@
                     </form>
                     
                     <!-- Contact Button Desktop -->
-                    <button id="openModal" class="border border-cyan-500/30 px-5 py-2 rounded-lg hover:bg-cyan-900/30 hover:text-cyan-300 transition-all hover-galaxy text-sm animate-pulse-glow delay-400">
+                    <button id="openModal" class="border border-cyan-500/30 px-5 py-2 rounded-lg hover:bg-cyan-900/30 hover:text-cyan-300 transition-all hover-galaxy text-sm animate-pulse-glow delay-400 text-white">
                         {% trans "Contact" %}
                     </button>
                 </div>
@@ -236,30 +249,37 @@
                 <!-- Mobile Menu Button -->
                 <div class="flex items-center space-x-4 md:hidden">
                     <!-- Language Selector Mobile -->
-                   <form action="{% url 'set_language' %}" method="post" class="relative">
-    {% csrf_token %}
-    {% get_current_language as LANGUAGE_CODE %}
-    <select name="language"
-            onchange="this.form.submit()"
-            class="bg-black text-white border border-cyan-500/30 rounded px-2 py-1 text-xs appearance-none cursor-pointer focus:outline-none">
-        {% get_available_languages as LANGUAGES %}
-        {% for lang_code, lang_name in LANGUAGES %}
-            <option value="{{ lang_code }}"
-                    class="bg-black text-white"
-                    {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
-                {{ lang_code|upper }}
-            </option>
-        {% endfor %}
-    </select>
-</form>
-
+                    <form action="{% url 'set_language' %}" method="post" class="relative">
+                        {% csrf_token %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <select name="language"
+                                onchange="this.form.submit()"
+                                class="bg-black text-white border border-cyan-500/30 rounded px-2 py-1 text-xs appearance-none cursor-pointer focus:outline-none">
+                            {% get_available_languages as LANGUAGES %}
+                            {% for lang_code, lang_name in LANGUAGES %}
+                                <option value="{{ lang_code }}"
+                                        class="bg-black text-white"
+                                        {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ lang_code|upper }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
                     
-                    <button id="menuBtn" class="text-cyan-300 text-2xl focus:outline-none hover:text-cyan-400 transition-all p-2 delay-500">
+                    <!-- Hamburger Menu Button -->
+                    <button id="menuBtn" class="text-white focus:outline-none transition-all p-2 delay-500 relative w-8 h-8">
                         <span class="sr-only">Open menu</span>
-                        <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                  d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
+                        <!-- Hamburger Icon -->
+                        <div id="hamburgerIcon" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 transition-all duration-300">
+                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 transition-all duration-300"></span>
+                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 transition-all duration-300"></span>
+                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 transition-all duration-300"></span>
+                        </div>
+                        <!-- Close Icon (X) - скрыт по умолчанию -->
+                        <div id="closeIcon" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 opacity-0 pointer-events-none transition-all duration-300">
+                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 rotate-45 transition-all duration-300"></span>
+                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 -rotate-45 transition-all duration-300"></span>
+                        </div>
                     </button>
                 </div>
             </div>
@@ -271,10 +291,10 @@
                 <ul class="space-y-4">
                     <li class="animate-fade-in-up delay-100">
                         <a href="{% url 'services' %}" 
-                           class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy">
+                           class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
                             <div class="flex items-center justify-between">
-                                <span class="text-sm tracking-widest text-cyan-300">{% trans "Services" %}</span>
-                                <svg class="w-4 h-4 text-cyan-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <span class="text-base font-medium tracking-wide text-white group-hover:text-cyan-300 transition-colors">{% trans "Services" %}</span>
+                                <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
                             </div>
@@ -282,10 +302,10 @@
                     </li>
                 
                     <li class="animate-fade-in-up delay-200">
-                        <a href="{% url 'apps_list' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy">
+                        <a href="{% url 'apps_list' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
                             <div class="flex items-center justify-between">
-                                <span class="text-sm tracking-widest text-cyan-300">{% trans "Applications" %}</span>
-                                <svg class="w-4 h-4 text-cyan-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <span class="text-base font-medium tracking-wide text-white group-hover:text-cyan-300 transition-colors">{% trans "Applications" %}</span>
+                                <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
                             </div>
@@ -293,24 +313,26 @@
                     </li>
                     <li class="pt-4 border-t border-cyan-500/10 animate-fade-in-up delay-300">
                         <button id="openModalMobile" 
-                           class="block w-full text-center border border-cyan-500/30 py-3 px-6 rounded-lg hover:bg-cyan-900/30 hover:text-cyan-300 transition-all hover-galaxy animate-pulse-glow">
+                           class="block w-full text-center border border-cyan-500/30 py-3 px-6 rounded-lg hover:bg-cyan-900/30 hover:text-cyan-300 transition-all hover-galaxy animate-pulse-glow text-white">
                             {% trans "Contact Us" %}
                         </button>
                     </li>
                 </ul>
                 
                 <!-- Contact Info Mobile -->
-                <div class="mt-8 pt-6 border-t border-cyan-500/10 text-center text-cyan-300/60 animate-fade-in-up delay-400">
-                    <a href="tel:+994518400012" class="block text-cyan-300 text-sm font-medium mt-1 hover:text-cyan-400">
+                <div class="mt-8 pt-6 border-t border-cyan-500/10 animate-fade-in-up delay-400">
+                    <p class="text-sm text-white/80 mb-2">{% trans "Call us directly:" %}</p>
+                    <a href="tel:+994518400012" class="block text-lg font-medium text-white hover:text-cyan-400 transition-colors">
                         +994 51 840 00 12
                     </a>
+                    <p class="text-xs text-white/60 mt-2">{% trans "Mon-Fri: 9:00-18:00" %}</p>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- MAIN CONTENT -->
-    <main id="mainContent" class=" pt-28 min-h-screen">
+    <main id="mainContent" class="pt-28 min-h-screen">
         {% block content %}{% endblock %}
     </main>
 
@@ -321,26 +343,26 @@
                 <!-- Logo and Description -->
                 <div class="animate-fade-in-up delay-100">
                     <div class="flex items-center space-x-3 mb-4">
-                        <span class="text-lg tracking-[0.2em] font-semibold uppercase bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"><img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767018595/logo_gg20i6.png" class='w-[55px]' alt=""></span>
+                        <span class="text-lg tracking-[0.2em] font-semibold uppercase bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"><img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767281160/alaxy_unidhu.png" class='w-[55px]' alt=""></span>
                     </div>
-                    <p class="text-cyan-200/60 text-sm">
+                    <p class="text-white/80 text-sm">
                         {% trans "Professional auto service with years of experience. Quality, trust, and speed are our priorities." %}
                     </p>
                 </div>
 
                 <!-- Quick Links -->
                 <div class="animate-fade-in-up delay-200">
-                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-4 text-cyan-300">{% trans "Quick Links" %}</h3>
+                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-4 text-white">{% trans "Quick Links" %}</h3>
                     <ul class="space-y-2">
-                        <li><a href="{% url 'services' %}" class="text-cyan-200/60 hover:text-cyan-300 text-sm transition">{% trans "Services" %}</a></li>
-                        <li><button id="openModalFooter" class="text-cyan-200/60 hover:text-cyan-300 text-sm transition">{% trans "Contact" %}</button></li>
+                        <li><a href="{% url 'services' %}" class="text-white/80 hover:text-cyan-300 text-sm transition">{% trans "Services" %}</a></li>
+                        <li><button id="openModalFooter" class="text-white/80 hover:text-cyan-300 text-sm transition">{% trans "Contact" %}</button></li>
                     </ul>
                 </div>
 
                 <!-- Contact Info -->
                 <div class="animate-fade-in-up delay-300">
-                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-4 text-cyan-300">{% trans "Contact" %}</h3>
-                    <ul class="space-y-2 text-cyan-200/60 text-sm">
+                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-4 text-white">{% trans "Contact" %}</h3>
+                    <ul class="space-y-2 text-white/80 text-sm">
                         <li class="flex items-center space-x-2">
                             <span class="text-cyan-400">📍</span>
                             <span>{% trans "Aşıq Molla Cümə 44" %}</span>
@@ -358,7 +380,7 @@
             </div>
             
             <!-- Copyright -->
-            <div class="mt-8 pt-8 border-t border-cyan-500/10 text-center text-cyan-300/40 text-xs animate-fade-in-up delay-400">
+            <div class="mt-8 pt-8 border-t border-cyan-500/10 text-center text-white/60 text-xs animate-fade-in-up delay-400">
                 <p>© {% now "Y" %} Galaxy Motors Pro. {% trans "All rights reserved." %}</p>
             </div>
         </div>
@@ -373,7 +395,7 @@
             <!-- Modal panel -->
             <div class="inline-block w-full max-w-md p-6 my-8 text-left align-middle transition-all transform bg-gradient-to-br from-gray-900 via-blue-900/20 to-cyan-900/10 rounded-2xl shadow-2xl border border-cyan-500/20 sm:my-16 sm:p-8">
                 <!-- Close button -->
-                <button id="closeModal" class="absolute top-4 right-4 text-cyan-300/60 hover:text-cyan-400 transition-all p-2 hover:bg-cyan-900/20 rounded-lg">
+                <button id="closeModal" class="absolute top-4 right-4 text-white/80 hover:text-white transition-all p-2 hover:bg-cyan-900/20 rounded-lg">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
@@ -383,12 +405,9 @@
                 <div class="space-y-6">
                     <!-- Header -->
                     <div class="text-center">
-                     <h3 class="text-2xl font-bold tracking-wider uppercase mb-2
-           bg-gradient-to-r from-cyan-600 to-blue-600
-           bg-clip-text text-transparent">
-    {% trans "Contact Us" %}
-</h3>
-
+                        <h3 class="text-2xl font-bold tracking-wider uppercase mb-2 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                            {% trans "Contact Us" %}
+                        </h3>
                     </div>
 
                     <!-- Contact methods -->
@@ -401,12 +420,12 @@
                                     <span class="text-2xl text-cyan-300">📞</span>
                                 </div>
                                 <div class="text-left">
-                                    <p class="text-sm text-cyan-200/60">
+                                    <p class="text-sm text-white/80">
                                         +994 51 840 00 12
                                     </p>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-cyan-400/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -420,12 +439,12 @@
                                     <span class="text-2xl text-cyan-300">💬</span>
                                 </div>
                                 <div class="text-left">
-                                    <h4 class="font-semibold text-cyan-300 group-hover:text-cyan-400 transition-colors">
+                                    <h4 class="font-semibold text-white group-hover:text-cyan-400 transition-colors">
                                         WhatsApp
                                     </h4>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-cyan-400/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -438,15 +457,15 @@
                                     <span class="text-2xl text-cyan-300">✉️</span>
                                 </div>
                                 <div class="text-left">
-                                    <h4 class="font-semibold text-cyan-300 group-hover:text-cyan-400 transition-colors">
+                                    <h4 class="font-semibold text-white group-hover:text-cyan-400 transition-colors">
                                         {% trans "Email" %}
                                     </h4>
-                                    <p class="text-sm text-cyan-200/60">
+                                    <p class="text-sm text-white/80">
                                         info@galaxymotors.pro
                                     </p>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-cyan-400/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -454,10 +473,9 @@
 
                     <!-- Working hours -->
                     <div class="p-4 rounded-xl bg-cyan-900/10 border border-cyan-500/5 delay-400">
-
                         <div class="space-y-1 text-sm">
                             <div class="flex justify-between">
-                                <span class="text-cyan-200/60">{% trans "Mon-Fri: 9:00-18:00" %}</span>
+                                <span class="text-white/80">{% trans "Mon-Fri: 9:00-18:00" %}</span>
                             </div>
                         </div>
                     </div>
@@ -495,49 +513,83 @@
             }
         }
 
-        // Preloader
         document.addEventListener('DOMContentLoaded', () => {
-            // Создаем звездный фон
             createStars();
             
             const preloader = document.getElementById('preloader');
             const mainContent = document.getElementById('mainContent');
             
-            // Увеличиваем время прелоадера для большего эффекта
-            setTimeout(() => {
-                preloader.style.opacity = '0';
+            if (preloader) {
                 setTimeout(() => {
-                    preloader.style.display = 'none';
-                    mainContent.classList.remove('hidden');
-                    
-                    // Анимация появления контента
-                    const elements = document.querySelectorAll('.animate-fade-in-up');
-                    elements.forEach((el, index) => {
-                        el.style.animationDelay = `${index * 100 + 300}ms`;
-                        el.style.opacity = '0';
-                    });
-                }, 800);
-            }, 2500); // Увеличено до 2.5 секунд
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        mainContent.classList.remove('hidden');
+                        
+                        const elements = document.querySelectorAll('.animate-fade-in-up');
+                        elements.forEach((el, index) => {
+                            el.style.animationDelay = `${index * 100 + 300}ms`;
+                            el.style.opacity = '0';
+                        });
+                    }, 800);
+                }, 2500);
+            }
             
             // Mobile menu functionality
             const menuBtn = document.getElementById('menuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
-            const menuIcon = document.getElementById('menuIcon');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const closeIcon = document.getElementById('closeIcon');
             
-            if (menuBtn && mobileMenu && menuIcon) {
+            if (menuBtn && mobileMenu && hamburgerIcon && closeIcon) {
                 menuBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    mobileMenu.classList.toggle('hidden');
+                    const isHidden = mobileMenu.classList.contains('hidden');
                     
-                    // Change icon based on menu state
-                    if (mobileMenu.classList.contains('hidden')) {
-                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
-                        document.body.style.overflow = 'auto';
-                    } else {
-                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                    if (isHidden) {
+                        // Open menu
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenu.classList.remove('menu-slide-up');
+                        mobileMenu.classList.add('menu-slide-down');
+                        
+                        // Switch icons
+                        hamburgerIcon.style.opacity = '0';
+                        hamburgerIcon.style.pointerEvents = 'none';
+                        closeIcon.style.opacity = '1';
+                        closeIcon.style.pointerEvents = 'auto';
+                        
+                        // Animate hamburger to X
+                        const lines = hamburgerIcon.querySelectorAll('span');
+                        lines[0].style.transform = 'translateY(-1px) rotate(45deg)';
+                        lines[1].style.opacity = '0';
+                        lines[2].style.transform = 'translateY(-1px) rotate(-45deg)';
+                        
                         document.body.style.overflow = 'hidden';
+                    } else {
+                        // Close menu
+                        mobileMenu.classList.remove('menu-slide-down');
+                        mobileMenu.classList.add('menu-slide-up');
+                        
+                        setTimeout(() => {
+                            mobileMenu.classList.add('hidden');
+                        }, 300);
+                        
+                        // Switch icons back
+                        hamburgerIcon.style.opacity = '1';
+                        hamburgerIcon.style.pointerEvents = 'auto';
+                        closeIcon.style.opacity = '0';
+                        closeIcon.style.pointerEvents = 'none';
+                        
+                        // Animate X back to hamburger
+                        const lines = hamburgerIcon.querySelectorAll('span');
+                        lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
+                        lines[1].style.opacity = '1';
+                        lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
+                        lines[2].style.transform = 'translateY(4px) rotate(0deg)';
+                        
+                        document.body.style.overflow = 'auto';
                     }
                 });
                 
@@ -545,8 +597,26 @@
                 document.addEventListener('click', (e) => {
                     if (!mobileMenu.classList.contains('hidden')) {
                         if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                            mobileMenu.classList.add('hidden');
-                            menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                            // Close menu
+                            mobileMenu.classList.remove('menu-slide-down');
+                            mobileMenu.classList.add('menu-slide-up');
+                            
+                            setTimeout(() => {
+                                mobileMenu.classList.add('hidden');
+                            }, 300);
+                            
+                            // Reset icons
+                            hamburgerIcon.style.opacity = '1';
+                            hamburgerIcon.style.pointerEvents = 'auto';
+                            closeIcon.style.opacity = '0';
+                            closeIcon.style.pointerEvents = 'none';
+                            
+                            const lines = hamburgerIcon.querySelectorAll('span');
+                            lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
+                            lines[1].style.opacity = '1';
+                            lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
+                            lines[2].style.transform = 'translateY(4px) rotate(0deg)';
+                            
                             document.body.style.overflow = 'auto';
                         }
                     }
@@ -555,8 +625,24 @@
                 // Close mobile menu on escape key
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                        mobileMenu.classList.remove('menu-slide-down');
+                        mobileMenu.classList.add('menu-slide-up');
+                        
+                        setTimeout(() => {
+                            mobileMenu.classList.add('hidden');
+                        }, 300);
+                        
+                        hamburgerIcon.style.opacity = '1';
+                        hamburgerIcon.style.pointerEvents = 'auto';
+                        closeIcon.style.opacity = '0';
+                        closeIcon.style.pointerEvents = 'none';
+                        
+                        const lines = hamburgerIcon.querySelectorAll('span');
+                        lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
+                        lines[1].style.opacity = '1';
+                        lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
+                        lines[2].style.transform = 'translateY(4px) rotate(0deg)';
+                        
                         document.body.style.overflow = 'auto';
                     }
                 });
@@ -565,8 +651,24 @@
                 mobileMenu.querySelectorAll('a, button').forEach(link => {
                     link.addEventListener('click', () => {
                         if (link.id !== 'openModalMobile') {
-                            mobileMenu.classList.add('hidden');
-                            menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                            mobileMenu.classList.remove('menu-slide-down');
+                            mobileMenu.classList.add('menu-slide-up');
+                            
+                            setTimeout(() => {
+                                mobileMenu.classList.add('hidden');
+                            }, 300);
+                            
+                            hamburgerIcon.style.opacity = '1';
+                            hamburgerIcon.style.pointerEvents = 'auto';
+                            closeIcon.style.opacity = '0';
+                            closeIcon.style.pointerEvents = 'none';
+                            
+                            const lines = hamburgerIcon.querySelectorAll('span');
+                            lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
+                            lines[1].style.opacity = '1';
+                            lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
+                            lines[2].style.transform = 'translateY(4px) rotate(0deg)';
+                            
                             document.body.style.overflow = 'auto';
                         }
                     });
@@ -579,18 +681,15 @@
             const closeModalBtn = document.getElementById('closeModal');
             const openModalBtns = document.querySelectorAll('[id^="openModal"]');
 
-            // Function to open modal
             function openModal() {
                 contactModal.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
                 
-                // Задержка для анимации
                 setTimeout(() => {
                     contactModal.style.opacity = '1';
                 }, 10);
             }
 
-            // Function to close modal
             function closeModal() {
                 contactModal.style.opacity = '0';
                 setTimeout(() => {
@@ -599,7 +698,6 @@
                 }, 400);
             }
 
-            // Open modal on button click
             openModalBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -608,57 +706,48 @@
                 });
             });
 
-            // Close modal on close button click
             if (closeModalBtn) {
                 closeModalBtn.addEventListener('click', closeModal);
             }
 
-            // Close modal on backdrop click
             if (modalBackdrop) {
                 modalBackdrop.addEventListener('click', closeModal);
             }
 
-            // Close modal on Escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && !contactModal.classList.contains('hidden')) {
                     closeModal();
                 }
             });
 
-            // Close mobile menu if open when opening modal
             document.querySelectorAll('[id^="openModal"]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const mobileMenu = document.getElementById('mobileMenu');
-                    const menuIcon = document.getElementById('menuIcon');
+                    const hamburgerIcon = document.getElementById('hamburgerIcon');
+                    const closeIcon = document.getElementById('closeIcon');
                     
                     if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                         mobileMenu.classList.add('hidden');
-                        if (menuIcon) {
-                            menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                        if (hamburgerIcon) {
+                            hamburgerIcon.style.opacity = '1';
+                            hamburgerIcon.style.pointerEvents = 'auto';
+                            closeIcon.style.opacity = '0';
+                            closeIcon.style.pointerEvents = 'none';
+                            
+                            const lines = hamburgerIcon.querySelectorAll('span');
+                            lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
+                            lines[1].style.opacity = '1';
+                            lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
+                            lines[2].style.transform = 'translateY(4px) rotate(0deg)';
                         }
                     }
                 });
             });
 
-            // Prevent modal close when clicking inside modal content
             contactModal.querySelector('.inline-block').addEventListener('click', (e) => {
                 e.stopPropagation();
             });
         });
-
-        // Также обрабатываем загрузку окна для прелоадера
-        {% comment %} window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            if (preloader && preloader.style.display !== 'none') {
-                setTimeout(() => {
-                    preloader.style.opacity = '0';
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                        document.getElementById('mainContent').classList.remove('hidden');
-                    }, 500);
-                }, 1500);
-            }
-        }); {% endcomment %}
     </script>
     
     {% block extra_js %}{% endblock %}
