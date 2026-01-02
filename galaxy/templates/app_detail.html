@@ -24,18 +24,17 @@
                     {% trans "Download" %}
                 </a>
                 {% else %}
-                <p class="text-red-500">{% trans "Paid. Contact us to purchase." %}</p>
-                {% endif %}
-            </div>
+                <div class="text-lg flex gap-2">
+                    <p>{{ app.price }} AZN</p>
+                    |
+                    <a href="https://wa.me/994518400012?text=Salam%20right%20screen%20appi%20almaq%20isteyirem"
+   target="_blank"
+   class="text-green-500 underline">
+   WhatsApp
+</a>
 
-            <!-- Информация о приложении -->
-            <div class="border rounded-lg p-6 space-y-3">
-              
-                <p>
-                    <span class="font-medium">{% trans "Added date" %}:</span>
-                    {{ app.created_at|date:"d M Y" }}
-                </p>
-          
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
