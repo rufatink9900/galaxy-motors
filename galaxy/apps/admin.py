@@ -8,7 +8,7 @@ class AppAdminForm(forms.ModelForm):
 
     class Meta:
         model = App
-        fields = ['name', 'description', 'image', 'apk_upload']  # добавили image
+        fields = ['name', 'description', 'price', 'image', 'apk_upload']  # добавили image
 
     def save(self, commit=True):
         instance = super().save(commit=False)
