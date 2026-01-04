@@ -3,6 +3,11 @@
 {% block content %}
 
 <div class="max-w-5xl mx-auto p-6">
+    <div class= "flex justify-center mb-4">
+        <a href="https://wa.me/994518400012?text=Hello%20GalaxyMotors%20Pro%21%20I%20need%20your%20services" class="underline">
+        {% trans "If you want to buy any of our application contact us" %}
+    </a>
+    </div>
     <div class="flex flex-col md:flex-row gap-8">
 
         <!-- Левая часть: Фото -->
@@ -24,14 +29,8 @@
                     {% trans "Download" %}
                 </a>
                 {% else %}
-                <div class="text-lg flex gap-2">
-                    <p>{{ app.price }} AZN</p>
-                    |
-                    <a href="https://wa.me/994518400012?text=Salam%20right%20screen%20appi%20almaq%20isteyirem"
-   target="_blank"
-   class="text-green-500 underline">
-   WhatsApp
-</a>
+                <div class="text-2xl flex gap-2">
+                    <p>{{ app.price }} ₼</p>
 
                 </div>
                 {% endif %}

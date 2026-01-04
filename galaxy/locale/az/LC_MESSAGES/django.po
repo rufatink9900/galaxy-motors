@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-01 19:33+0400\n"
+"POT-Creation-Date: 2026-01-04 23:03+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,17 +30,13 @@ msgstr "Axtardığınız səhifə mövcud deyil və ya köçürülüb."
 msgid "Back to homepage"
 msgstr "Ana səhifəyə geri dön."
 
-#: .\templates\app_detail.html:24 .\templates\apps_list.html:70
+#: .\templates\app_detail.html:7
+msgid "If you want to buy any of our application contact us"
+msgstr "Əgər tətbiqlərimizdən hər hansı birini almaq istəyirsinizsə, bizimlə əlaqə saxlayın"
+
+#: .\templates\app_detail.html:27 .\templates\apps_list.html:70
 msgid "Download"
 msgstr "Yüklə"
-
-#: .\templates\app_detail.html:27 .\templates\apps_list.html:74
-msgid "Paid. Contact us to purchase."
-msgstr "Ödənişlidir. Almaq üçün bizimlə əlaqə saxlayın"
-
-#: .\templates\app_detail.html:35
-msgid "Added date"
-msgstr "Əlavə olunma tarixi"
 
 #: .\templates\apps_list.html:12
 msgid "Search applications..."
@@ -268,6 +264,12 @@ msgstr "Peşəkarlar"
 #: .\templates\services.html:218
 msgid "Experienced masters with over 5 years of experience"
 msgstr "5 ildən çox təcrübəyə malik təcrübəli ustalar"
+
+#~ msgid "Paid. Contact us to purchase."
+#~ msgstr "Ödənişlidir. Almaq üçün bizimlə əlaqə saxlayın"
+
+#~ msgid "Added date"
+#~ msgstr "Əlavə olunma tarixi"
 
 #~ msgid ""
 #~ "Professional auto service for electric vehicles. Quality, trust, and "

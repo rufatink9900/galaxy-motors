@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-01 19:33+0400\n"
+"POT-Creation-Date: 2026-01-04 23:03+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,17 +32,13 @@ msgstr "Страница, которую вы ищете, не существу�
 msgid "Back to homepage"
 msgstr "Вернуться на главную страницу"
 
-#: .\templates\app_detail.html:24 .\templates\apps_list.html:70
+#: .\templates\app_detail.html:7
+msgid "If you want to buy any of our application contact us"
+msgstr "Если вы хотите купить какое-либо из наших приложений, свяжитесь с нами"
+
+#: .\templates\app_detail.html:27 .\templates\apps_list.html:70
 msgid "Download"
 msgstr "Скачать"
-
-#: .\templates\app_detail.html:27 .\templates\apps_list.html:74
-msgid "Paid. Contact us to purchase."
-msgstr "Платно. Свяжитесь с нами для покупки"
-
-#: .\templates\app_detail.html:35
-msgid "Added date"
-msgstr "Дата добавления"
 
 #: .\templates\apps_list.html:12
 msgid "Search applications..."
@@ -266,6 +262,12 @@ msgstr "Профессионалы"
 #: .\templates\services.html:218
 msgid "Experienced masters with over 5 years of experience"
 msgstr "Опытные мастера с более чем 5-летним стажем"
+
+#~ msgid "Paid. Contact us to purchase."
+#~ msgstr "Платно. Свяжитесь с нами для покупки"
+
+#~ msgid "Added date"
+#~ msgstr "Дата добавления"
 
 #~ msgid ""
 #~ "Professional auto service for electric vehicles. Quality, trust, and "
