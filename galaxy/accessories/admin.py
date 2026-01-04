@@ -40,3 +40,5 @@ class AccessoryImageAdmin(admin.ModelAdmin):
     list_display = ("id", "accessory")
     search_fields = ("accessory__name",)
     autocomplete_fields = ("accessory",)
+
+exclude = ("name", "description")

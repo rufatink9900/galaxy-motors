@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: .\templates\accessories.html:50
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-04 23:03+0400\n"
+"POT-Creation-Date: 2026-01-05 00:44+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,23 +31,82 @@ msgstr "Axtardığınız səhifə mövcud deyil və ya köçürülüb."
 msgid "Back to homepage"
 msgstr "Ana səhifəyə geri dön."
 
-#: .\templates\app_detail.html:7
-msgid "If you want to buy any of our application contact us"
-msgstr "Əgər tətbiqlərimizdən hər hansı birini almaq istəyirsinizsə, bizimlə əlaqə saxlayın"
+#: .\templates\accessories.html:10
+msgid "Accessories"
+msgstr "Aksesuarlar"
 
-#: .\templates\app_detail.html:27 .\templates\apps_list.html:70
+#: .\templates\accessories.html:12
+msgid "Find accessories by category, model, or name."
+msgstr "Aksessuarları kateqoriya, model və ya ad üzrə tapın."
+
+#: .\templates\accessories.html:44 .\templates\accessories.html:63
+msgid "Search"
+msgstr "Axtar"
+
+#: .\templates\accessories.html:75
+msgid "Category"
+msgstr "Kateqoriya"
+
+#: .\templates\accessories.html:90
+msgid "Subcategory"
+msgstr "Alt kateqoriya"
+
+#: .\templates\accessories.html:109
+msgid "Categories"
+msgstr "Kateqoriyalar"
+
+#: .\templates\accessories.html:120
+msgid "All accessories"
+msgstr "Bütün aksesuarlar"
+
+#: .\templates\accessories.html:136
+msgid "Selected"
+msgstr "Seçilən"
+
+#: .\templates\accessories.html:244 .\templates\accessory_detail.html:89
+#: .\templates\service_detail.html:101 .\templates\services.html:149
+msgid "Price on request"
+msgstr "Qiymət sorğu üzrə"
+
+#: .\templates\accessories.html:252
+msgid "Details"
+msgstr "Ətraflı"
+
+#: .\templates\accessories.html:280
+msgid "No accessories found"
+msgstr "Aksessuar tapılmadı"
+
+#: .\templates\accessories.html:282
+msgid "Try changing your search keywords or filters."
+msgstr "Axtarış və ya filtrləri dəyişərək yenidən cəhd edin."
+
+#: .\templates\accessories.html:285
+msgid "Reset filters"
+msgstr "Filtrləri sıfırla"
+
+#: .\templates\accessory_detail.html:109
+msgid "Call us"
+msgstr "Zəng et"
+
+#: .\templates\app_detail.html:8 .\templates\apps_list.html:6
+msgid "If you want to buy any of our application contact us"
+msgstr ""
+"Əgər tətbiqlərimizdən hər hansı birini almaq istəyirsinizsə, bizimlə əlaqə "
+"saxlayın"
+
+#: .\templates\app_detail.html:29 .\templates\apps_list.html:74
 msgid "Download"
 msgstr "Yüklə"
 
-#: .\templates\apps_list.html:12
+#: .\templates\apps_list.html:16
 msgid "Search applications..."
 msgstr "Tətbiqləri axtar…"
 
-#: .\templates\apps_list.html:85
+#: .\templates\apps_list.html:89
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:86
+#: .\templates\apps_list.html:90
 msgid "Try another search query"
 msgstr ""
 
@@ -170,10 +230,6 @@ msgstr "Zəmanət"
 #: .\templates\service_detail.html:77
 msgid "1 year"
 msgstr "1 il"
-
-#: .\templates\service_detail.html:101 .\templates\services.html:149
-msgid "Price on request"
-msgstr "Qiymət sorğu üzrə"
 
 #: .\templates\service_detail.html:171
 msgid "Fast"

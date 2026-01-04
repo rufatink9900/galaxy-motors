@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: .\templates\accessories.html:50
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-04 23:03+0400\n"
+"POT-Creation-Date: 2026-01-05 00:44+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,23 +33,80 @@ msgstr "Страница, которую вы ищете, не существу�
 msgid "Back to homepage"
 msgstr "Вернуться на главную страницу"
 
-#: .\templates\app_detail.html:7
+#: .\templates\accessories.html:10
+msgid "Accessories"
+msgstr "Аксессуары"
+
+#: .\templates\accessories.html:12
+msgid "Find accessories by category, model, or name."
+msgstr "Найдите аксессуары по категории, модели или названию."
+
+#: .\templates\accessories.html:44 .\templates\accessories.html:63
+msgid "Search"
+msgstr "Поиск"
+
+#: .\templates\accessories.html:75
+msgid "Category"
+msgstr "Категория"
+
+#: .\templates\accessories.html:90
+msgid "Subcategory"
+msgstr "Подкатегория"
+
+#: .\templates\accessories.html:109
+msgid "Categories"
+msgstr "Категории"
+
+#: .\templates\accessories.html:120
+msgid "All accessories"
+msgstr "Все аксессуары"
+
+#: .\templates\accessories.html:136
+msgid "Selected"
+msgstr "Выбрано"
+
+#: .\templates\accessories.html:244 .\templates\accessory_detail.html:89
+#: .\templates\service_detail.html:101 .\templates\services.html:149
+msgid "Price on request"
+msgstr "Цена по запросу"
+
+#: .\templates\accessories.html:252
+msgid "Details"
+msgstr "Подробнее"
+
+#: .\templates\accessories.html:280
+msgid "No accessories found"
+msgstr "Аксессуары не найдены"
+
+#: .\templates\accessories.html:282
+msgid "Try changing your search keywords or filters."
+msgstr "Попробуйте изменить критерии поиска или фильтры."
+
+#: .\templates\accessories.html:285
+msgid "Reset filters"
+msgstr "Сбросить фильтры"
+
+#: .\templates\accessory_detail.html:109
+msgid "Call us"
+msgstr "Позвонить"
+
+#: .\templates\app_detail.html:8 .\templates\apps_list.html:6
 msgid "If you want to buy any of our application contact us"
 msgstr "Если вы хотите купить какое-либо из наших приложений, свяжитесь с нами"
 
-#: .\templates\app_detail.html:27 .\templates\apps_list.html:70
+#: .\templates\app_detail.html:29 .\templates\apps_list.html:74
 msgid "Download"
 msgstr "Скачать"
 
-#: .\templates\apps_list.html:12
+#: .\templates\apps_list.html:16
 msgid "Search applications..."
 msgstr "Поиск приложений…"
 
-#: .\templates\apps_list.html:85
+#: .\templates\apps_list.html:89
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:86
+#: .\templates\apps_list.html:90
 msgid "Try another search query"
 msgstr ""
 
@@ -168,10 +226,6 @@ msgstr "Гарантия"
 #: .\templates\service_detail.html:77
 msgid "1 year"
 msgstr "1 год"
-
-#: .\templates\service_detail.html:101 .\templates\services.html:149
-msgid "Price on request"
-msgstr "Цена по запросу"
 
 #: .\templates\service_detail.html:171
 msgid "Fast"

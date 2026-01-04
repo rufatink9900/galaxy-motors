@@ -222,6 +222,8 @@
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-10 delay-300">
                     <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest uppercase">
                         <li><a href="{% url 'services' %}" class="text-white hover:text-cyan-300 transition-colors py-2 px-1 delay-100">{% trans "Services" %}</a></li>
+                        <li><a href="{% url 'accessories' %}" class="text-white hover:text-cyan-300 transition-colors py-2 px-1 delay-100">{% trans "Accessories" %}</a></li>
+
                         <li><a href="{% url 'apps_list' %}" class="text-white hover:text-cyan-300 transition-colors py-2 px-1 delay-200">{% trans "Applications" %}</a></li>
                     </ul>
                     
@@ -231,7 +233,7 @@
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         <select name="language" onchange="this.form.submit()" 
-                                class="bg-black/30 border border-cyan-500/20 rounded-lg px-3 py-1.5 text-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500/30 text-white transition-all">
+                                class="bg-black border border-cyan-500/20 rounded-lg px-3 py-1.5 text-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500/30 text-white transition-all">
                             {% for lang_code, lang_name in LANGUAGES %}
                                 <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
                                     {{ lang_code|upper }}
@@ -294,6 +296,16 @@
                            class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
                             <div class="flex items-center justify-between">
                                 <span class="text-base font-medium tracking-wide text-white group-hover:text-cyan-300 transition-colors">{% trans "Services" %}</span>
+                                <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="animate-fade-in-up delay-200">
+                        <a href="{% url 'accessories' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
+                            <div class="flex items-center justify-between">
+                                <span class="text-base font-medium tracking-wide text-white group-hover:text-cyan-300 transition-colors">{% trans "Accessories" %}</span>
                                 <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>

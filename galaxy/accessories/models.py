@@ -21,7 +21,7 @@ class SubCategory(models.Model):
         unique_together = ("category", "name")  # чтобы не было одинаковых подкатегорий в одной категории
 
     def __str__(self):
-        return f"{self.category.name} -> {self.name}"
+        return f"{self.category.name}  {self.name}"
 
 
 class Accessory(models.Model):

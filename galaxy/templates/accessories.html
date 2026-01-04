@@ -1,61 +1,295 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block content %}
-<div class="container mt-4">
 
-  <h2 class="mb-4">Accessories</h2>
+<div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
 
-  {% if accessories %}
-    <div class="row">
-      {% for item in accessories %}
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-
-            {% if item.main_image %}
-              <img src="{{ item.main_image.url }}" class="card-img-top" alt="{{ item.name }}">
-            {% else %}
-              <div class="p-5 text-center text-muted">
-                No image
-              </div>
-            {% endif %}
-
-            <div class="card-body">
-              <p class="text-muted mb-1" style="font-size: 14px;">
-                {{ item.subcategory.category.name }} → {{ item.subcategory.name }}
-              </p>
-
-              <h5 class="card-title">{{ item.name }}</h5>
-
-              {% if item.description %}
-                <p class="card-text">{{ item.description|truncatechars:120 }}</p>
-              {% endif %}
-
-              {% if item.price %}
-                <p class="fw-bold">Price: {{ item.price }} ₼</p>
-              {% else %}
-                <p class="text-muted">Price not set</p>
-              {% endif %}
-            </div>
-
-            {% if item.additional_images.all %}
-              <div class="card-footer bg-white">
-                <div class="d-flex flex-wrap gap-2">
-                  {% for img in item.additional_images.all|slice:":4" %}
-                    <img src="{{ img.image.url }}"
-                         alt="additional image"
-                         style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px;">
-                  {% endfor %}
-                </div>
-              </div>
-            {% endif %}
-
-          </div>
-        </div>
-      {% endfor %}
+  <!-- Header -->
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+    <div>
+      <h1 class="text-2xl font-semibold ">{% trans "Accessories" %}</h1>
+      <p class="text-sm  mt-1">
+        {% trans "Find accessories by category, model, or name." %}
+      </p>
     </div>
-  {% else %}
-    <p>No accessories yet.</p>
+
+    <!-- Поиск -->
+    <form method="GET" class="w-full md:w-[420px]">
+      <div class="relative">
+        <input
+          type="text"
+          name="q"
+          value="{{ q }}"
+          placeholder="Lexar..."
+          class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-black text-sm outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent pr-10"
+        />
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+      </div>
+      
+      {% if selected_category %}
+        <input type="hidden" name="category" value="{{ selected_category }}">
+      {% endif %}
+      {% if selected_subcategory %}
+        <input type="hidden" name="subcategory" value="{{ selected_subcategory }}">
+      {% endif %}
+
+      <button
+        type="submit"
+        class="mt-3 w-full rounded-xl bg-gray-900 text-white px-4 py-2.5 text-sm font-medium hover:bg-black transition"
+      >
+        {% trans "Search" %}
+      </button>
+
+      {% if q or selected_category or selected_subcategory %}
+        <div class="mt-2">
+          <a href="{% url 'accessories' %}" class="text-sm text-gray-600 hover:text-gray-900 underline">
+            {% trans "" %}
+          </a>
+        </div>
+      {% endif %}
+    </form>
+  </div>
+
+  <!-- Активные фильтры -->
+  {% if q or selected_category or selected_subcategory %}
+    <div class="mb-6">
+      <div class="flex flex-wrap gap-2">
+        {% if q %}
+          <span class="inline-flex items-center gap-1 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full text-sm">
+            {% trans "Search" %}: "{{ q }}"
+            <a href="?{% if selected_category %}category={{ selected_category }}&{% endif %}{% if selected_subcategory %}subcategory={{ selected_subcategory }}{% endif %}" 
+               class="hover:text-blue-900">
+              ×
+            </a>
+          </span>
+        {% endif %}
+        
+        {% if selected_category %}
+          {% for cat in categories %}
+            {% if cat.id|stringformat:"s" == selected_category %}
+              <span class="inline-flex items-center gap-1 bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm">
+                {% trans "Category" %}: {{ cat.name }}
+                <a href="?{% if q %}q={{ q }}&{% endif %}{% if selected_subcategory %}subcategory={{ selected_subcategory }}{% endif %}" 
+                   class="hover:text-gray-900">
+                  ×
+                </a>
+              </span>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if selected_subcategory %}
+          {% for cat in categories %}
+            {% for sub in cat.subcategories.all %}
+              {% if sub.id|stringformat:"s" == selected_subcategory %}
+                <span class="inline-flex items-center gap-1 bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm">
+                  {% trans "Subcategory" %}: {{ sub.name }}
+                  <a href="?{% if q %}q={{ q }}&{% endif %}{% if selected_category %}category={{ selected_category }}{% endif %}" 
+                     class="hover:text-gray-900">
+                    ×
+                  </a>
+                </span>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
   {% endif %}
 
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- Боковая панель: Категории -->
+    <aside class="lg:col-span-3">
+      <div class="sticky top-6 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+        <h2 class="text-base font-semibold text-gray-900 mb-3">{% trans "Categories" %}</h2>
+
+        <div class="space-y-2">
+          <!-- Все -->
+          <a href="{% url 'accessories' %}{% if q %}?q={{ q }}{% endif %}"
+             class="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors
+             {% if not selected_category and not selected_subcategory %}
+               bg-gray-900 text-white
+             {% else %}
+               text-gray-700 hover:bg-gray-50
+             {% endif %}">
+            <span>{% trans "All accessories" %}</span>
+            <span class="text-xs opacity-75">{{ accessories|length }}</span>
+          </a>
+
+          {% for cat in categories %}
+            {% with cat_accessories_count=cat.accessories_count %}
+            <details {% if selected_category == cat.id|stringformat:"s" %}open{% endif %} 
+                    class="group rounded-xl border border-gray-100 bg-gray-50 px-3 py-2">
+              <summary class="cursor-pointer list-none flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-medium text-gray-900">
+                    {{ cat.name }}
+                  </span>
+                  
+                  {% if selected_category == cat.id|stringformat:"s" and not selected_subcategory %}
+                    <span class="text-xs bg-gray-900 text-white px-2 py-0.5 rounded-full">
+                      {% trans "Selected" %}
+                    </span>
+                  {% endif %}
+                </div>
+
+                <span class="text-gray-500 group-open:rotate-180 transition-transform">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="mt-3 space-y-1.5">
+                <!-- Ссылка на категорию -->
+                <a
+                  href="{% url 'accessories' %}?category={{ cat.id }}{% if q %}&q={{ q }}{% endif %}"
+                  class="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm transition-colors
+                    {% if selected_category == cat.id|stringformat:"s" and not selected_subcategory %}
+                      bg-gray-900 text-white
+                    {% else %}
+                      text-gray-700 hover:bg-white
+                    {% endif %}"
+                >
+                  <span>Все {{ cat.name }}</span>
+                  <span class="text-xs opacity-75">{{ cat_accessories_count }}</span>
+                </a>
+
+                <!-- Подкатегории -->
+                {% for sub in cat.subcategories.all %}
+                  <a
+                    href="{% url 'accessories' %}?category={{ cat.id }}&subcategory={{ sub.id }}{% if q %}&q={{ q }}{% endif %}"
+                    class="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm transition-colors
+                      {% if selected_subcategory == sub.id|stringformat:"s" %}
+                        bg-gray-900 text-white
+                      {% else %}
+                        text-gray-700 hover:bg-white
+                      {% endif %}"
+                  >
+                    <span>{{ sub.name }}</span>
+                    <span class="text-xs opacity-75">{{ sub.accessories.count }}</span>
+                  </a>
+                {% endfor %}
+              </div>
+            </details>
+            {% endwith %}
+          {% endfor %}
+        </div>
+      </div>
+    </aside>
+
+    <!-- Основной контент -->
+    <main class="lg:col-span-9">
+
+      {% if accessories %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          {% for item in accessories %}
+            <div class="group rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all overflow-hidden hover:-translate-y-0.5">
+              
+              <!-- Изображение -->
+              <div class="bg-gray-50 overflow-hidden">
+                <a href="{% url 'accessory_detail' item.id %}" class="block">
+                  {% if item.main_image %}
+                    <img
+                      src="{{ item.main_image.url }}"
+                      alt="{{ item.name }}"
+                      class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <div class="h-52 flex items-center justify-center text-gray-400 text-sm">
+                      <svg class="w-12 h-12 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                  {% endif %}
+                </a>
+              </div>
+
+              <div class="p-4">
+                <!-- Бейдж категории -->
+                <div class="mb-2">
+                  <span class="inline-block text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-700">
+                    {{ item.subcategory.category.name }}
+                  </span>
+                </div>
+
+                <!-- Название -->
+                <a href="{% url 'accessory_detail' item.id %}" class="block">
+                  <h3 class="text-base font-semibold text-gray-900 group-hover:text-black line-clamp-2">
+                    {{ item.name }}
+                  </h3>
+                </a>
+
+                <!-- Описание -->
+                {% if item.description %}
+                  <p class="text-sm text-gray-600 mt-2 leading-relaxed line-clamp-2">
+                    {{ item.description }}
+                  </p>
+                {% endif %}
+
+                <!-- Цена и кнопка -->
+                <div class="mt-4 flex items-center justify-between gap-3">
+                  <div>
+                    {% if item.price %}
+                      <div class="text-lg font-bold text-gray-900">
+                        {{ item.price }} ₼
+                      </div>
+                    {% else %}
+                      <div class="text-sm text-gray-500">{% trans "Price on request" %}</div>
+                    {% endif %}
+                  </div>
+
+                  <a
+                    href="{% url 'accessory_detail' item.id %}"
+                    class="flex items-center gap-1 text-sm font-medium text-gray-900 hover:text-black"
+                  >
+                    {% trans "Details" %}
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+
+              
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Пагинация (если нужна) -->
+        {% if accessories.has_other_pages %}
+          <div class="mt-10">
+            <!-- Добавьте компонент пагинации здесь -->
+          </div>
+        {% endif %}
+
+      {% else %}
+        <!-- Состояние пустого результата -->
+        <div class="rounded-2xl border-2 border-dashed border-gray-200 bg-white p-12 text-center">
+          <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <div class="text-lg font-semibold text-gray-900 mb-2">{% trans "No accessories found" %}</div>
+          <div class="text-sm text-gray-500 mb-6 max-w-md mx-auto">
+            {% trans "Try changing your search keywords or filters." %}
+          </div>
+          <a href="{% url 'accessories' %}" class="inline-block px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-black transition">
+            {% trans "Reset filters" %}
+          </a>
+        </div>
+      {% endif %}
+
+    </main>
+  </div>
+
 </div>
+
 {% endblock %}
