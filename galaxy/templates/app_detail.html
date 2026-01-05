@@ -3,25 +3,88 @@
 {% block content %}
 
 <div class="max-w-5xl mx-auto p-6">
-    <div class= "flex justify-center mb-4">
+    <div class="flex justify-center mb-4">
         <a href="https://wa.me/994518400012?text=Hello%20GalaxyMotors%20Pro%21%20I%20need%20your%20services" class="underline">
-        {% trans "If you want to buy any of our application contact us" %}
-    </a>
+            {% trans "If you want to buy any of our application contact us" %}
+        </a>
     </div>
+    
     <div class="flex flex-col md:flex-row gap-8">
 
-        <!-- Левая часть: Фото -->
-        {% if app.image %}
+        <!-- Левая часть: Галерея -->
         <div class="md:w-1/2 flex-shrink-0">
-            <img src="{{ app.image.url }}" alt="{{ app.name }}" class="w-full h-auto rounded-lg object-cover">
+            <!-- Основное изображение с навигацией -->
+            <div class="relative bg-gray-100 rounded-lg overflow-hidden mb-4 group">
+                {% if app.image or app.additional_images.all %}
+                    <div id="mainImageContainer" class="relative h-80 md:h-96 flex items-center justify-center bg-white">
+                        <img id="mainImage" 
+                             src="{% if app.image %}{{ app.image.url }}{% endif %}" 
+                             alt="{{ app.name }}"
+                             class="w-full h-full object-contain transition-opacity duration-300">
+                        
+                        <!-- Стрелки навигации -->
+                        {% if app.image or app.additional_images.all %}
+                        <div class="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <!-- Левая стрелка -->
+                            <button id="prevBtn" 
+                                    class="bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            
+                            <!-- Правая стрелка -->
+                            <button id="nextBtn" 
+                                    class="bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Счетчик изображений -->
+                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+                            <span id="currentIndex">1</span> / <span id="totalImages">{{ app.additional_images.all|length|add:1 }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="h-80 md:h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div class="text-gray-400">No image</div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Миниатюры -->
+            {% if app.image or app.additional_images.all %}
+            <div class="flex space-x-3 overflow-x-auto pb-2">
+                {% if app.image %}
+                    <button onclick="goToImage(0)"
+                            class="thumb-btn flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 border-black transition-all duration-200">
+                        <img src="{{ app.image.url }}" 
+                             alt="Main"
+                             class="w-full h-full object-cover">
+                    </button>
+                {% endif %}
+
+                {% for img in app.additional_images.all %}
+                    <button onclick="goToImage({{ forloop.counter }})"
+                            class="thumb-btn flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 border-transparent hover:border-gray-300 transition-all duration-200"
+                            data-index="{{ forloop.counter }}">
+                        <img src="{{ img.image.url }}" 
+                             alt="Additional"
+                             class="w-full h-full object-cover">
+                    </button>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
 
         <!-- Правая часть: Информация и описание -->
         <div class="md:w-1/2 flex flex-col justify-between space-y-6">
             <div class="space-y-4">
                 <h1 class="text-3xl font-bold">{{ app.name }}</h1>
-                <p class="">{{ app.description }}</p>
+                <p class=" leading-relaxed">{{ app.description }}</p>
 
                 {% if app.apk_file %}
                 <a href="{% url 'download_apk' app.id %}" 
@@ -29,15 +92,112 @@
                     {% trans "Download" %}
                 </a>
                 {% else %}
-                <div class="text-2xl flex gap-2">
-                    <p>{{ app.price }} ₼</p>
-
+                <div class="text-2xl font-bold">
+                    {{ app.price }} ₼
                 </div>
                 {% endif %}
             </div>
         </div>
     </div>
-
 </div>
+
+<script>
+// Собираем все изображения
+const images = [
+    {% if app.image %}
+        "{{ app.image.url }}",
+    {% endif %}
+    {% for img in app.additional_images.all %}
+        "{{ img.image.url }}",
+    {% endfor %}
+];
+
+let currentImageIndex = 0;
+const totalImages = images.length;
+
+function updateMainImage(index) {
+    if (index >= 0 && index < totalImages) {
+        currentImageIndex = index;
+        
+        // Обновляем основное изображение
+        const mainImg = document.getElementById('mainImage');
+        if (mainImg) {
+            mainImg.src = images[index];
+        }
+        
+        // Обновляем счетчик
+        const currentIndexSpan = document.getElementById('currentIndex');
+        if (currentIndexSpan) {
+            currentIndexSpan.textContent = index + 1;
+        }
+        
+        // Обновляем активную миниатюру
+        document.querySelectorAll('.thumb-btn').forEach(btn => {
+            const btnIndex = parseInt(btn.getAttribute('data-index') || '0');
+            if (btnIndex === index) {
+                btn.classList.remove('border-transparent', 'hover:border-gray-300');
+                btn.classList.add('border-black');
+            } else {
+                btn.classList.remove('border-black');
+                btn.classList.add('border-transparent', 'hover:border-gray-300');
+            }
+        });
+    }
+}
+
+function goToImage(index) {
+    updateMainImage(index);
+}
+
+function nextImage() {
+    if (totalImages > 0) {
+        const nextIndex = (currentImageIndex + 1) % totalImages;
+        updateMainImage(nextIndex);
+    }
+}
+
+function prevImage() {
+    if (totalImages > 0) {
+        const prevIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+        updateMainImage(prevIndex);
+    }
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', function() {
+    if (totalImages > 0) {
+        updateMainImage(0);
+        
+        // Назначаем обработчики для стрелок
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', prevImage);
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', nextImage);
+        }
+        
+        // Навигация с клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (totalImages <= 1) return;
+            
+            if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+        
+        // Обновляем счетчик общего количества
+        const totalImagesSpan = document.getElementById('totalImages');
+        if (totalImagesSpan) {
+            totalImagesSpan.textContent = totalImages;
+        }
+    }
+});
+</script>
 
 {% endblock %}

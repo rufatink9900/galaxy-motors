@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'core',
     'services', 
     'apps',
+    'catalog',
     'accessories',
     'cloudinary',
     'cloudinary_storage',

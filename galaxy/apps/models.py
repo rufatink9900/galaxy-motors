@@ -12,3 +12,14 @@ class App(models.Model):
 
     def __str__(self):
         return self.name
+
+class AppImage(models.Model):
+    accessory = models.ForeignKey(
+        App,
+        related_name="additional_images",
+        on_delete=models.CASCADE
+    )
+    image = CloudinaryField('image')
+
+    def __str__(self):
+        return f"{self.accessory.name} image"

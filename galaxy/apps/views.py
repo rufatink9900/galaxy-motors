@@ -26,7 +26,11 @@ def apps_list(request):
 
 def app_detail(request, pk):
     app = get_object_or_404(App, pk=pk)
-    return render(request, 'app_detail.html', {'app': app})
+    related_apps = App.objects.exclude(pk=pk).order_by('-created_at')[:4]
+    return render(request, 'app_detail.html', {
+        'app': app,
+        'related_apps': related_apps
+    })
 
 
 def download_apk(request, app_id):
