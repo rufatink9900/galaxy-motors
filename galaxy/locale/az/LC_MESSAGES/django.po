@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-05 00:44+0400\n"
+"POT-Creation-Date: 2026-01-06 15:37+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,8 @@ msgstr "Axtardığınız səhifə mövcud deyil və ya köçürülüb."
 msgid "Back to homepage"
 msgstr "Ana səhifəyə geri dön."
 
-#: .\templates\accessories.html:10
+#: .\templates\accessories.html:10 .\templates\base.html:225
+#: .\templates\base.html:308
 msgid "Accessories"
 msgstr "Aksesuarlar"
 
@@ -40,18 +41,20 @@ msgid "Find accessories by category, model, or name."
 msgstr "Aksessuarları kateqoriya, model və ya ad üzrə tapın."
 
 #: .\templates\accessories.html:44 .\templates\accessories.html:63
+#: .\templates\apps_list.html:22 .\templates\catalog.html:46
+#: .\templates\catalog.html:65
 msgid "Search"
 msgstr "Axtar"
 
-#: .\templates\accessories.html:75
+#: .\templates\accessories.html:75 .\templates\catalog.html:77
 msgid "Category"
 msgstr "Kateqoriya"
 
-#: .\templates\accessories.html:90
+#: .\templates\accessories.html:90 .\templates\catalog.html:92
 msgid "Subcategory"
 msgstr "Alt kateqoriya"
 
-#: .\templates\accessories.html:109
+#: .\templates\accessories.html:109 .\templates\catalog.html:111
 msgid "Categories"
 msgstr "Kateqoriyalar"
 
@@ -59,16 +62,17 @@ msgstr "Kateqoriyalar"
 msgid "All accessories"
 msgstr "Bütün aksesuarlar"
 
-#: .\templates\accessories.html:136
+#: .\templates\accessories.html:136 .\templates\catalog.html:137
 msgid "Selected"
 msgstr "Seçilən"
 
-#: .\templates\accessories.html:244 .\templates\accessory_detail.html:89
+#: .\templates\accessories.html:244 .\templates\accessory_detail.html:117
+#: .\templates\catalog.html:249 .\templates\details.html:127
 #: .\templates\service_detail.html:101 .\templates\services.html:149
 msgid "Price on request"
 msgstr "Qiymət sorğu üzrə"
 
-#: .\templates\accessories.html:252
+#: .\templates\accessories.html:252 .\templates\apps_list.html:82
 msgid "Details"
 msgstr "Ətraflı"
 
@@ -76,70 +80,74 @@ msgstr "Ətraflı"
 msgid "No accessories found"
 msgstr "Aksessuar tapılmadı"
 
-#: .\templates\accessories.html:282
+#: .\templates\accessories.html:282 .\templates\catalog.html:285
 msgid "Try changing your search keywords or filters."
 msgstr "Axtarış və ya filtrləri dəyişərək yenidən cəhd edin."
 
-#: .\templates\accessories.html:285
+#: .\templates\accessories.html:285 .\templates\catalog.html:288
 msgid "Reset filters"
 msgstr "Filtrləri sıfırla"
 
-#: .\templates\accessory_detail.html:109
+#: .\templates\accessory_detail.html:137 .\templates\details.html:149
 msgid "Call us"
 msgstr "Zəng et"
 
-#: .\templates\app_detail.html:8 .\templates\apps_list.html:6
+#: .\templates\accessory_detail.html:155
+msgid "Related"
+msgstr "Oxşar məhsullar"
+
+#: .\templates\app_detail.html:8
 msgid "If you want to buy any of our application contact us"
 msgstr ""
 "Əgər tətbiqlərimizdən hər hansı birini almaq istəyirsinizsə, bizimlə əlaqə "
 "saxlayın"
 
-#: .\templates\app_detail.html:29 .\templates\apps_list.html:74
+#: .\templates\app_detail.html:92 .\templates\apps_list.html:75
 msgid "Download"
 msgstr "Yüklə"
 
-#: .\templates\apps_list.html:16
+#: .\templates\apps_list.html:17
 msgid "Search applications..."
 msgstr "Tətbiqləri axtar…"
 
-#: .\templates\apps_list.html:89
+#: .\templates\apps_list.html:96
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:90
+#: .\templates\apps_list.html:97
 msgid "Try another search query"
 msgstr ""
 
-#: .\templates\base.html:224 .\templates\base.html:296
-#: .\templates\base.html:357 .\templates\index.html:45
+#: .\templates\base.html:224 .\templates\base.html:298
+#: .\templates\base.html:369 .\templates\index.html:74
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Xidmətlər"
 
-#: .\templates\base.html:225 .\templates\base.html:307
+#: .\templates\base.html:227 .\templates\base.html:319
 msgid "Applications"
 msgstr "Tətbiqlər"
 
-#: .\templates\base.html:245 .\templates\base.html:358
-#: .\templates\base.html:364
+#: .\templates\base.html:247 .\templates\base.html:370
+#: .\templates\base.html:376
 msgid "Contact"
 msgstr "Əlaqə"
 
-#: .\templates\base.html:317 .\templates\base.html:409
+#: .\templates\base.html:329 .\templates\base.html:421
 msgid "Contact Us"
 msgstr "Əlaqə"
 
-#: .\templates\base.html:324
+#: .\templates\base.html:336
 msgid "Call us directly:"
 msgstr ""
 
-#: .\templates\base.html:328 .\templates\base.html:478
+#: .\templates\base.html:340 .\templates\base.html:490
 #, fuzzy
 #| msgid "Monday-Saturday: 12:00-18:00"
 msgid "Mon-Fri: 9:00-18:00"
 msgstr "Bazar ertəsi–Şənbə: 12:00–18:00"
 
-#: .\templates\base.html:349 .\templates\index.html:13 .\templates\li.html:15
+#: .\templates\base.html:361 .\templates\index.html:13 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
@@ -147,55 +155,124 @@ msgstr ""
 "Peşəkar avtomobil xidməti illərin təcrübəsi ilə. Keyfiyyət, etimad və sürət "
 "bizim prioritetimizdir."
 
-#: .\templates\base.html:355
+#: .\templates\base.html:367
 msgid "Quick Links"
 msgstr "Tez keçidlər"
 
-#: .\templates\base.html:368
+#: .\templates\base.html:380
 msgid "Aşıq Molla Cümə 44"
 msgstr ""
 
-#: .\templates\base.html:384
+#: .\templates\base.html:396
 msgid "All rights reserved."
 msgstr "Bütün hüquqlar qorunur"
 
-#: .\templates\base.html:461
+#: .\templates\base.html:473
 msgid "Email"
 msgstr ""
 
-#: .\templates\index.html:55
+#: .\templates\catalog.html:3 .\templates\catalog.html:12
+#: .\templates\details.html:13
+msgid "Car Catalog"
+msgstr ""
+
+#: .\templates\catalog.html:14
+#, fuzzy
+#| msgid "Find accessories by category, model, or name."
+msgid "Find cars by brand, model, or category."
+msgstr "Aksessuarları kateqoriya, model və ya ad üzrə tapın."
+
+#: .\templates\catalog.html:25
+#, fuzzy
+#| msgid "Search applications..."
+msgid "Search cars..."
+msgstr "Tətbiqləri axtar…"
+
+#: .\templates\catalog.html:52
+msgid "Clear all"
+msgstr ""
+
+#: .\templates\catalog.html:122
+#, fuzzy
+#| msgid "All accessories"
+msgid "All cars"
+msgstr "Bütün aksesuarlar"
+
+#: .\templates\catalog.html:160
+msgid "All"
+msgstr ""
+
+#: .\templates\catalog.html:257
+#, fuzzy
+#| msgid "Details"
+msgid "View details"
+msgstr "Ətraflı"
+
+#: .\templates\catalog.html:267 .\templates\details.html:118
+#, fuzzy
+#| msgid "Added date"
+msgid "Added"
+msgstr "Əlavə olunma tarixi"
+
+#: .\templates\catalog.html:283
+#, fuzzy
+#| msgid "No accessories found"
+msgid "No cars found"
+msgstr "Aksessuar tapılmadı"
+
+#: .\templates\details.html:73
+#, fuzzy
+#| msgid "File not available"
+msgid "No image available"
+msgstr "Fayl mövcud deyil"
+
+#: .\templates\details.html:132
+msgid "Description"
+msgstr ""
+
+#: .\templates\details.html:138
+#, fuzzy
+#| msgid "No programs available yet"
+msgid "No description available"
+msgstr "Hələlik proqram yoxdur"
+
+#: .\templates\details.html:167
+msgid "Related cars"
+msgstr ""
+
+#: .\templates\index.html:84
 msgid "Battery Diagnostics"
 msgstr "Batareya diaqnostikası"
 
-#: .\templates\index.html:58
+#: .\templates\index.html:87
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr ""
 "Elektrik avtomobillərinin batareyalarının tam yoxlanışı və sağlamlıq "
 "yoxlaması"
 
-#: .\templates\index.html:65
+#: .\templates\index.html:94
 msgid "Electric Motor Repair"
 msgstr "Elektrik mühərrikinin təmiri"
 
-#: .\templates\index.html:68
+#: .\templates\index.html:97
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Təcrübəli ustalar tərəfindən peşəkar təmir və xidmət."
 
-#: .\templates\index.html:75
+#: .\templates\index.html:104
 msgid "Software & Diagnostics"
 msgstr "Proqram təminatı və diaqnostika"
 
-#: .\templates\index.html:78
+#: .\templates\index.html:107
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Sistem yeniləmələri, səhv diaqnostikası və proqram təminatının "
 "optimallaşdırılması."
 
-#: .\templates\index.html:90
+#: .\templates\index.html:119
 msgid "Our Team"
 msgstr "Bizim Komanda"
 
-#: .\templates\index.html:91
+#: .\templates\index.html:120
 msgid ""
 "We are a dynamic team, passionate about what we do and committed to "
 "delivering the best results for our clients."
@@ -324,9 +401,6 @@ msgstr "5 ildən çox təcrübəyə malik təcrübəli ustalar"
 #~ msgid "Paid. Contact us to purchase."
 #~ msgstr "Ödənişlidir. Almaq üçün bizimlə əlaqə saxlayın"
 
-#~ msgid "Added date"
-#~ msgstr "Əlavə olunma tarixi"
-
 #~ msgid ""
 #~ "Professional auto service for electric vehicles. Quality, trust, and "
 #~ "speed are our top priorities."
@@ -344,17 +418,11 @@ msgstr "5 ildən çox təcrübəyə malik təcrübəli ustalar"
 #~ "Tezliklə avtomobilinizə qoşularaq tətbiqləri birbaşa saytımızdan yükləyə "
 #~ "biləcəksiniz."
 
-#~ msgid "File not available"
-#~ msgstr "Fayl mövcud deyil"
-
 #~ msgid "Download APK"
 #~ msgstr "APK yüklə"
 
 #~ msgid "List of programs"
 #~ msgstr "Tətbiqlərin siyahısı"
-
-#~ msgid "No programs available yet"
-#~ msgstr "Hələlik proqram yoxdur"
 
 #~ msgid "About"
 #~ msgstr "Haqqımızda"
