@@ -221,10 +221,10 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-10 delay-300">
                     <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest uppercase">
-                        <li><a href="{% url 'services' %}" class="text-white hover:text-cyan-300 transition-colors py-2 px-1 delay-100">{% trans "Services" %}</a></li>
-                        <li><a href="{% url 'accessories' %}" class="text-white hover:text-cyan-300 transition-colors py-2 px-1 delay-100">{% trans "Accessories" %}</a></li>
+                        <li><a href="{% url 'services' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-100">{% trans "Services" %}</a></li>
+                        <li><a href="{% url 'accessories' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-100">{% trans "Accessories" %}</a></li>
 
-                        <li><a href="{% url 'apps_list' %}" class="text-white hover:text-cyan-300 transition-colors py-2 px-1 delay-200">{% trans "Applications" %}</a></li>
+                        <li><a href="{% url 'apps_list' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-200">{% trans "Applications" %}</a></li>
                     </ul>
                     
                     <!-- Language Selector Desktop -->
@@ -243,7 +243,7 @@
                     </form>
                     
                     <!-- Contact Button Desktop -->
-                    <button id="openModal" class="border border-cyan-500/30 px-5 py-2 rounded-lg hover:bg-cyan-900/30 hover:text-cyan-300 transition-all hover-galaxy text-sm animate-pulse-glow delay-400 text-white">
+                    <button id="openModal" class="border border-cyan-500/30 px-5 py-2 rounded-lg hover:bg-cyan-900/30 hover:text-zinc-500 transition-all hover-galaxy text-sm animate-pulse-glow delay-400 text-white">
                         {% trans "Contact" %}
                     </button>
                 </div>
@@ -295,7 +295,7 @@
                         <a href="{% url 'services' %}" 
                            class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
                             <div class="flex items-center justify-between">
-                                <span class="text-base font-medium tracking-wide text-white group-hover:text-cyan-300 transition-colors">{% trans "Services" %}</span>
+                                <span class="text-base font-medium tracking-wide text-white group-hover:text-zinc-500 transition-colors">{% trans "Services" %}</span>
                                 <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
@@ -305,7 +305,7 @@
                     <li class="animate-fade-in-up delay-200">
                         <a href="{% url 'accessories' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
                             <div class="flex items-center justify-between">
-                                <span class="text-base font-medium tracking-wide text-white group-hover:text-cyan-300 transition-colors">{% trans "Accessories" %}</span>
+                                <span class="text-base font-medium tracking-wide text-white group-hover:text-zinc-500 transition-colors">{% trans "Accessories" %}</span>
                                 <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
@@ -316,7 +316,7 @@
                     <li class="animate-fade-in-up delay-200">
                         <a href="{% url 'apps_list' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
                             <div class="flex items-center justify-between">
-                                <span class="text-base font-medium tracking-wide text-white group-hover:text-cyan-300 transition-colors">{% trans "Applications" %}</span>
+                                <span class="text-base font-medium tracking-wide text-white group-hover:text-zinc-500 transition-colors">{% trans "Applications" %}</span>
                                 <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
@@ -325,7 +325,7 @@
                     </li>
                     <li class="pt-4 border-t border-cyan-500/10 animate-fade-in-up delay-300">
                         <button id="openModalMobile" 
-                           class="block w-full text-center border border-cyan-500/30 py-3 px-6 rounded-lg hover:bg-cyan-900/30 hover:text-cyan-300 transition-all hover-galaxy animate-pulse-glow text-white">
+                           class="block w-full text-center border border-cyan-500/30 py-3 px-6 rounded-lg hover:bg-cyan-900/30 hover:text-zinc-100 transition-all hover-galaxy animate-pulse-glow text-white">
                             {% trans "Contact Us" %}
                         </button>
                     </li>
@@ -366,8 +366,8 @@
                 <div class="animate-fade-in-up delay-200">
                     <h3 class="text-sm font-semibold uppercase tracking-widest mb-4 text-white">{% trans "Quick Links" %}</h3>
                     <ul class="space-y-2">
-                        <li><a href="{% url 'services' %}" class="text-white/80 hover:text-cyan-300 text-sm transition">{% trans "Services" %}</a></li>
-                        <li><button id="openModalFooter" class="text-white/80 hover:text-cyan-300 text-sm transition">{% trans "Contact" %}</button></li>
+                        <li><a href="{% url 'services' %}" class="text-white/80 hover:text-zinc-500 text-sm transition">{% trans "Services" %}</a></li>
+                        <li><button id="openModalFooter" class="text-white/80 hover:text-zinc-100 text-sm transition">{% trans "Contact" %}</button></li>
                     </ul>
                 </div>
 
@@ -381,11 +381,11 @@
                         </li>
                         <li class="flex items-center space-x-2">
                             <span class="text-cyan-400">📞</span>
-                            <button id="openModalFooterPhone" class="hover:text-cyan-300 transition">+994 51 840 00 12</button>
+                            <button id="openModalFooterPhone" class="hover:text-zinc-500 transition">+994 51 840 00 12</button>
                         </li>
                         <li class="flex items-center space-x-2">
                             <span class="text-cyan-400">✉️</span>
-                            <button id="openModalFooterEmail" class="hover:text-cyan-300 transition">info@galaxymotors.pro</button>
+                            <button id="openModalFooterEmail" class="hover:text-zinc-500 transition">info@galaxymotors.pro</button>
                         </li>
                     </ul>
                 </div>
@@ -429,7 +429,7 @@
                            class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-cyan-900/20 border border-cyan-500/20 hover:border-cyan-400/40 transition-all hover-galaxy hover:scale-[1.02] delay-100">
                             <div class="flex items-center space-x-4">
                                 <div class="p-3 rounded-lg bg-cyan-900/30 group-hover:bg-cyan-900/50 transition-all">
-                                    <span class="text-2xl text-cyan-300">📞</span>
+                                    <span class="text-2xl text-zinc-500">📞</span>
                                 </div>
                                 <div class="text-left">
                                     <p class="text-sm text-white/80">
@@ -437,7 +437,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-zinc-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -448,7 +448,7 @@
                            class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-cyan-900/20 border border-cyan-500/20 hover:border-cyan-400/40 transition-all hover-galaxy hover:scale-[1.02] delay-200">
                             <div class="flex items-center space-x-4">
                                 <div class="p-3 rounded-lg bg-cyan-900/30 group-hover:bg-cyan-900/50 transition-all">
-                                    <span class="text-2xl text-cyan-300">💬</span>
+                                    <span class="text-2xl text-zinc-500">💬</span>
                                 </div>
                                 <div class="text-left">
                                     <h4 class="font-semibold text-white group-hover:text-cyan-400 transition-colors">
@@ -456,7 +456,7 @@
                                     </h4>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-zinc-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -466,7 +466,7 @@
                            class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-cyan-900/20 border border-cyan-500/20 hover:border-cyan-400/40 transition-all hover-galaxy hover:scale-[1.02] delay-300">
                             <div class="flex items-center space-x-4">
                                 <div class="p-3 rounded-lg bg-cyan-900/30 group-hover:bg-cyan-900/50 transition-all">
-                                    <span class="text-2xl text-cyan-300">✉️</span>
+                                    <span class="text-2xl text-zinc-500">✉️</span>
                                 </div>
                                 <div class="text-left">
                                     <h4 class="font-semibold text-white group-hover:text-cyan-400 transition-colors">
@@ -477,7 +477,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-zinc-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
