@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #: .\templates\accessories.html:50
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-06 15:37+0400\n"
+"POT-Creation-Date: 2026-01-15 05:21-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,8 @@ msgid "Selected"
 msgstr ""
 
 #: .\templates\accessories.html:244 .\templates\accessory_detail.html:117
-#: .\templates\catalog.html:249 .\templates\details.html:127
-#: .\templates\service_detail.html:101 .\templates\services.html:149
+#: .\templates\catalog.html:249 .\templates\service_detail.html:101
+#: .\templates\services.html:149
 msgid "Price on request"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "Reset filters"
 msgstr ""
 
-#: .\templates\accessory_detail.html:137 .\templates\details.html:149
+#: .\templates\accessory_detail.html:137
 msgid "Call us"
 msgstr ""
 
@@ -117,56 +117,59 @@ msgid "Try another search query"
 msgstr ""
 
 #: .\templates\base.html:224 .\templates\base.html:298
-#: .\templates\base.html:369 .\templates\index.html:74
+#: .\templates\base.html:379 .\templates\index.html:74
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr ""
 
-#: .\templates\base.html:227 .\templates\base.html:319
+#: .\templates\base.html:226 .\templates\base.html:319
 msgid "Applications"
 msgstr ""
 
-#: .\templates\base.html:247 .\templates\base.html:370
-#: .\templates\base.html:376
+#: .\templates\base.html:227 .\templates\base.html:329
+msgid "Knowledge Base"
+msgstr ""
+
+#: .\templates\base.html:247 .\templates\base.html:380
+#: .\templates\base.html:386
 msgid "Contact"
 msgstr ""
 
-#: .\templates\base.html:329 .\templates\base.html:421
+#: .\templates\base.html:339 .\templates\base.html:431
 msgid "Contact Us"
 msgstr ""
 
-#: .\templates\base.html:336
+#: .\templates\base.html:346
 msgid "Call us directly:"
 msgstr ""
 
-#: .\templates\base.html:340 .\templates\base.html:490
+#: .\templates\base.html:350 .\templates\base.html:500
 msgid "Mon-Fri: 9:00-18:00"
 msgstr ""
 
-#: .\templates\base.html:361 .\templates\index.html:13 .\templates\li.html:15
+#: .\templates\base.html:371 .\templates\index.html:13 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
 msgstr ""
 
-#: .\templates\base.html:367
+#: .\templates\base.html:377
 msgid "Quick Links"
 msgstr ""
 
-#: .\templates\base.html:380
+#: .\templates\base.html:390
 msgid "Aşıq Molla Cümə 44"
 msgstr ""
 
-#: .\templates\base.html:396
+#: .\templates\base.html:406
 msgid "All rights reserved."
 msgstr ""
 
-#: .\templates\base.html:473
+#: .\templates\base.html:483
 msgid "Email"
 msgstr ""
 
 #: .\templates\catalog.html:3 .\templates\catalog.html:12
-#: .\templates\details.html:13
 msgid "Car Catalog"
 msgstr ""
 
@@ -194,7 +197,7 @@ msgstr ""
 msgid "View details"
 msgstr ""
 
-#: .\templates\catalog.html:267 .\templates\details.html:118
+#: .\templates\catalog.html:267
 msgid "Added"
 msgstr ""
 
@@ -202,19 +205,15 @@ msgstr ""
 msgid "No cars found"
 msgstr ""
 
-#: .\templates\details.html:73
+#: .\templates\details.html:68
 msgid "No image available"
 msgstr ""
 
-#: .\templates\details.html:132
-msgid "Description"
-msgstr ""
-
-#: .\templates\details.html:138
+#: .\templates\details.html:134
 msgid "No description available"
 msgstr ""
 
-#: .\templates\details.html:167
+#: .\templates\details.html:146
 msgid "Related cars"
 msgstr ""
 
