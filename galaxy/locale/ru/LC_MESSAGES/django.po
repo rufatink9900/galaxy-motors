@@ -107,8 +107,7 @@ msgid "Download"
 msgstr "Скачать"
 
 #: .\templates\app_detail.html:112
-#, fuzzy
-#| msgid "Applications"
+
 msgid "Other Applications"
 msgstr "Другие Приложения"
 
