@@ -40,7 +40,7 @@
                class="w-full h-full object-contain ">
           
           <!-- Navigation Arrows -->
-          {% comment %} <div class="absolute inset-0 flex items-center justify-between p-4">
+         <div class="absolute inset-0 flex items-center justify-between p-4">
             <!-- Left Arrow -->
             <button id="prevBtn" 
                     class="prev-btn bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100">
@@ -56,12 +56,12 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </button>
-          </div> {% endcomment %}
+          </div> 
           
           <!-- Image Counter -->
-          {% comment %} <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+          <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
             <span id="currentIndex">1</span> / <span id="totalImages">{{ car.additional_images.all|length|add:1 }}</span>
-          </div> {% endcomment %}
+          </div> 
         {% else %}
           <div class="text-gray-400">{% trans "No image available" %}</div>
         {% endif %}
@@ -69,7 +69,7 @@
 
       <!-- Thumbnails -->
       {% if car.main_image or car.additional_images.all %}
-      {% comment %} <div class="flex space-x-3 overflow-x-auto pb-2 mb-4">
+      <div class="flex space-x-3 overflow-x-auto pb-2 mb-4">
         {% if car.main_image %}
           <button onclick="goToImage(0)"
                   class="thumb-btn flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden border-2 border-black transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
@@ -89,7 +89,7 @@
                  class="w-full h-full object-cover">
           </button>
         {% endfor %}
-      </div> {% endcomment %}
+      </div> 
       {% endif %}
 
     </div>
