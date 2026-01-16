@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-#: .\templates\accessories.html:50
+#: .\templates\accessories.html:50 .\templates\catalog.html:22
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 05:21-0800\n"
+"POT-Creation-Date: 2026-01-15 16:10-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,20 +43,20 @@ msgid "Find accessories by category, model, or name."
 msgstr "Найдите аксессуары по категории, модели или названию."
 
 #: .\templates\accessories.html:44 .\templates\accessories.html:63
-#: .\templates\apps_list.html:22 .\templates\catalog.html:46
-#: .\templates\catalog.html:65
+#: .\templates\apps_list.html:22 .\templates\catalog.html:43
+#: .\templates\catalog.html:62
 msgid "Search"
 msgstr "Поиск"
 
-#: .\templates\accessories.html:75 .\templates\catalog.html:77
+#: .\templates\accessories.html:75 .\templates\catalog.html:74
 msgid "Category"
 msgstr "Категория"
 
-#: .\templates\accessories.html:90 .\templates\catalog.html:92
+#: .\templates\accessories.html:90 .\templates\catalog.html:89
 msgid "Subcategory"
 msgstr "Подкатегория"
 
-#: .\templates\accessories.html:109 .\templates\catalog.html:111
+#: .\templates\accessories.html:109
 msgid "Categories"
 msgstr "Категории"
 
@@ -64,13 +64,12 @@ msgstr "Категории"
 msgid "All accessories"
 msgstr "Все аксессуары"
 
-#: .\templates\accessories.html:136 .\templates\catalog.html:137
+#: .\templates\accessories.html:136 .\templates\catalog.html:122
 msgid "Selected"
 msgstr "Выбрано"
 
 #: .\templates\accessories.html:244 .\templates\accessory_detail.html:117
-#: .\templates\catalog.html:249 .\templates\service_detail.html:101
-#: .\templates\services.html:149
+#: .\templates\service_detail.html:101 .\templates\services.html:149
 msgid "Price on request"
 msgstr "Цена по запросу"
 
@@ -82,11 +81,11 @@ msgstr "Подробнее"
 msgid "No accessories found"
 msgstr "Аксессуары не найдены"
 
-#: .\templates\accessories.html:282 .\templates\catalog.html:285
+#: .\templates\accessories.html:282 .\templates\catalog.html:243
 msgid "Try changing your search keywords or filters."
 msgstr "Попробуйте изменить критерии поиска или фильтры."
 
-#: .\templates\accessories.html:285 .\templates\catalog.html:288
+#: .\templates\accessories.html:285 .\templates\catalog.html:246
 msgid "Reset filters"
 msgstr "Сбросить фильтры"
 
@@ -102,9 +101,20 @@ msgstr "Похожие товары"
 msgid "If you want to buy any of our application contact us"
 msgstr "Если вы хотите купить какое-либо из наших приложений, свяжитесь с нами"
 
-#: .\templates\app_detail.html:92 .\templates\apps_list.html:75
+#: .\templates\app_detail.html:98 .\templates\app_detail.html:140
+#: .\templates\apps_list.html:75
 msgid "Download"
 msgstr "Скачать"
+
+#: .\templates\app_detail.html:112
+#, fuzzy
+#| msgid "Applications"
+msgid "Other Applications"
+msgstr "Другие Приложения"
+
+#: .\templates\app_detail.html:143
+msgid "Premium"
+msgstr ""
 
 #: .\templates\apps_list.html:17
 msgid "Search applications..."
@@ -129,6 +139,7 @@ msgid "Applications"
 msgstr "Приложения"
 
 #: .\templates\base.html:227 .\templates\base.html:329
+#: .\templates\catalog.html:3 .\templates\catalog.html:12
 msgid "Knowledge Base"
 msgstr "База знаний"
 
@@ -173,49 +184,15 @@ msgstr "Все права защищены"
 msgid "Email"
 msgstr ""
 
-#: .\templates\catalog.html:3 .\templates\catalog.html:12
-msgid "Car Catalog"
-msgstr ""
-
-#: .\templates\catalog.html:14
-#, fuzzy
-#| msgid "Find accessories by category, model, or name."
-msgid "Find cars by brand, model, or category."
-msgstr "Найдите аксессуары по категории, модели или названию."
-
-#: .\templates\catalog.html:25
-#, fuzzy
-#| msgid "Search applications..."
-msgid "Search cars..."
-msgstr "Поиск приложений…"
-
-#: .\templates\catalog.html:52
+#: .\templates\catalog.html:49
 msgid "Clear all"
 msgstr ""
 
-#: .\templates\catalog.html:122
-#, fuzzy
-#| msgid "All accessories"
-msgid "All cars"
-msgstr "Все аксессуары"
-
-#: .\templates\catalog.html:160
+#: .\templates\catalog.html:145
 msgid "All"
 msgstr ""
 
-#: .\templates\catalog.html:257
-#, fuzzy
-#| msgid "Details"
-msgid "View details"
-msgstr "Подробнее"
-
-#: .\templates\catalog.html:267
-#, fuzzy
-#| msgid "Added date"
-msgid "Added"
-msgstr "Дата добавления"
-
-#: .\templates\catalog.html:283
+#: .\templates\catalog.html:241
 #, fuzzy
 #| msgid "No accessories found"
 msgid "No cars found"
@@ -392,6 +369,31 @@ msgstr "Профессионалы"
 #: .\templates\services.html:218
 msgid "Experienced masters with over 5 years of experience"
 msgstr "Опытные мастера с более чем 5-летним стажем"
+
+#, fuzzy
+#~| msgid "Find accessories by category, model, or name."
+#~ msgid "Find cars by brand, model, or category."
+#~ msgstr "Найдите аксессуары по категории, модели или названию."
+
+#, fuzzy
+#~| msgid "Search applications..."
+#~ msgid "Search cars..."
+#~ msgstr "Поиск приложений…"
+
+#, fuzzy
+#~| msgid "All accessories"
+#~ msgid "All cars"
+#~ msgstr "Все аксессуары"
+
+#, fuzzy
+#~| msgid "Details"
+#~ msgid "View details"
+#~ msgstr "Подробнее"
+
+#, fuzzy
+#~| msgid "Added date"
+#~ msgid "Added"
+#~ msgstr "Дата добавления"
 
 #~ msgid "Paid. Contact us to purchase."
 #~ msgstr "Платно. Свяжитесь с нами для покупки"

@@ -16,7 +16,7 @@
             <!-- Основное изображение с навигацией -->
             <div class="relative bg-gray-100 rounded-lg overflow-hidden mb-4 group">
                 {% if app.image or app.additional_images.all %}
-                    <div id="mainImageContainer" class="relative h-80 md:h-96 flex items-center justify-center bg-white">
+                    <div id="mainImageContainer" class="relative h-80 md:h-96 flex items-center justify-center ">
                         <img id="mainImage" 
                              src="{% if app.image %}{{ app.image.url }}{% endif %}" 
                              alt="{{ app.name }}"
@@ -49,8 +49,14 @@
                         {% endif %}
                     </div>
                 {% else %}
-                    <div class="h-80 md:h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <div class="text-gray-400">No image</div>
+                                      <div class="w-full h-full flex items-center justify-center">
+                        <div class="relative">
+                            <div class="w-[200px] h-[200px]  rounded-2xl flex items-center justify-center">
+                                <svg class="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 {% endif %}
             </div>
@@ -99,6 +105,51 @@
             </div>
         </div>
     </div>
+
+    <!-- Раздел с другими приложениями -->
+    {% if related_apps %}
+    <div class="mt-12 pt-8 border-t border-gray-200">
+        <h2 class="text-2xl font-bold mb-6">{% trans "Other Applications" %}</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for related_app in related_apps %}
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <a href="{% url 'app_detail' related_app.pk %}">
+                    {% if related_app.image %}
+                    <div class="h-48 bg-gray-100 flex items-center justify-center">
+                        <img src="{{ related_app.image.url }}" 
+                             alt="{{ related_app.name }}"
+                             class="h-full w-full object-contain p-4">
+                    </div>
+                    {% else %}
+                    <div class="h-48 bg-gray-100 flex items-center justify-center">
+                        <div class="text-gray-400">
+                            <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2 truncate">{{ related_app.name }}</h3>
+                        <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ related_app.description|truncatechars:100 }}</p>
+                        
+                        <div class="flex items-center justify-between">
+                            {% if related_app.apk_file %}
+                            <span class="text-blue-600 text-sm">{% trans "Download" %}</span>
+                            {% else %}
+                            <span class="text-gray-900 font-bold">{{ related_app.price }} ₼</span>
+                            <span class="text-amber-600 text-sm">{% trans "Premium" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 </div>
 
 <script>
