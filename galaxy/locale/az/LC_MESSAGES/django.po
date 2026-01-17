@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-#: .\templates\accessories.html:50 .\templates\catalog.html:22
+#: .\templates\accessories.html:50
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 16:10-0800\n"
+"POT-Creation-Date: 2026-01-17 10:06-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgstr "Kateqoriyalar"
 msgid "All accessories"
 msgstr "Bütün aksesuarlar"
 
-#: .\templates\accessories.html:136 .\templates\catalog.html:122
+#: .\templates\accessories.html:136
 msgid "Selected"
 msgstr "Seçilən"
 
@@ -79,11 +79,11 @@ msgstr "Ətraflı"
 msgid "No accessories found"
 msgstr "Aksessuar tapılmadı"
 
-#: .\templates\accessories.html:282 .\templates\catalog.html:243
+#: .\templates\accessories.html:282 .\templates\catalog.html:244
 msgid "Try changing your search keywords or filters."
 msgstr "Axtarış və ya filtrləri dəyişərək yenidən cəhd edin."
 
-#: .\templates\accessories.html:285 .\templates\catalog.html:246
+#: .\templates\accessories.html:285 .\templates\catalog.html:247
 msgid "Reset filters"
 msgstr "Filtrləri sıfırla"
 
@@ -107,7 +107,6 @@ msgid "Download"
 msgstr "Yüklə"
 
 #: .\templates\app_detail.html:112
-
 msgid "Other Applications"
 msgstr "Digər Tətbiqlər"
 
@@ -185,33 +184,33 @@ msgstr "Bütün hüquqlar qorunur"
 msgid "Email"
 msgstr ""
 
+#: .\templates\catalog.html:22
+msgid "Enter a query"
+msgstr "Sorğunu daxil edin"
+
 #: .\templates\catalog.html:49
 msgid "Clear all"
-msgstr ""
+msgstr "Təmizlə"
 
-#: .\templates\catalog.html:145
-msgid "All"
-msgstr ""
-
-#: .\templates\catalog.html:241
+#: .\templates\catalog.html:242
 #, fuzzy
 #| msgid "No accessories found"
 msgid "No cars found"
 msgstr "Aksessuar tapılmadı"
 
-#: .\templates\details.html:68
+#: .\templates\details.html:66
 #, fuzzy
 #| msgid "File not available"
 msgid "No image available"
 msgstr "Fayl mövcud deyil"
 
-#: .\templates\details.html:134
+#: .\templates\details.html:131
 #, fuzzy
 #| msgid "No programs available yet"
 msgid "No description available"
 msgstr "Hələlik proqram yoxdur"
 
-#: .\templates\details.html:146
+#: .\templates\details.html:143
 msgid "Related cars"
 msgstr ""
 
