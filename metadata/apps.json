@@ -29,14 +29,5 @@
     "category": "Automotive",
     "icon": "https://res.cloudinary.com/dzclcwqjg/image/upload/v1769245889/system-settings_du1x6r.png"
   },
-    {
-    "id": "com.spotify.music",
-    "name": "Spotify",
-    "version": "1.0",
-    "version_code": 11,
-    "apk_url": "https://github.com/rufatink9900/galaxy-motors/releases/download/v1/Spotify.apk",
-    "developer": "Rufat Ink",
-    "category": "Automotive",
-    "icon": "https://res.cloudinary.com/dzclcwqjg/image/upload/v1769247307/9f5edc36-eb4d-414a-8447-10514f2bc224-cover_h0c5gm.png"
-  }
+
 ]
