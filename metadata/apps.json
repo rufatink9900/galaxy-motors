@@ -6,7 +6,8 @@
     "version_code": 11,
     "apk_url": "https://github.com/rufatink9900/galaxy-motors/releases/download/v1/SMS.apk",
     "developer": "Rufat Ink",
-    "category": "Automotive"
+    "category": "Automotive",
+    "icon": "https://res.cloudinary.com/dzclcwqjg/image/upload/v1769238746/messages-app-icon_gq8lk7.webp"
   },
     {
     "id": "radio",
@@ -15,6 +16,7 @@
     "version_code": 11,
     "apk_url": "https://github.com/rufatink9900/galaxy-motors/releases/download/v1/Radio-Azerbaijan.apk",
     "developer": "Rufat Ink",
-    "category": "Automotive"
+    "category": "Automotive",
+    "icon": "https://res.cloudinary.com/dzclcwqjg/image/upload/v1769238813/radio-azerbaijan-icon_tyihkj.png"
   }
 ]
