@@ -1,6 +1,6 @@
 [
   {
-    "id": "sms",
+    "id": "com.goodwy.smsmessenger",
     "name": "Messages",
     "version": "1.1",
     "version_code": 11,
@@ -10,7 +10,7 @@
     "icon": "https://res.cloudinary.com/dzclcwqjg/image/upload/v1769238746/messages-app-icon_gq8lk7.webp"
   },
     {
-    "id": "radio",
+    "id": "com.radiocolors.azerbaijan",
     "name": "Radio Azerbaijan",
     "version": "1.1",
     "version_code": 11,
