@@ -12,11 +12,21 @@
     {
     "id": "com.radiocolors.azerbaijan",
     "name": "Radio Azerbaijan",
-    "version": "1.1",
+    "version": "1",
     "version_code": 11,
     "apk_url": "https://github.com/rufatink9900/galaxy-motors/releases/download/v1/Radio-Azerbaijan.apk",
     "developer": "Rufat Ink",
     "category": "Automotive",
     "icon": "https://res.cloudinary.com/dzclcwqjg/image/upload/v1769238813/radio-azerbaijan-icon_tyihkj.png"
+  },
+  {
+    "id": "com.trihutt.systemsettings",
+    "name": "System Settings",
+    "version": "1.0",
+    "version_code": 11,
+    "apk_url": "https://github.com/rufatink9900/galaxy-motors/releases/download/v1/System.Settings.com.trihutt.systemsettings.v.1.0.apk",
+    "developer": "Rufat Ink",
+    "category": "Automotive",
+    "icon": "https://res.cloudinary.com/dzclcwqjg/image/upload/v1769245889/system-settings_du1x6r.png"
   }
 ]
