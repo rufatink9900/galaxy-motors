@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-#: .\templates\accessories.html:50
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 10:06-0800\n"
+"POT-Creation-Date: 2026-02-05 07:08+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +31,7 @@ msgid "Back to homepage"
 msgstr ""
 
 #: .\templates\accessories.html:10 .\templates\base.html:225
-#: .\templates\base.html:308
+#: .\templates\base.html:309
 msgid "Accessories"
 msgstr ""
 
@@ -41,9 +40,13 @@ msgid "Find accessories by category, model, or name."
 msgstr ""
 
 #: .\templates\accessories.html:44 .\templates\accessories.html:63
-#: .\templates\apps_list.html:22 .\templates\catalog.html:43
+#: .\templates\apps_list.html:17 .\templates\catalog.html:43
 #: .\templates\catalog.html:62
 msgid "Search"
+msgstr ""
+
+#: .\templates\accessories.html:50
+msgid "Clear all filters"
 msgstr ""
 
 #: .\templates\accessories.html:75 .\templates\catalog.html:74
@@ -66,24 +69,41 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
-#: .\templates\accessories.html:244 .\templates\accessory_detail.html:117
+#: .\templates\accessories.html:246 .\templates\accessory_detail.html:117
 #: .\templates\service_detail.html:101 .\templates\services.html:149
 msgid "Price on request"
 msgstr ""
 
-#: .\templates\accessories.html:252 .\templates\apps_list.html:82
+#: .\templates\accessories.html:254 .\templates\apps_list.html:92
+#: .\templates\catalog.html:157
 msgid "Details"
 msgstr ""
 
-#: .\templates\accessories.html:280
+#: .\templates\accessories.html:272 .\templates\apps_list.html:130
+msgid "Previous"
+msgstr ""
+
+#: .\templates\accessories.html:277 .\templates\apps_list.html:135
+msgid "Page"
+msgstr ""
+
+#: .\templates\accessories.html:277 .\templates\apps_list.html:135
+msgid "of"
+msgstr ""
+
+#: .\templates\accessories.html:283 .\templates\apps_list.html:141
+msgid "Next"
+msgstr ""
+
+#: .\templates\accessories.html:298
 msgid "No accessories found"
 msgstr ""
 
-#: .\templates\accessories.html:282 .\templates\catalog.html:244
+#: .\templates\accessories.html:300 .\templates\catalog.html:175
 msgid "Try changing your search keywords or filters."
 msgstr ""
 
-#: .\templates\accessories.html:285 .\templates\catalog.html:247
+#: .\templates\accessories.html:303 .\templates\catalog.html:178
 msgid "Reset filters"
 msgstr ""
 
@@ -100,7 +120,7 @@ msgid "If you want to buy any of our application contact us"
 msgstr ""
 
 #: .\templates\app_detail.html:98 .\templates\app_detail.html:140
-#: .\templates\apps_list.html:75
+#: .\templates\apps_list.html:81
 msgid "Download"
 msgstr ""
 
@@ -112,70 +132,73 @@ msgstr ""
 msgid "Premium"
 msgstr ""
 
-#: .\templates\apps_list.html:17
+#: .\templates\apps_list.html:12
 msgid "Search applications..."
 msgstr ""
 
-#: .\templates\apps_list.html:96
+#: .\templates\apps_list.html:113
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:97
+#: .\templates\apps_list.html:114
 msgid "Try another search query"
 msgstr ""
 
-#: .\templates\base.html:224 .\templates\base.html:298
-#: .\templates\base.html:379 .\templates\index.html:74
+#: .\templates\apps_list.html:117
+msgid "Show all apps"
+msgstr ""
+
+#: .\templates\base.html:224 .\templates\base.html:299
+#: .\templates\base.html:381 .\templates\index.html:75
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr ""
 
-#: .\templates\base.html:226 .\templates\base.html:319
+#: .\templates\base.html:226 .\templates\base.html:320
 msgid "Applications"
 msgstr ""
 
-#: .\templates\base.html:227 .\templates\base.html:329
-#: .\templates\catalog.html:3 .\templates\catalog.html:12
-msgid "Knowledge Base"
-msgstr ""
-
-#: .\templates\base.html:247 .\templates\base.html:380
-#: .\templates\base.html:386
+#: .\templates\base.html:248 .\templates\base.html:382
+#: .\templates\base.html:388 .\templates\contact.html:7
 msgid "Contact"
 msgstr ""
 
-#: .\templates\base.html:339 .\templates\base.html:431
+#: .\templates\base.html:341 .\templates\base.html:433
 msgid "Contact Us"
 msgstr ""
 
-#: .\templates\base.html:346
+#: .\templates\base.html:348
 msgid "Call us directly:"
 msgstr ""
 
-#: .\templates\base.html:350 .\templates\base.html:500
+#: .\templates\base.html:352 .\templates\base.html:502
 msgid "Mon-Fri: 9:00-18:00"
 msgstr ""
 
-#: .\templates\base.html:371 .\templates\index.html:13 .\templates\li.html:15
+#: .\templates\base.html:373 .\templates\index.html:13 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
 msgstr ""
 
-#: .\templates\base.html:377
+#: .\templates\base.html:379
 msgid "Quick Links"
 msgstr ""
 
-#: .\templates\base.html:390
-msgid "Aşıq Molla Cümə 44"
+#: .\templates\base.html:392
+msgid "Aşıq Molla Cümə 3/19"
 msgstr ""
 
-#: .\templates\base.html:406
+#: .\templates\base.html:408
 msgid "All rights reserved."
 msgstr ""
 
-#: .\templates\base.html:483
+#: .\templates\base.html:485
 msgid "Email"
+msgstr ""
+
+#: .\templates\catalog.html:3 .\templates\catalog.html:12
+msgid "Knowledge Base"
 msgstr ""
 
 #: .\templates\catalog.html:22
@@ -186,8 +209,24 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-#: .\templates\catalog.html:242
+#: .\templates\catalog.html:173
 msgid "No cars found"
+msgstr ""
+
+#: .\templates\contact.html:9
+msgid "Contact us in any way that’s convenient for you:"
+msgstr ""
+
+#: .\templates\contact.html:20
+msgid "Phone"
+msgstr ""
+
+#: .\templates\contact.html:34
+msgid "Message us on WhatsApp"
+msgstr ""
+
+#: .\templates\contact.html:53
+msgid "We will get back to you shortly."
 msgstr ""
 
 #: .\templates\details.html:66
@@ -202,35 +241,35 @@ msgstr ""
 msgid "Related cars"
 msgstr ""
 
-#: .\templates\index.html:84
+#: .\templates\index.html:86
 msgid "Battery Diagnostics"
 msgstr ""
 
-#: .\templates\index.html:87
+#: .\templates\index.html:89
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr ""
 
-#: .\templates\index.html:94
+#: .\templates\index.html:96
 msgid "Electric Motor Repair"
 msgstr ""
 
-#: .\templates\index.html:97
+#: .\templates\index.html:99
 msgid "Professional repair and maintenance by experienced masters."
 msgstr ""
 
-#: .\templates\index.html:104
+#: .\templates\index.html:106
 msgid "Software & Diagnostics"
 msgstr ""
 
-#: .\templates\index.html:107
+#: .\templates\index.html:109
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 
-#: .\templates\index.html:119
+#: .\templates\index.html:121
 msgid "Our Team"
 msgstr ""
 
-#: .\templates\index.html:120
+#: .\templates\index.html:122
 msgid ""
 "We are a dynamic team, passionate about what we do and committed to "
 "delivering the best results for our clients."
