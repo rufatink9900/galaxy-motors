@@ -243,7 +243,7 @@
                     </form>
                     
                     <!-- Contact Button Desktop -->
-                    <a href="contact/" class="border border-cyan-500/30 px-5 py-2 rounded-lg hover:bg-cyan-900/30 hover:text-zinc-500 transition-all hover-galaxy text-sm animate-pulse-glow delay-400 text-white">
+                    <a href="{% url "contact" %}" class="border border-cyan-500/30 px-5 py-2 rounded-lg hover:bg-cyan-900/30 hover:text-zinc-500 transition-all hover-galaxy text-sm animate-pulse-glow delay-400 text-white">
                         {% trans "Contact" %}
                     </a>
                 </div>
@@ -334,7 +334,7 @@
                         </a>
                     </li> {% endcomment %}
                     <li class="pt-4 border-t border-cyan-500/10 animate-fade-in-up delay-300">
-                        <a href="contact/"
+                        <a href="{% url "contact" %}"
                            class="block w-full text-center border border-cyan-500/30 py-3 px-6 rounded-lg hover:bg-cyan-900/30 hover:text-zinc-100 transition-all hover-galaxy animate-pulse-glow text-white">
                             {% trans "Contact Us" %}
                     </a>
