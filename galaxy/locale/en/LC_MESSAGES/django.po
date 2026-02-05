@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-05 07:08+0400\n"
+"POT-Creation-Date: 2026-02-05 17:48+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,8 +30,7 @@ msgstr ""
 msgid "Back to homepage"
 msgstr ""
 
-#: .\templates\accessories.html:10 .\templates\base.html:225
-#: .\templates\base.html:309
+#: .\templates\accessories.html:10
 msgid "Accessories"
 msgstr ""
 
@@ -41,7 +40,7 @@ msgstr ""
 
 #: .\templates\accessories.html:44 .\templates\accessories.html:63
 #: .\templates\apps_list.html:17 .\templates\catalog.html:43
-#: .\templates\catalog.html:62
+#: .\templates\catalog.html:62 .\templates\services.html:14
 msgid "Search"
 msgstr ""
 
@@ -70,7 +69,7 @@ msgid "Selected"
 msgstr ""
 
 #: .\templates\accessories.html:246 .\templates\accessory_detail.html:117
-#: .\templates\service_detail.html:101 .\templates\services.html:149
+#: .\templates\service_detail.html:101 .\templates\services.html:160
 msgid "Price on request"
 msgstr ""
 
@@ -148,52 +147,52 @@ msgstr ""
 msgid "Show all apps"
 msgstr ""
 
-#: .\templates\base.html:224 .\templates\base.html:299
-#: .\templates\base.html:381 .\templates\index.html:75
+#: .\templates\base.html:224 .\templates\base.html:300
+#: .\templates\base.html:383 .\templates\index.html:75
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr ""
 
-#: .\templates\base.html:226 .\templates\base.html:320
+#: .\templates\base.html:227 .\templates\base.html:322
 msgid "Applications"
 msgstr ""
 
-#: .\templates\base.html:248 .\templates\base.html:382
-#: .\templates\base.html:388 .\templates\contact.html:7
+#: .\templates\base.html:249 .\templates\base.html:384
+#: .\templates\base.html:390
 msgid "Contact"
 msgstr ""
 
-#: .\templates\base.html:341 .\templates\base.html:433
+#: .\templates\base.html:343 .\templates\base.html:435
 msgid "Contact Us"
 msgstr ""
 
-#: .\templates\base.html:348
+#: .\templates\base.html:350
 msgid "Call us directly:"
 msgstr ""
 
-#: .\templates\base.html:352 .\templates\base.html:502
+#: .\templates\base.html:354 .\templates\base.html:504
 msgid "Mon-Fri: 9:00-18:00"
 msgstr ""
 
-#: .\templates\base.html:373 .\templates\index.html:13 .\templates\li.html:15
+#: .\templates\base.html:375 .\templates\index.html:13 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
 msgstr ""
 
-#: .\templates\base.html:379
+#: .\templates\base.html:381
 msgid "Quick Links"
 msgstr ""
 
-#: .\templates\base.html:392
+#: .\templates\base.html:394
 msgid "Aşıq Molla Cümə 3/19"
 msgstr ""
 
-#: .\templates\base.html:408
+#: .\templates\base.html:410
 msgid "All rights reserved."
 msgstr ""
 
-#: .\templates\base.html:485
+#: .\templates\base.html:487
 msgid "Email"
 msgstr ""
 
@@ -213,19 +212,19 @@ msgstr ""
 msgid "No cars found"
 msgstr ""
 
-#: .\templates\contact.html:9
+#: .\templates\contact.html:7
 msgid "Contact us in any way that’s convenient for you:"
 msgstr ""
 
-#: .\templates\contact.html:20
+#: .\templates\contact.html:18
 msgid "Phone"
 msgstr ""
 
-#: .\templates\contact.html:34
+#: .\templates\contact.html:32
 msgid "Message us on WhatsApp"
 msgstr ""
 
-#: .\templates\contact.html:53
+#: .\templates\contact.html:51
 msgid "We will get back to you shortly."
 msgstr ""
 
@@ -265,21 +264,11 @@ msgstr ""
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 
-#: .\templates\index.html:121
-msgid "Our Team"
-msgstr ""
-
-#: .\templates\index.html:122
-msgid ""
-"We are a dynamic team, passionate about what we do and committed to "
-"delivering the best results for our clients."
-msgstr ""
-
 #: .\templates\service_detail.html:61
 msgid "Info"
 msgstr ""
 
-#: .\templates\service_detail.html:64 .\templates\services.html:78
+#: .\templates\service_detail.html:64 .\templates\services.html:89
 msgid "Make"
 msgstr ""
 
@@ -335,54 +324,58 @@ msgstr ""
 msgid "Fixed prices"
 msgstr ""
 
-#: .\templates\services.html:12
+#: .\templates\services.html:11
+msgid "Search services…"
+msgstr ""
+
+#: .\templates\services.html:23
 msgid "Makes"
 msgstr ""
 
-#: .\templates\services.html:52
+#: .\templates\services.html:63
 msgid "No models"
 msgstr ""
 
-#: .\templates\services.html:87
+#: .\templates\services.html:98
 msgid "services"
 msgstr ""
 
-#: .\templates\services.html:114
+#: .\templates\services.html:125
 msgid "No image"
 msgstr ""
 
-#: .\templates\services.html:171
+#: .\templates\services.html:182
 msgid "No services found"
 msgstr ""
 
-#: .\templates\services.html:173
+#: .\templates\services.html:184
 msgid "Try selecting a different category or check back later"
 msgstr ""
 
-#: .\templates\services.html:180
+#: .\templates\services.html:191
 msgid "All services"
 msgstr ""
 
-#: .\templates\services.html:199
+#: .\templates\services.html:210
 msgid "Fast execution"
 msgstr ""
 
-#: .\templates\services.html:200
+#: .\templates\services.html:211
 msgid "Average completion time - 2-4 hours"
 msgstr ""
 
-#: .\templates\services.html:208
+#: .\templates\services.html:219
 msgid "Quality guarantee"
 msgstr ""
 
-#: .\templates\services.html:209
+#: .\templates\services.html:220
 msgid "Warranty on all types of work 1 year"
 msgstr ""
 
-#: .\templates\services.html:217
+#: .\templates\services.html:228
 msgid "Professionals"
 msgstr ""
 
-#: .\templates\services.html:218
+#: .\templates\services.html:229
 msgid "Experienced masters with over 5 years of experience"
 msgstr ""

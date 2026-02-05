@@ -220,9 +220,9 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-10 delay-300">
-                    <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest uppercase">
+                    <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest ">
                         <li><a href="{% url 'services' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-100">{% trans "Services" %}</a></li>
-                        <li><a href="{% url 'accessories' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-100">{% trans "Accessories" %}</a></li>
+                        {% comment %} <li><a href="{% url 'accessories' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-100">{% trans "Accessories" %}</a></li> {% endcomment %}
                         <li><a href="{% url 'apps_list' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-200">{% trans "Applications" %}</a></li>
                         {% comment %} <li><a href="{% url 'cars:knowledge_base' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-200">{% trans "Knowledge Base" %}</a></li> {% endcomment %}
                     </ul>
@@ -302,7 +302,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="animate-fade-in-up delay-200">
+                    {% comment %} <li class="animate-fade-in-up delay-200">
                         <a href="{% url 'accessories' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
                             <div class="flex items-center justify-between">
                                 <span class="text-base font-medium tracking-wide text-white group-hover:text-zinc-500 transition-colors">{% trans "Accessories" %}</span>
@@ -311,7 +311,7 @@
                                 </svg>
                             </div>
                         </a>
-                    </li>
+                    </li> {% endcomment %}
                 
                     <li class="animate-fade-in-up delay-200">
                         <a href="{% url 'apps_list' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
@@ -365,7 +365,7 @@
                 <!-- Logo and Description -->
                 <div class="animate-fade-in-up delay-100">
                     <div class="flex items-center space-x-3 mb-4">
-                        <span class="text-lg tracking-[0.2em] font-semibold uppercase bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"><img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767743516/galaxylog5_xwtpty.png" class='w-[100px]' alt=""></span>
+                        <span class="text-lg tracking-[0.2em] font-semibold  bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"><img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767743516/galaxylog5_xwtpty.png" class='w-[100px]' alt=""></span>
                     </div>
                     <p class="text-white/80 text-sm">
                         {% trans "Professional auto service with years of experience. Quality, trust, and speed are our priorities." %}
@@ -374,7 +374,7 @@
 
                 <!-- Quick Links -->
                 <div class="animate-fade-in-up delay-200">
-                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-4 text-white">{% trans "Quick Links" %}</h3>
+                    <h3 class="text-sm font-semibold  tracking-widest mb-4 text-white">{% trans "Quick Links" %}</h3>
                     <ul class="space-y-2">
                         <li><a href="{% url 'services' %}" class="text-white/80 hover:text-zinc-500 text-sm transition">{% trans "Services" %}</a></li>
                         <li><button id="openModalFooter" class="text-white/80 hover:text-zinc-100 text-sm transition">{% trans "Contact" %}</button></li>
@@ -383,7 +383,7 @@
 
                 <!-- Contact Info -->
                 <div class="animate-fade-in-up delay-300">
-                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-4 text-white">{% trans "Contact" %}</h3>
+                    <h3 class="text-sm font-semibold  tracking-widest mb-4 text-white">{% trans "Contact" %}</h3>
                     <ul class="space-y-2 text-white/80 text-sm">
                         <li class="flex items-center space-x-2">
                             <span class="text-cyan-400">📍</span>
@@ -427,7 +427,7 @@
                 <div class="space-y-6">
                     <!-- Header -->
                     <div class="text-center">
-                        <h3 class="text-2xl font-bold tracking-wider uppercase mb-2 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                        <h3 class="text-2xl font-bold tracking-wider  mb-2 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                             {% trans "Contact Us" %}
                         </h3>
                     </div>

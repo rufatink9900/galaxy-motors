@@ -3,6 +3,17 @@
 {% block content %}
 
 <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
+    <form method="get" class="search-form mb-2">
+    <input
+        type="text"
+        name="q"
+        class="bg-black text-white border border-gray-100 px-2 rounded-md"
+        placeholder="{% trans "Search services…" %}"
+        value="{{ query|default:'' }}"
+    >
+    <button type="submit">{% trans "Search" %}</button>
+</form>
+
     <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
         <!-- Левая панель - Навигация по категориям -->
         <div class="lg:w-1/4">

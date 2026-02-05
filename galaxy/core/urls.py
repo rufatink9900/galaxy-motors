@@ -5,7 +5,7 @@ urlpatterns = [
     path('services/', include('services.urls')),
     path('applications/', include('apps.urls')),
     path('apps/', include('apps.urls')),
-    path('accessories/', include('accessories.urls')),
+    # path('accessories/', include('accessories.urls')),
     path('contact/', views.contact, name="contact")
     # path('knowledge-base/', include('catalog.urls'))
 ]
