@@ -8,12 +8,12 @@
         <input
             type="text"
             name="q"
-            value="{{ query }}"
+            value="{{ query|default:'' }}"
             placeholder="{% trans 'Search applications...' %}"
-            class="w-full px-5 py-3 bg-gray-900/70 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            class="w-full px-5 py-3 bg-gray-900/70 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder-gray-400"
         >
         <button type="submit"
-            class="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-zinc-600 rounded-lg hover:bg-zinc-500 transition">
+            class="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-cyan-700 to-blue-700 rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300">
             {% trans "Search" %}
         </button>
     </div>
@@ -22,30 +22,34 @@
 <!-- Сетка приложений -->
 <div class="px-4 pb-20">
     <div class="max-w-7xl mx-auto">
-        <div class="p-5">
-            <a href="q07/1.2.0/adb/set-language/" class="underline">Q07 1.2.0 change language</a>
+        <!-- Временная ссылка для разработки -->
+        <div class="p-5 mb-6 bg-gray-800/30 rounded-2xl border border-gray-700/50">
+            <a href="/q07/1.2.0/adb/set-language/" class="text-cyan-400 hover:text-cyan-300 underline transition-colors">
+                Q07 1.2.0 change language
+            </a>
         </div>
+        
         {% if apps %}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {% for app in apps %}
-            <div class="group relative bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden ">
+            <div class="group relative bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300">
                 
                 <!-- Неоновый акцент -->
-                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 "></div>
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
                 <!-- Контейнер для изображения с фиксированными пропорциями -->
-                <div class="relative pt-[75%] overflow-hidden bg-white">
+                <div class="relative pt-[75%] overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
                     {% if app.image %}
                     <div class="absolute inset-0 flex items-center justify-center p-4">
                         <img src="{{ app.image.url }}" alt="{{ app.name }}" 
-                             class="w-auto h-auto max-w-full max-h-full object-contain ">
+                             class="w-auto h-auto max-w-full max-h-full object-contain transform group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent"></div>
                     {% else %}
                     <div class="absolute inset-0 flex items-center justify-center">
                         <div class="relative">
-                            <div class="w-20 h-20 bg-gradient-to-br from-cyan-600/20 to-blue-600/20 rounded-2xl flex items-center justify-center">
-                                <svg class="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-20 h-20 bg-gradient-to-br from-cyan-600/20 to-blue-600/20 rounded-2xl flex items-center justify-center group-hover:from-cyan-600/30 group-hover:to-blue-600/30 transition-all duration-300">
+                                <svg class="w-10 h-10 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
                                 </svg>
                             </div>
@@ -56,46 +60,51 @@
                 
                 <!-- Контент карточки -->
                 <div class="p-6">
-                    <!-- Заголовок -->
+                    <!-- Заголовок и описание -->
                     <div class="mb-4">
                         <a href="{% url 'app_detail' app.id %}" 
-                           class="text-lg font-semibold text-white hover:text-cyan-400 transition-colors duration-300 line-clamp-2 group-hover:text-cyan-400">
+                           class="text-lg font-semibold text-white hover:text-cyan-400 transition-colors duration-300 line-clamp-1 group-hover:text-cyan-400">
                             {{ app.name }}
                         </a>
                         
                         {% if app.description %}
-                        <p class="text-gray-400 text-sm mt-2 line-clamp-2">
+                        <p class="text-gray-400 text-sm mt-2 line-clamp-2 min-h-[2.5rem]">
                             {{ app.description|truncatechars:100 }}
                         </p>
                         {% endif %}
                     </div>
 
+                    <!-- Мета-информация -->
+                    <div class="mb-4 flex items-center gap-4 text-sm text-gray-500">
+                        {% if app.version %}
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                            </svg>
+                            v{{ app.version }}
+                        </span>
+                        {% endif %}
+                        
+                        {% if app.file_size %}
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+                            </svg>
+                            {{ app.file_size|filesizeformat }}
+                        </span>
+                        {% endif %}
+                    </div>
+
                     <!-- Кнопка загрузки -->
                     <div class="pt-4 border-t border-gray-700/50">
-                        {% if app.apk_file %}
-                        <a href="{% url 'download_apk' app.id %}" download
-                           class="block w-full px-6 py-3.5 bg-gradient-to-r from-cyan-700 to-blue-700 hover:from-cyan-600 hover:to-blue-600 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 flex items-center justify-center gap-3 group/btn">
-                            <svg class="w-5 h-5 group-hover/btn:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                            </svg>
-                            <span>{% trans "Download" %}</span>
-                            {% if app.file_size %}
-                            <span class="text-xs opacity-75 ml-auto">
-                                {{ app.file_size|filesizeformat }}
-                            </span>
-                            {% endif %}
+                        
+                         <a href="{% url 'app_detail' app.id %}" 
+                           class="block w-full px-6 py-3.5 bg-gradient-to-r from-cyan-700 to-blue-700 hover:from-cyan-600 hover:to-blue-600 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 flex items-center justify-center gap-3 group/btn active:scale-95">
+                       
+                            <span>{% trans "Details" %}</span>
+                          
                         </a>
-                        {% else %}
-                        <a href="{% url 'app_detail' app.id %}" 
-                           class="block w-full px-6 py-3.5 bg-gray-900/50 border border-gray-700 rounded-xl text-center text-white hover:bg-gray-800/70 hover:border-gray-600 transition-colors duration-300 group/info">
-                            <div class="flex items-center justify-center gap-2">
-                                <span>{% trans "Details" %}</span>
-                                <svg class="w-4 h-4 group-hover/info:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                                </svg>
-                            </div>
-                        </a>
-                        {% endif %}
+                     
                     </div>
                 </div>
             </div>
@@ -105,40 +114,71 @@
         <!-- Состояние пустого результата -->
         <div class="text-center py-20">
             <div class="max-w-md mx-auto">
-                <div class="w-24 h-24 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div class="w-24 h-24 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-gray-700/50">
                     <svg class="w-12 h-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <h2 class="text-2xl font-semibold text-white mb-2">{% trans "Nothing found" %}</h2>
-                <p class="text-gray-400 mb-6">{% trans "Try another search query" %}</p>
+                <h2 class="text-2xl font-semibold text-white mb-2">
+                    {% if query %}
+                    {% trans "Nothing found" %}
+                    {% else %}
+                    {% trans "No applications available" %}
+                    {% endif %}
+                </h2>
+                <p class="text-gray-400 mb-6">
+                    {% if query %}
+                    {% trans "Try another search query" %}
+                    {% else %}
+                    {% trans "Check back later for new applications" %}
+                    {% endif %}
+                </p>
+                {% if query %}
                 <a href="{% url 'apps' %}" 
                    class="inline-block px-6 py-3 bg-gradient-to-r from-cyan-700 to-blue-700 text-white rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all">
                     {% trans "Show all apps" %}
                 </a>
+                {% endif %}
             </div>
         </div>
         {% endif %}
 
-        <!-- Пагинация (если есть) -->
+        <!-- Пагинация -->
         {% if apps.has_other_pages %}
         <div class="mt-12 flex justify-center">
             <nav class="flex items-center space-x-2">
                 {% if apps.has_previous %}
                 <a href="?page={{ apps.previous_page_number }}{% if query %}&q={{ query }}{% endif %}" 
-                   class="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white hover:bg-gray-700/50 transition-colors">
-                    ← {% trans "Previous" %}
+                   class="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white hover:bg-gray-700/50 hover:border-gray-600 transition-colors flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    <span>{% trans "Previous" %}</span>
                 </a>
                 {% endif %}
                 
-                <span class="px-4 py-2 text-gray-400">
-                    {% trans "Page" %} {{ apps.number }} {% trans "of" %} {{ apps.paginator.num_pages }}
-                </span>
+                <div class="flex items-center space-x-2">
+                    {% for i in apps.paginator.page_range %}
+                        {% if apps.number == i %}
+                            <span class="px-4 py-2 bg-gradient-to-r from-cyan-700 to-blue-700 border border-cyan-600 rounded-lg text-white">
+                                {{ i }}
+                            </span>
+                        {% elif i > apps.number|add:-3 and i < apps.number|add:3 %}
+                            <a href="?page={{ i }}{% if query %}&q={{ query }}{% endif %}" 
+                               class="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white hover:bg-gray-700/50 hover:border-gray-600 transition-colors">
+                                {{ i }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
                 
                 {% if apps.has_next %}
                 <a href="?page={{ apps.next_page_number }}{% if query %}&q={{ query }}{% endif %}" 
-                   class="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white hover:bg-gray-700/50 transition-colors">
-                    {% trans "Next" %} →
+                   class="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white hover:bg-gray-700/50 hover:border-gray-600 transition-colors flex items-center gap-2">
+                    <span>{% trans "Next" %}</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
                 </a>
                 {% endif %}
             </nav>
@@ -148,7 +188,29 @@
 </div>
 
 <style>
-    /* Адаптивные медиа-запросы для лучшего контроля */
+    /* Анимация появления карточек */
+    .grid > div {
+        animation: fadeInUp 0.5s ease-out forwards;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Задержка для каждой карточки */
+    .grid > div:nth-child(1) { animation-delay: 0.1s; }
+    .grid > div:nth-child(2) { animation-delay: 0.2s; }
+    .grid > div:nth-child(3) { animation-delay: 0.3s; }
+    .grid > div:nth-child(4) { animation-delay: 0.4s; }
+    .grid > div:nth-child(5) { animation-delay: 0.5s; }
+    .grid > div:nth-child(6) { animation-delay: 0.6s; }
+    
+    /* Адаптивность */
     @media (max-width: 640px) {
         .grid {
             grid-template-columns: 1fr !important;
@@ -164,16 +226,23 @@
         }
     }
     
-    @media (min-width: 641px) and (max-width: 1024px) {
+    @media (min-width: 641px) and (max-width: 768px) {
         .grid {
             grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1rem !important;
+        }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .grid {
+            grid-template-columns: repeat(3, 1fr) !important;
             gap: 1.5rem !important;
         }
     }
     
-    @media (min-width: 1025px) and (max-width: 1280px) {
+    @media (min-width: 1025px) {
         .grid {
-            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 2rem !important;
         }
     }
     
@@ -183,6 +252,7 @@
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .line-clamp-2 {
@@ -190,31 +260,33 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Улучшенные hover-эффекты */
+    .group:hover .group-hover\:opacity-100 {
+        opacity: 1;
     }
     
     /* Плавные переходы */
-    * {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
     }
     
-    /* Улучшенный скроллбар для всего сайта */
-    ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
+    /* Улучшенная анимация кнопки скачивания */
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
     }
     
-    ::-webkit-scrollbar-track {
-        background: rgba(17, 24, 39, 0.5);
-        backdrop-filter: blur(10px);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(to bottom, #0ea5e9, #3b82f6);
-        border-radius: 5px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(to bottom, #06b6d4, #0ea5e9);
+    .group-hover\/btn:animate-bounce {
+        animation: bounce 0.5s ease-in-out infinite;
     }
 </style>
 
