@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-05 17:48+0400\n"
+"POT-Creation-Date: 2026-02-10 02:07+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,24 +77,24 @@ msgstr "Выбрано"
 msgid "Price on request"
 msgstr "Цена по запросу"
 
-#: .\templates\accessories.html:254 .\templates\apps_list.html:92
-#: .\templates\catalog.html:157
+#: .\templates\accessories.html:254 .\templates\app_detail.html:140
+#: .\templates\apps_list.html:105 .\templates\catalog.html:157
 msgid "Details"
 msgstr "Подробнее"
 
-#: .\templates\accessories.html:272 .\templates\apps_list.html:130
+#: .\templates\accessories.html:272 .\templates\apps_list.html:157
 msgid "Previous"
 msgstr ""
 
-#: .\templates\accessories.html:277 .\templates\apps_list.html:135
+#: .\templates\accessories.html:277
 msgid "Page"
 msgstr ""
 
-#: .\templates\accessories.html:277 .\templates\apps_list.html:135
+#: .\templates\accessories.html:277
 msgid "of"
 msgstr ""
 
-#: .\templates\accessories.html:283 .\templates\apps_list.html:141
+#: .\templates\accessories.html:283 .\templates\apps_list.html:179
 msgid "Next"
 msgstr ""
 
@@ -122,8 +122,7 @@ msgstr "Похожие товары"
 msgid "If you want to buy any of our application contact us"
 msgstr "Если вы хотите купить какое-либо из наших приложений, свяжитесь с нами"
 
-#: .\templates\app_detail.html:98 .\templates\app_detail.html:140
-#: .\templates\apps_list.html:81
+#: .\templates\app_detail.html:98
 msgid "Download"
 msgstr "Скачать"
 
@@ -139,20 +138,30 @@ msgstr ""
 msgid "Search applications..."
 msgstr "Поиск приложений…"
 
-#: .\templates\apps_list.html:113
+#: .\templates\apps_list.html:125
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:114
+#: .\templates\apps_list.html:127
+#, fuzzy
+#| msgid "No programs available yet"
+msgid "No applications available"
+msgstr "Приложений пока нет"
+
+#: .\templates\apps_list.html:132
 msgid "Try another search query"
 msgstr ""
 
-#: .\templates\apps_list.html:117
+#: .\templates\apps_list.html:134
+msgid "Check back later for new applications"
+msgstr ""
+
+#: .\templates\apps_list.html:140
 msgid "Show all apps"
 msgstr ""
 
 #: .\templates\base.html:224 .\templates\base.html:300
-#: .\templates\base.html:383 .\templates\index.html:75
+#: .\templates\base.html:383 .\templates\index.html:78
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Услуги"
@@ -178,7 +187,7 @@ msgstr ""
 msgid "Mon-Fri: 9:00-18:00"
 msgstr "Понедельник–суббота: 12:00–18:00"
 
-#: .\templates\base.html:375 .\templates\index.html:13 .\templates\li.html:15
+#: .\templates\base.html:375 .\templates\index.html:16 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
@@ -252,27 +261,31 @@ msgstr "Приложений пока нет"
 msgid "Related cars"
 msgstr ""
 
-#: .\templates\index.html:86
+#: .\templates\index.html:8
+msgid "Lixiang owners, DO NOT update your vehicle to version 8.1 or higher!"
+msgstr "Владельцы Lixiang, НЕ ОБНОВЛЯЙТЕ автомобиль до версии 8.1 и выше! ADB-порт закрыт, мы ищем решение."
+
+#: .\templates\index.html:89
 msgid "Battery Diagnostics"
 msgstr "Диагностика батареи"
 
-#: .\templates\index.html:89
+#: .\templates\index.html:92
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr "Полная проверка и оценка состояния аккумуляторов электромобиля."
 
-#: .\templates\index.html:96
+#: .\templates\index.html:99
 msgid "Electric Motor Repair"
 msgstr "Ремонт электродвигателя"
 
-#: .\templates\index.html:99
+#: .\templates\index.html:102
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Профессиональный ремонт и обслуживание опытными мастерами."
 
-#: .\templates\index.html:106
+#: .\templates\index.html:109
 msgid "Software & Diagnostics"
 msgstr "Программное обеспечение и диагностика"
 
-#: .\templates\index.html:109
+#: .\templates\index.html:112
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Обновления системы, диагностика ошибок и оптимизация программного "
@@ -341,7 +354,6 @@ msgid "Fixed prices"
 msgstr "Услуги"
 
 #: .\templates\services.html:11
-
 msgid "Search services…"
 msgstr "Поиск услуг..."
 
@@ -372,7 +384,6 @@ msgid "Try selecting a different category or check back later"
 msgstr "Попробуйте выбрать другую категорию или зайдите позже"
 
 #: .\templates\services.html:191
-
 msgid "All services"
 msgstr "Услуги"
 
