@@ -195,3 +195,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/server/'
+LOGOUT_REDIRECT_URL = '/'

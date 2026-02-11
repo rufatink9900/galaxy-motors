@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вход</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <div class="min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-md">
+      <!-- Card -->
+      <div class="bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 p-8">
+        <div class="mb-6">
+          <h1 class="text-2xl font-semibold tracking-tight">Вход</h1>
+          <p class="mt-1 text-sm text-gray-500">Введите имя пользователя и пароль.</p>
+        </div>
+
+        {% if form.errors %}
+          <div class="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            Неверное имя пользователя или пароль. Попробуйте ещё раз.
+          </div>
+        {% endif %}
+
+        <form method="post" class="space-y-4">
+          {% csrf_token %}
+
+          <!-- Username -->
+          <div>
+            <label for="id_username" class="block text-sm font-medium text-gray-700">
+              Имя пользователя
+            </label>
+            <div class="mt-2">
+              {{ form.username }}
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label for="id_password" class="block text-sm font-medium text-gray-700">
+              Пароль
+            </label>
+            <div class="mt-2">
+              {{ form.password }}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="mt-2 w-full rounded-xl bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white
+                   shadow-sm transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+          >
+            Войти
+          </button>
+
+          <div class="pt-2 text-center">
+            <a href="/" class="text-sm text-gray-600 underline underline-offset-4 hover:text-gray-900">
+              Вернуться на главную
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <p class="mt-6 text-center text-xs text-gray-400">
+        © {{ now|date:"Y" }} Galaxy Motors Pro
+      </p>
+    </div>
+  </div>
+
+  <!-- Tailwind styling for Django default form fields (visible borders without hover) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const ids = ["id_username", "id_password"];
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        el.classList.add(
+          "w-full",
+          "rounded-xl",
+          "border",
+          "border-gray-300",       // рамка видна всегда
+          "bg-white",
+          "px-4",
+          "py-2.5",
+          "text-sm",
+          "text-gray-900",
+          "shadow-sm",
+          "placeholder:text-gray-400",
+          "focus:outline-none",
+          "focus:ring-2",
+          "focus:ring-gray-900",
+          "focus:border-gray-900",
+          "transition"
+        );
+
+        // Можно добавить placeholder на русском (не обязательно)
+        if (id === "id_username") el.setAttribute("placeholder", "Имя пользователя");
+        if (id === "id_password") el.setAttribute("placeholder", "Пароль");
+      });
+    });
+  </script>
+</body>
+</html>

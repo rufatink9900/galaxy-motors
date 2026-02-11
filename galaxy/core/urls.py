@@ -6,6 +6,8 @@ urlpatterns = [
     path('applications/', include('apps.urls')),
     path('apps/', include('apps.urls')),
     # path('accessories/', include('accessories.urls')),
-    path('contact/', views.contact, name="contact")
+    path('contact/', views.contact, name="contact"),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('server/', views.server, name='server')
     # path('knowledge-base/', include('catalog.urls'))
 ]
