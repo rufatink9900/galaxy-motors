@@ -42,7 +42,7 @@
 <script>
 const API_URL = 'https://galaxy-store-server.onrender.com';
 
-// LOGIN
+// ===== LOGIN =====
 const loginPage = document.getElementById("loginPage");
 const adminPage = document.getElementById("adminPage");
 const loginForm = document.getElementById("loginForm");
@@ -53,13 +53,17 @@ loginForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   try {
+    // !!! Важно: поле 'username' нужно переименовать в 'login' для сервера
     const res = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ login: username, password }) // <-- исправлено
     });
 
-    if (!res.ok) { alert("Login failed"); return; }
+    if (!res.ok) { 
+      alert("Login failed: wrong username or password"); 
+      return; 
+    }
 
     const data = await res.json();
     localStorage.setItem("adminToken", data.token);
@@ -68,10 +72,13 @@ loginForm.addEventListener("submit", async (e) => {
     adminPage.classList.remove("hidden");
     loadApks();
 
-  } catch (err) { console.error(err); alert("Error logging in"); }
+  } catch (err) { 
+    console.error(err); 
+    alert("Error logging in"); 
+  }
 });
 
-// UPLOAD APK
+// ===== UPLOAD APK =====
 const uploadForm = document.getElementById('uploadForm');
 uploadForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -94,14 +101,20 @@ uploadForm.addEventListener('submit', async (e) => {
     const data = await res.json();
     alert('Uploaded ' + data.title);
     loadApks();
-  } catch (err) { console.error(err); alert('Error uploading APK'); }
+  } catch (err) { 
+    console.error(err); 
+    alert('Error uploading APK'); 
+  }
 });
 
-// LOAD APKs
+// ===== LOAD APKs =====
 async function loadApks() {
   const token = localStorage.getItem("adminToken");
+  if (!token) return;
+
   try {
     const res = await fetch(`${API_URL}/apks`, { headers: { 'Authorization': `Bearer ${token}` } });
+    if (!res.ok) throw new Error("Unauthorized");
     const apks = await res.json();
     const container = document.getElementById('apkList');
     container.innerHTML = '';
@@ -136,11 +149,18 @@ async function loadApks() {
       });
     });
 
-  } catch (err) { console.error(err); }
+  } catch (err) { 
+    console.error(err); 
+    alert("Unauthorized! Please login again");
+    localStorage.removeItem("adminToken");
+    loginPage.classList.remove("hidden");
+    adminPage.classList.add("hidden");
+  }
 }
 
-// AUTO LOGIN
-if (localStorage.getItem("adminToken")) {
+// ===== AUTO LOGIN =====
+const existingToken = localStorage.getItem("adminToken");
+if (existingToken) {
   loginPage.classList.add("hidden");
   adminPage.classList.remove("hidden");
   loadApks();
