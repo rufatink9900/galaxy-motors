@@ -1,145 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>APK Store Admin</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Ваш токен авторизации (должен совпадать с серверным)
-    const ADMIN_TOKEN = 'supersecret123';
-  </script>
+<meta charset="UTF-8">
+<title>APK Store Admin</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen p-8 font-sans">
-  <div class="max-w-3xl mx-auto">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">APK Store Admin</h1>
 
-    <!-- Upload Form -->
-    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Upload APK</h2>
-      <form id="uploadForm" class="space-y-4">
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Title:</label>
-          <input type="text" id="title" placeholder="App title"
-                 class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">APK file:</label>
-          <input type="file" id="apk" accept=".apk"
-                 class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-        </div>
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Icon (optional):</label>
-          <input type="file" id="icon" accept="image/*"
-                 class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <button type="submit"
-                class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Upload</button>
-      </form>
-    </div>
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="max-w-md mx-auto mt-20">
+  <h2 class="text-2xl font-bold mb-4 text-center">Admin Login</h2>
+  <form id="loginForm" class="space-y-4">
+    <input type="text" id="username" placeholder="Username" class="w-full border rounded px-3 py-2" required />
+    <input type="password" id="password" placeholder="Password" class="w-full border rounded px-3 py-2" required />
+    <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded">Login</button>
+  </form>
+</div>
 
-    <!-- Uploaded APKs -->
-    <div class="bg-white shadow-md rounded-lg p-6">
-      <h2 class="text-2xl font-semibold mb-4">Uploaded APKs</h2>
-      <div id="apkList" class="space-y-4"></div>
-    </div>
+<!-- ADMIN PAGE -->
+<div id="adminPage" class="hidden max-w-3xl mx-auto">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">APK Store Admin</h1>
+
+  <!-- Upload Form -->
+  <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+    <h2 class="text-2xl font-semibold mb-4">Upload APK</h2>
+    <form id="uploadForm" class="space-y-4">
+      <input type="text" id="title" placeholder="App title" class="w-full border rounded px-3 py-2" />
+      <input type="file" id="apk" accept=".apk" class="w-full border rounded px-3 py-2" required />
+      <input type="file" id="icon" accept="image/*" class="w-full border rounded px-3 py-2" />
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Upload</button>
+    </form>
   </div>
 
-  <script>
-    const API_URL = 'https://galaxy-store-server.onrender.com/apks';
+  <!-- Uploaded APKs -->
+  <div class="bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-semibold mb-4">Uploaded APKs</h2>
+    <div id="apkList" class="space-y-4"></div>
+  </div>
+</div>
 
-    // Upload form
-    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
+<script>
+const API_URL = 'http://localhost:5000'; // Замените на свой домен в продакшн
 
-      const formData = new FormData();
-      formData.append('title', document.getElementById('title').value);
-      formData.append('apk', document.getElementById('apk').files[0]);
-      const iconFile = document.getElementById('icon').files[0];
-      if (iconFile) formData.append('icon', iconFile);
+// LOGIN
+const loginPage = document.getElementById("loginPage");
+const adminPage = document.getElementById("adminPage");
+const loginForm = document.getElementById("loginForm");
 
-      try {
-        const res = await fetch(API_URL, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${ADMIN_TOKEN}` // отправляем токен
-          },
-          body: formData
-        });
+loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-        if (res.status === 401) {
-          alert('Unauthorized! Check your token.');
-          return;
-        }
-
-        const data = await res.json();
-        alert('Uploaded ' + data.title);
-        loadApks();
-      } catch (err) {
-        console.error(err);
-        alert('Error uploading APK');
-      }
+  try {
+    const res = await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
     });
 
-    // Load APKs
-    async function loadApks() {
-      try {
-        const res = await fetch(API_URL);
-        const apks = await res.json();
-        const container = document.getElementById('apkList');
-        container.innerHTML = '';
+    if (!res.ok) { alert("Login failed"); return; }
 
-        apks.forEach(apk => {
-          const div = document.createElement('div');
-          div.className = 'flex items-center justify-between border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-sm';
-          div.innerHTML = `
-            <div class="flex items-center gap-4">
-              ${apk.iconUrl ? `<img src="${apk.iconUrl}" alt="icon" class="w-12 h-12 rounded">` : ''}
-              <div>
-                <strong class="text-lg text-gray-800">${apk.title}</strong><br/>
-                <a href="${apk.apkUrl}" target="_blank" class="text-blue-600 hover:underline">Download APK</a>
-              </div>
-            </div>
-            <button data-id="${apk.id}" class="deleteBtn bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition">Delete</button>
-          `;
-          container.appendChild(div);
-        });
+    const data = await res.json();
+    localStorage.setItem("adminToken", data.token);
 
-        // Add delete event listeners
-        document.querySelectorAll('.deleteBtn').forEach(btn => {
-          btn.addEventListener('click', async () => {
-            const id = btn.dataset.id;
-            if (!confirm('Are you sure you want to delete this APK?')) return;
-
-            try {
-              const res = await fetch(`${API_URL}/${id}`, {
-                method: 'DELETE',
-                headers: {
-                  'Authorization': `Bearer ${ADMIN_TOKEN}` // токен для удаления
-                }
-              });
-
-              if (res.status === 401) {
-                alert('Unauthorized! Check your token.');
-                return;
-              }
-
-              const data = await res.json();
-              alert(data.message || 'APK deleted');
-              loadApks();
-            } catch (err) {
-              console.error(err);
-              alert('Error deleting APK');
-            }
-          });
-        });
-      } catch (err) {
-        console.error(err);
-        alert('Error loading APKs');
-      }
-    }
-
-    // Initial load
+    loginPage.classList.add("hidden");
+    adminPage.classList.remove("hidden");
     loadApks();
-  </script>
+
+  } catch (err) { console.error(err); alert("Error logging in"); }
+});
+
+// UPLOAD APK
+const uploadForm = document.getElementById('uploadForm');
+uploadForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem("adminToken");
+  if (!token) return alert("Not authorized");
+
+  const formData = new FormData();
+  formData.append('title', document.getElementById('title').value);
+  formData.append('apk', document.getElementById('apk').files[0]);
+  const iconFile = document.getElementById('icon').files[0];
+  if (iconFile) formData.append('icon', iconFile);
+
+  try {
+    const res = await fetch(`${API_URL}/apks`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: formData
+    });
+    if (!res.ok) throw new Error("Unauthorized or upload error");
+    const data = await res.json();
+    alert('Uploaded ' + data.title);
+    loadApks();
+  } catch (err) { console.error(err); alert('Error uploading APK'); }
+});
+
+// LOAD APKs
+async function loadApks() {
+  const token = localStorage.getItem("adminToken");
+  try {
+    const res = await fetch(`${API_URL}/apks`, { headers: { 'Authorization': `Bearer ${token}` } });
+    const apks = await res.json();
+    const container = document.getElementById('apkList');
+    container.innerHTML = '';
+
+    apks.forEach(apk => {
+      const div = document.createElement('div');
+      div.className = 'flex items-center justify-between border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-sm';
+      div.innerHTML = `
+        <div class="flex items-center gap-4">
+          ${apk.iconUrl ? `<img src="${apk.iconUrl}" alt="icon" class="w-12 h-12 rounded">` : ''}
+          <div>
+            <strong class="text-lg text-gray-800">${apk.title}</strong><br/>
+            <a href="${apk.apkUrl}" target="_blank" class="text-blue-600 hover:underline">Download APK</a>
+          </div>
+        </div>
+        <button data-id="${apk._id}" class="deleteBtn bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition">Delete</button>
+      `;
+      container.appendChild(div);
+    });
+
+    document.querySelectorAll('.deleteBtn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (!confirm('Are you sure?')) return;
+        const id = btn.dataset.id;
+        const res = await fetch(`${API_URL}/apks/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        alert(data.message || "Deleted");
+        loadApks();
+      });
+    });
+
+  } catch (err) { console.error(err); }
+}
+
+// AUTO LOGIN
+if (localStorage.getItem("adminToken")) {
+  loginPage.classList.add("hidden");
+  adminPage.classList.remove("hidden");
+  loadApks();
+}
+</script>
 </body>
 </html>
