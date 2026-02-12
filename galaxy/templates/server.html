@@ -176,6 +176,47 @@ function setLoading(button, isLoading) {
   }
 }
 
+// Функция для обновления токена из заголовков ответа
+function updateTokenFromResponse(response) {
+  const newToken = response.headers.get('Authorization') || response.headers.get('X-New-Token');
+  if (newToken) {
+    const tokenValue = newToken.replace('Bearer ', '');
+    localStorage.setItem("adminToken", tokenValue);
+    return true;
+  }
+  return false;
+}
+
+// Функция для выполнения запросов с автоматическим обновлением токена
+async function apiRequest(url, options = {}) {
+  const token = localStorage.getItem("adminToken");
+  
+  const defaultHeaders = {
+    'Authorization': `Bearer ${token}`,
+    ...options.headers
+  };
+  
+  const response = await fetch(url, {
+    ...options,
+    headers: defaultHeaders
+  });
+  
+  // Проверяем наличие нового токена в заголовках ответа
+  if (response.headers.get('Authorization') || response.headers.get('X-New-Token')) {
+    updateTokenFromResponse(response);
+  }
+  
+  // Проверяем cookie на наличие нового токена
+  const cookieToken = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+  if (cookieToken) {
+    localStorage.setItem("adminToken", cookieToken);
+    // Очищаем cookie для безопасности
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  }
+  
+  return response;
+}
+
 // ===== LOGIN =====
 const loginPage = document.getElementById("loginPage");
 const adminPage = document.getElementById("adminPage");
@@ -208,7 +249,15 @@ loginForm.addEventListener("submit", async (e) => {
     }
 
     const data = await res.json();
-    localStorage.setItem("adminToken", data.token);
+    
+    // Сохраняем токен из тела ответа
+    if (data.token) {
+      localStorage.setItem("adminToken", data.token);
+    }
+    
+    // Проверяем заголовки на наличие токена
+    updateTokenFromResponse(res);
+    
     localStorage.setItem("adminLogin", username);
 
     loginPage.classList.add("hidden");
@@ -239,10 +288,10 @@ uploadForm.addEventListener('submit', async (e) => {
   }
 
   const title = document.getElementById('title').value;
-  const packageName = document.getElementById('packageName').value; // NEW: Get package name
+  const packageName = document.getElementById('packageName').value;
   const apkFile = document.getElementById('apk').files[0];
   
-  if (!title || !packageName || !apkFile) { // Updated validation
+  if (!title || !packageName || !apkFile) {
     showToast('Заполните название, package name и выберите APK файл', false);
     return;
   }
@@ -258,34 +307,46 @@ uploadForm.addEventListener('submit', async (e) => {
 
   const formData = new FormData();
   formData.append('title', title);
-  formData.append('packageName', packageName); // NEW: Add package name to form data
+  formData.append('packageName', packageName);
   formData.append('apk', apkFile);
   const iconFile = document.getElementById('icon').files[0];
   if (iconFile) formData.append('icon', iconFile);
 
   try {
-    const res = await fetch(`${API_URL}/apks`, {
+    // Используем apiRequest вместо fetch
+    const res = await apiRequest(`${API_URL}/apks`, {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${token}` },
       body: formData
     });
     
     if (!res.ok) {
       if (res.status === 401) throw new Error("Unauthorized");
-      throw new Error("Upload error");
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.message || "Upload error");
     }
     
     const data = await res.json();
+    
+    // Дополнительная проверка на наличие токена в ответе
+    if (data.token) {
+      localStorage.setItem("adminToken", data.token);
+    }
+    
     showToast(`✓ Приложение "${data.title}" успешно загружено`);
     uploadForm.reset();
-    loadApks();
+    
+    // Небольшая задержка перед загрузкой списка
+    setTimeout(() => {
+      loadApks();
+    }, 500);
+    
   } catch (err) { 
     console.error(err);
     if (err.message === "Unauthorized") {
       showToast('Сессия истекла, войдите снова', false);
       handleLogout();
     } else {
-      showToast('Ошибка при загрузке APK', false);
+      showToast(`Ошибка при загрузке APK: ${err.message}`, false);
     }
   } finally {
     setLoading(uploadButton, false);
@@ -298,11 +359,14 @@ async function loadApks() {
   if (!token) return;
 
   try {
-    const res = await fetch(`${API_URL}/apks`, { 
-      headers: { 'Authorization': `Bearer ${token}` } 
-    });
+    // Используем apiRequest для автоматического обновления токена
+    const res = await apiRequest(`${API_URL}/apks`);
     
-    if (!res.ok) throw new Error("Unauthorized");
+    if (!res.ok) {
+      if (res.status === 401) throw new Error("Unauthorized");
+      throw new Error("Failed to load apps");
+    }
+    
     const apks = await res.json();
     
     const container = document.getElementById('apkList');
@@ -310,14 +374,13 @@ async function loadApks() {
     const appsCount = document.getElementById('appsCount');
     
     appsCount.textContent = apks.length;
+    
+    // Очищаем контейнер, но сохраняем emptyState для последующего использования
     container.innerHTML = '';
-
+    
     if (apks.length === 0) {
-      emptyState.classList.remove('hidden');
-      container.appendChild(emptyState);
+      container.appendChild(emptyState.cloneNode(true));
     } else {
-      emptyState.classList.add('hidden');
-      
       apks.forEach(apk => {
         const div = document.createElement('div');
         div.className = 'flex items-center justify-between bg-gray-50 hover:bg-gray-100 rounded-lg p-4 transition border border-gray-200 hover:border-gray-300 group';
@@ -331,7 +394,6 @@ async function loadApks() {
             }
             <div>
               <strong class="text-lg text-gray-800 block">${apk.title}</strong>
-              <!-- NEW: Display package name -->
               <span class="text-xs font-mono text-gray-500 block mt-1">${apk.packageName || 'Package name not set'}</span>
               <span class="text-xs text-gray-400">ID: ${apk._id.slice(-6)}</span>
             </div>
@@ -342,7 +404,7 @@ async function loadApks() {
                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </a>
-            <button data-id="${apk._id}" class="deleteBtn bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition opacity-0 group-hover:opacity-100 shadow-sm hover:shadow-md" title="Удалить">
+            <button data-id="${apk._id}" data-title="${apk.title}" class="deleteBtn bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition opacity-0 group-hover:opacity-100 shadow-sm hover:shadow-md" title="Удалить">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
               </svg>
@@ -356,24 +418,31 @@ async function loadApks() {
       document.querySelectorAll('.deleteBtn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
           e.preventDefault();
-          if (!confirm('Вы уверены, что хотите удалить это приложение?')) return;
+          const appTitle = btn.dataset.title || 'это приложение';
+          if (!confirm(`Вы уверены, что хотите удалить "${appTitle}"?`)) return;
           
           const id = btn.dataset.id;
-          const token = localStorage.getItem("adminToken");
           
           try {
-            const res = await fetch(`${API_URL}/apks/${id}`, {
-              method: 'DELETE',
-              headers: { 'Authorization': `Bearer ${token}` }
+            const res = await apiRequest(`${API_URL}/apks/${id}`, {
+              method: 'DELETE'
             });
             
-            if (!res.ok) throw new Error("Delete failed");
+            if (!res.ok) {
+              if (res.status === 401) throw new Error("Unauthorized");
+              throw new Error("Delete failed");
+            }
             
-            showToast('Приложение удалено');
+            showToast(`✓ Приложение "${appTitle}" удалено`);
             loadApks();
           } catch (err) {
             console.error(err);
-            showToast('Ошибка при удалении', false);
+            if (err.message === "Unauthorized") {
+              showToast('Сессия истекла, войдите снова', false);
+              handleLogout();
+            } else {
+              showToast('Ошибка при удалении', false);
+            }
           }
         });
       });
@@ -381,8 +450,10 @@ async function loadApks() {
 
   } catch (err) { 
     console.error(err);
-    showToast('Сессия истекла, войдите снова', false);
-    handleLogout();
+    if (err.message === "Unauthorized" || err.message === "Failed to load apps") {
+      showToast('Сессия истекла, войдите снова', false);
+      handleLogout();
+    }
   }
 }
 
@@ -392,7 +463,7 @@ function handleLogout() {
   localStorage.removeItem("adminLogin");
   adminPage.classList.add("hidden");
   loginPage.classList.remove("hidden");
-  document.getElementById('username').value = '';
+  document.getElementById('username').value = localStorage.getItem("adminLogin") || '';
   document.getElementById('password').value = '';
 }
 
@@ -407,7 +478,10 @@ const existingToken = localStorage.getItem("adminToken");
 if (existingToken) {
   loginPage.classList.add("hidden");
   adminPage.classList.remove("hidden");
-  loadApks().catch(() => handleLogout());
+  loadApks().catch((err) => {
+    console.error('Auto login failed:', err);
+    handleLogout();
+  });
 }
 
 // Auto-fill username if exists
@@ -415,6 +489,18 @@ const savedLogin = localStorage.getItem("adminLogin");
 if (savedLogin) {
   document.getElementById('username').value = savedLogin;
 }
+
+// Периодическая проверка сессии (каждые 5 минут)
+setInterval(() => {
+  const token = localStorage.getItem("adminToken");
+  if (token && !adminPage.classList.contains('hidden')) {
+    // Делаем легкий запрос для проверки сессии
+    apiRequest(`${API_URL}/apks?limit=1`).catch(() => {
+      console.log('Session check failed, but not logging out automatically');
+    });
+  }
+}, 300000); // 5 минут
+
 </script>
 
 </body>
