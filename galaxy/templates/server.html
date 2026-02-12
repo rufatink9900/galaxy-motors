@@ -2,92 +2,239 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>APK Store Admin</title>
+<title>GLS Admin Panel</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .fade-in { animation: fadeIn 0.3s ease-in; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
 </head>
-<body class="bg-gray-100 min-h-screen p-8 font-sans">
+<body class="bg-gray-100 min-h-screen p-4 md:p-8 font-sans">
 
-<!-- LOGIN PAGE -->
-<div id="loginPage" class="max-w-md mx-auto mt-20">
-  <h2 class="text-2xl font-bold mb-4 text-center">Admin Login</h2>
-  <form id="loginForm" class="space-y-4">
-    <input type="text" id="username" placeholder="Username" class="w-full border rounded px-3 py-2" required />
-    <input type="password" id="password" placeholder="Password" class="w-full border rounded px-3 py-2" required />
-    <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded">Login</button>
+<!-- NAVIGATION -->
+<div class="fixed top-4 left-4 z-10">
+  <form method="post" action="{% url 'logout' %}" class="inline">
+    {% csrf_token %}
+    <button type="submit" class="text-gray-600 hover:text-gray-900 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm transition">
+      ← Вернуться на главную
+    </button>
   </form>
 </div>
 
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="max-w-md mx-auto mt-20 fade-in">
+  <div class="bg-white rounded-2xl shadow-xl p-8">
+    <h2 class="text-3xl font-bold mb-2 text-center text-gray-800">GLS ADMIN</h2>
+    <p class="text-center text-gray-500 mb-8">GALAXY LIXIANG STORE</p>
+    
+    <form id="loginForm" class="space-y-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Имя пользователя</label>
+        <input type="text" id="username"  class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Пароль</label>
+        <input type="password" id="password"  autocomplete="new-password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required />
+      </div>
+      <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium px-4 py-2.5 rounded-lg transition shadow-md hover:shadow-lg">
+        Войти в панель
+      </button>
+    </form>
+  </div>
+</div>
+
 <!-- ADMIN PAGE -->
-<div id="adminPage" class="hidden max-w-3xl mx-auto">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">APK Store Admin</h1>
+<div id="adminPage" class="hidden max-w-4xl mx-auto space-y-6 fade-in">
+  
+  <!-- Header -->
+  <div class="flex justify-between items-center bg-white rounded-xl shadow-md p-6">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-800">Панель управления</h1>
+      <p class="text-gray-500">Управление приложениями магазина</p>
+    </div>
+    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2.5 rounded-lg transition shadow-md hover:shadow-lg flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm7 4a1 1 0 011 1v4a1 1 0 11-2 0V8a1 1 0 011-1z" clip-rule="evenodd" />
+      </svg>
+      Выйти
+    </button>
+  </div>
 
   <!-- Upload Form -->
-  <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-    <h2 class="text-2xl font-semibold mb-4">Upload APK</h2>
-    <form id="uploadForm" class="space-y-4">
-      <input type="text" id="title" placeholder="App title" class="w-full border rounded px-3 py-2" />
-      <input type="file" id="apk" accept=".apk" class="w-full border rounded px-3 py-2" required />
-      <input type="file" id="icon" accept="image/*" class="w-full border rounded px-3 py-2" />
-      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Upload</button>
+  <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+    <h2 class="text-xl font-semibold mb-5 text-gray-800 flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Добавить новое приложение
+    </h2>
+    
+    <form id="uploadForm" class="space-y-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Название приложения</label>
+        <input type="text" id="title" placeholder="например: Galaxy Browser" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required />
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">APK файл</label>
+          <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-500 transition">
+            <input type="file" id="apk" accept=".apk" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" required />
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Иконка приложения</label>
+          <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-500 transition">
+            <input type="file" id="icon" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+          </div>
+          <p class="text-xs text-gray-400 mt-1">Рекомендуемый размер: 512x512px</p>
+        </div>
+      </div>
+      
+      <button type="submit" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-medium px-6 py-2.5 rounded-lg transition shadow-md hover:shadow-lg flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+        Опубликовать приложение
+      </button>
     </form>
   </div>
 
-  <!-- Uploaded APKs -->
-  <div class="bg-white shadow-md rounded-lg p-6">
-    <h2 class="text-2xl font-semibold mb-4">Uploaded APKs</h2>
-    <div id="apkList" class="space-y-4"></div>
+  <!-- Uploaded APKs List -->
+  <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+    <h2 class="text-xl font-semibold mb-5 text-gray-800 flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+      </svg>
+      Загруженные приложения
+      <span id="appsCount" class="ml-2 bg-gray-200 text-gray-700 text-sm px-2.5 py-0.5 rounded-full">0</span>
+    </h2>
+    
+    <div id="apkList" class="space-y-3">
+      <!-- Apps will be loaded here -->
+      <div id="emptyState" class="text-center py-12 text-gray-400 hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+        </svg>
+        <p class="text-lg">Приложений пока нет</p>
+        <p class="text-sm">Загрузите первое приложение через форму выше</p>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- Toast Notifications -->
+<div id="toast" class="fixed bottom-4 right-4 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 translate-y-20 opacity-0 z-50">
+  <span id="toastMessage"></span>
 </div>
 
 <script>
 const API_URL = 'https://galaxy-store-server.onrender.com';
 
+// Toast notification
+function showToast(message, isSuccess = true) {
+  const toast = document.getElementById('toast');
+  const toastMessage = document.getElementById('toastMessage');
+  toastMessage.textContent = message;
+  toast.classList.remove('translate-y-20', 'opacity-0');
+  toast.classList.add('translate-y-0', 'opacity-100');
+  toast.style.backgroundColor = isSuccess ? '#059669' : '#DC2626';
+  
+  setTimeout(() => {
+    toast.classList.add('translate-y-20', 'opacity-0');
+    toast.classList.remove('translate-y-0', 'opacity-100');
+  }, 3000);
+}
+
+// Show loading state
+function setLoading(button, isLoading) {
+  if (isLoading) {
+    button.disabled = true;
+    button.classList.add('opacity-75', 'cursor-not-allowed');
+    button.innerHTML = '<span class="inline-block animate-spin mr-2">↻</span> Загрузка...';
+  } else {
+    button.disabled = false;
+    button.classList.remove('opacity-75', 'cursor-not-allowed');
+    button.innerHTML = button.dataset.originalText || 'Войти в панель';
+  }
+}
+
 // ===== LOGIN =====
 const loginPage = document.getElementById("loginPage");
 const adminPage = document.getElementById("adminPage");
 const loginForm = document.getElementById("loginForm");
+const loginButton = loginForm.querySelector('button[type="submit"]');
+loginButton.dataset.originalText = 'Войти в панель';
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+  
+  if (!username || !password) {
+    showToast('Заполните все поля', false);
+    return;
+  }
+
+  setLoading(loginButton, true);
 
   try {
-    // !!! Важно: поле 'username' нужно переименовать в 'login' для сервера
     const res = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ login: username, password }) // <-- исправлено
+      body: JSON.stringify({ login: username, password })
     });
 
     if (!res.ok) { 
-      alert("Login failed: wrong username or password"); 
+      showToast('Неверный логин или пароль', false);
       return; 
     }
 
     const data = await res.json();
     localStorage.setItem("adminToken", data.token);
+    localStorage.setItem("adminLogin", username);
 
     loginPage.classList.add("hidden");
     adminPage.classList.remove("hidden");
+    showToast('Успешный вход!');
     loadApks();
 
   } catch (err) { 
     console.error(err); 
-    alert("Error logging in"); 
+    showToast('Ошибка подключения к серверу', false);
+  } finally {
+    setLoading(loginButton, false);
   }
 });
 
 // ===== UPLOAD APK =====
 const uploadForm = document.getElementById('uploadForm');
+const uploadButton = uploadForm.querySelector('button[type="submit"]');
+uploadButton.dataset.originalText = 'Опубликовать приложение';
+
 uploadForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const token = localStorage.getItem("adminToken");
-  if (!token) return alert("Not authorized");
+  if (!token) {
+    showToast('Необходима авторизация', false);
+    handleLogout();
+    return;
+  }
+
+  const title = document.getElementById('title').value;
+  const apkFile = document.getElementById('apk').files[0];
+  
+  if (!title || !apkFile) {
+    showToast('Заполните название и выберите APK файл', false);
+    return;
+  }
+
+  setLoading(uploadButton, true);
 
   const formData = new FormData();
-  formData.append('title', document.getElementById('title').value);
-  formData.append('apk', document.getElementById('apk').files[0]);
+  formData.append('title', title);
+  formData.append('apk', apkFile);
   const iconFile = document.getElementById('icon').files[0];
   if (iconFile) formData.append('icon', iconFile);
 
@@ -97,13 +244,26 @@ uploadForm.addEventListener('submit', async (e) => {
       headers: { 'Authorization': `Bearer ${token}` },
       body: formData
     });
-    if (!res.ok) throw new Error("Unauthorized or upload error");
+    
+    if (!res.ok) {
+      if (res.status === 401) throw new Error("Unauthorized");
+      throw new Error("Upload error");
+    }
+    
     const data = await res.json();
-    alert('Uploaded ' + data.title);
+    showToast(`✓ Приложение "${data.title}" успешно загружено`);
+    uploadForm.reset();
     loadApks();
   } catch (err) { 
-    console.error(err); 
-    alert('Error uploading APK'); 
+    console.error(err);
+    if (err.message === "Unauthorized") {
+      showToast('Сессия истекла, войдите снова', false);
+      handleLogout();
+    } else {
+      showToast('Ошибка при загрузке APK', false);
+    }
+  } finally {
+    setLoading(uploadButton, false);
   }
 });
 
@@ -113,58 +273,122 @@ async function loadApks() {
   if (!token) return;
 
   try {
-    const res = await fetch(`${API_URL}/apks`, { headers: { 'Authorization': `Bearer ${token}` } });
+    const res = await fetch(`${API_URL}/apks`, { 
+      headers: { 'Authorization': `Bearer ${token}` } 
+    });
+    
     if (!res.ok) throw new Error("Unauthorized");
     const apks = await res.json();
+    
     const container = document.getElementById('apkList');
+    const emptyState = document.getElementById('emptyState');
+    const appsCount = document.getElementById('appsCount');
+    
+    appsCount.textContent = apks.length;
     container.innerHTML = '';
 
-    apks.forEach(apk => {
-      const div = document.createElement('div');
-      div.className = 'flex items-center justify-between border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-sm';
-      div.innerHTML = `
-        <div class="flex items-center gap-4">
-          ${apk.iconUrl ? `<img src="${apk.iconUrl}" alt="icon" class="w-12 h-12 rounded">` : ''}
-          <div>
-            <strong class="text-lg text-gray-800">${apk.title}</strong><br/>
-            <a href="${apk.apkUrl}" target="_blank" class="text-blue-600 hover:underline">Download APK</a>
+    if (apks.length === 0) {
+      emptyState.classList.remove('hidden');
+      container.appendChild(emptyState);
+    } else {
+      emptyState.classList.add('hidden');
+      
+      apks.forEach(apk => {
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between bg-gray-50 hover:bg-gray-100 rounded-lg p-4 transition border border-gray-200 hover:border-gray-300 group';
+        div.innerHTML = `
+          <div class="flex items-center gap-4 flex-1">
+            ${apk.iconUrl ? 
+              `<img src="${apk.iconUrl}" alt="${apk.title}" class="w-12 h-12 rounded-xl object-cover border border-gray-200">` : 
+              `<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xl border border-gray-200">
+                ${apk.title.charAt(0).toUpperCase()}
+              </div>`
+            }
+            <div>
+              <strong class="text-lg text-gray-800 block">${apk.title}</strong>
+              <span class="text-xs text-gray-400">ID: ${apk._id.slice(-6)}</span>
+            </div>
           </div>
-        </div>
-        <button data-id="${apk._id}" class="deleteBtn bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition">Delete</button>
-      `;
-      container.appendChild(div);
-    });
-
-    document.querySelectorAll('.deleteBtn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        if (!confirm('Are you sure?')) return;
-        const id = btn.dataset.id;
-        const res = await fetch(`${API_URL}/apks/${id}`, {
-          method: 'DELETE',
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        const data = await res.json();
-        alert(data.message || "Deleted");
-        loadApks();
+          <div class="flex items-center gap-3">
+            <a href="${apk.apkUrl}" target="_blank" class="text-blue-600 hover:text-blue-800 p-2 hover:bg-blue-50 rounded-lg transition" title="Скачать APK">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <button data-id="${apk._id}" class="deleteBtn bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition opacity-0 group-hover:opacity-100 shadow-sm hover:shadow-md" title="Удалить">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
       });
-    });
+
+      // Add delete handlers
+      document.querySelectorAll('.deleteBtn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          if (!confirm('Вы уверены, что хотите удалить это приложение?')) return;
+          
+          const id = btn.dataset.id;
+          const token = localStorage.getItem("adminToken");
+          
+          try {
+            const res = await fetch(`${API_URL}/apks/${id}`, {
+              method: 'DELETE',
+              headers: { 'Authorization': `Bearer ${token}` }
+            });
+            
+            if (!res.ok) throw new Error("Delete failed");
+            
+            showToast('Приложение удалено');
+            loadApks();
+          } catch (err) {
+            console.error(err);
+            showToast('Ошибка при удалении', false);
+          }
+        });
+      });
+    }
 
   } catch (err) { 
-    console.error(err); 
-    alert("Unauthorized! Please login again");
-    localStorage.removeItem("adminToken");
-    loginPage.classList.remove("hidden");
-    adminPage.classList.add("hidden");
+    console.error(err);
+    showToast('Сессия истекла, войдите снова', false);
+    handleLogout();
   }
 }
 
-// ===== AUTO LOGIN =====
+// ===== LOGOUT =====
+function handleLogout() {
+  localStorage.removeItem("adminToken");
+  localStorage.removeItem("adminLogin");
+  adminPage.classList.add("hidden");
+  loginPage.classList.remove("hidden");
+  document.getElementById('username').value = '';
+  document.getElementById('password').value = '';
+}
+
+document.getElementById("logoutBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  handleLogout();
+  showToast('Вы вышли из системы');
+});
+
+// ===== AUTO LOGIN CHECK =====
 const existingToken = localStorage.getItem("adminToken");
 if (existingToken) {
   loginPage.classList.add("hidden");
   adminPage.classList.remove("hidden");
-  loadApks();
+  loadApks().catch(() => handleLogout());
+}
+
+// Auto-fill username if exists
+const savedLogin = localStorage.getItem("adminLogin");
+if (savedLogin) {
+  document.getElementById('username').value = savedLogin;
 }
 </script>
+
 </body>
 </html>
