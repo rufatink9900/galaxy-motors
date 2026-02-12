@@ -30,11 +30,11 @@
     <form id="loginForm" class="space-y-5">
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Имя пользователя</label>
-        <input type="text" id="username"  class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required />
+        <input type="text" id="username" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required />
       </div>
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Пароль</label>
-        <input type="password" id="password"  autocomplete="new-password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required />
+        <input type="password" id="password" autocomplete="new-password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required />
       </div>
       <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium px-4 py-2.5 rounded-lg transition shadow-md hover:shadow-lg">
         Войти в панель
@@ -73,6 +73,22 @@
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Название приложения</label>
         <input type="text" id="title" placeholder="например: Galaxy Browser" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required />
+      </div>
+      
+      <!-- NEW: Package Name Field -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Package Name (имя пакета)
+          <span class="text-red-500 ml-1">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="packageName" 
+          placeholder="например: com.galaxy.browser" 
+          class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition font-mono text-sm" 
+          required 
+        />
+        <p class="text-xs text-gray-400 mt-1">Уникальный идентификатор приложения в формате обратного домена</p>
       </div>
       
       <div class="grid md:grid-cols-2 gap-5">
@@ -223,10 +239,18 @@ uploadForm.addEventListener('submit', async (e) => {
   }
 
   const title = document.getElementById('title').value;
+  const packageName = document.getElementById('packageName').value; // NEW: Get package name
   const apkFile = document.getElementById('apk').files[0];
   
-  if (!title || !apkFile) {
-    showToast('Заполните название и выберите APK файл', false);
+  if (!title || !packageName || !apkFile) { // Updated validation
+    showToast('Заполните название, package name и выберите APK файл', false);
+    return;
+  }
+
+  // Simple package name validation
+  const packageNameRegex = /^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/;
+  if (!packageNameRegex.test(packageName)) {
+    showToast('Package name должен быть в формате: com.example.app', false);
     return;
   }
 
@@ -234,6 +258,7 @@ uploadForm.addEventListener('submit', async (e) => {
 
   const formData = new FormData();
   formData.append('title', title);
+  formData.append('packageName', packageName); // NEW: Add package name to form data
   formData.append('apk', apkFile);
   const iconFile = document.getElementById('icon').files[0];
   if (iconFile) formData.append('icon', iconFile);
@@ -306,6 +331,8 @@ async function loadApks() {
             }
             <div>
               <strong class="text-lg text-gray-800 block">${apk.title}</strong>
+              <!-- NEW: Display package name -->
+              <span class="text-xs font-mono text-gray-500 block mt-1">${apk.packageName || 'Package name not set'}</span>
               <span class="text-xs text-gray-400">ID: ${apk._id.slice(-6)}</span>
             </div>
           </div>
