@@ -61,6 +61,10 @@
             50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4); }
         }
 
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+
         /* Задержки появления */
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
@@ -148,6 +152,90 @@
             to { opacity: 1; }
         }
 
+        /* Стили для мобильной нижней навигации */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 40, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 4px;
+            z-index: 50;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-bottom-nav.show {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+            flex: 1;
+            max-width: 80px;
+        }
+
+        .mobile-nav-item.active {
+            color: #0ff;
+            background: rgba(0, 255, 255, 0.1);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .mobile-nav-item:active {
+            transform: scale(0.95);
+            background: rgba(0, 255, 255, 0.15);
+        }
+
+        .mobile-nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .mobile-nav-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* Адаптация основного контента для мобильной навигации */
+        @media (max-width: 768px) {
+            main {
+                padding-bottom: 80px;
+            }
+            
+            footer {
+                margin-bottom: 70px;
+            }
+        }
+
+        /* Скрываем верхнее меню на мобильных */
+        @media (max-width: 768px) {
+            .desktop-menu-items {
+                display: none !important;
+            }
+        }
+
+        /* Показываем верхнее меню на десктопе */
+        @media (min-width: 769px) {
+            .mobile-bottom-nav {
+                display: none !important;
+            }
+        }
+
         /* Планетарная орбита */
         .orbit {
             position: relative;
@@ -205,7 +293,7 @@
     <!-- Галактический фон со звездами -->
     <div id="stars-container"></div>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR (верхнее меню, скрытое на мобильных) -->
     <nav class="fixed top-0 left-0 w-full z-40 glass-galaxy border-b border-cyan-500/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
             <div class="flex items-center justify-between content-appear">
@@ -218,17 +306,15 @@
                     </a>
                 </div>
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6 lg:space-x-10 delay-300">
-                    <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest ">
-                        <li><a href="{% url 'services' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-100">{% trans "Services" %}</a></li>
-                        {% comment %} <li><a href="{% url 'accessories' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-100">{% trans "Accessories" %}</a></li> {% endcomment %}
-                        <li><a href="{% url 'apps_list' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-200">{% trans "Applications" %}</a></li>
-                        {% comment %} <li><a href="{% url 'cars:knowledge_base' %}" class="text-white hover:text-zinc-500 transition-colors py-2 px-1 delay-200">{% trans "Knowledge Base" %}</a></li> {% endcomment %}
+                <!-- Desktop Menu (скрыто на мобильных) -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-10 delay-300 desktop-menu-items">
+                    <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest">
+                        <li><a href="{% url 'services' %}" class="text-white hover:text-cyan-400 transition-colors py-2 px-1">{% trans "Services" %}</a></li>
+                        <li><a href="{% url 'apps_list' %}" class="text-white hover:text-cyan-400 transition-colors py-2 px-1">{% trans "Applications" %}</a></li>
                     </ul>
                     
                     <!-- Language Selector Desktop -->
-                    <form action="{% url 'set_language' %}" method="post" class="relative delay-300">
+                    <form action="{% url 'set_language' %}" method="post" class="relative">
                         {% csrf_token %}
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
@@ -243,14 +329,13 @@
                     </form>
                     
                     <!-- Contact Button Desktop -->
-                    <a href="{% url "contact" %}" class="border border-cyan-500/30 px-5 py-2 rounded-lg hover:bg-cyan-900/30 hover:text-zinc-500 transition-all hover-galaxy text-sm animate-pulse-glow delay-400 text-white">
+                    <a href="{% url 'contact' %}" class="border border-cyan-500/30 px-5 py-2 rounded-lg hover:bg-cyan-900/30 hover:text-cyan-400 transition-all hover-galaxy text-sm animate-pulse-glow text-white">
                         {% trans "Contact" %}
                     </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
-                <div class="flex items-center space-x-4 md:hidden">
-                    <!-- Language Selector Mobile -->
+                <!-- Language Selector Mobile (виден только на мобильных) -->
+                <div class="flex items-center md:hidden">
                     <form action="{% url 'set_language' %}" method="post" class="relative">
                         {% csrf_token %}
                         {% get_current_language as LANGUAGE_CODE %}
@@ -267,87 +352,6 @@
                             {% endfor %}
                         </select>
                     </form>
-                    
-                    <!-- Hamburger Menu Button -->
-                    <button id="menuBtn" class="text-white focus:outline-none transition-all p-2 delay-500 relative w-8 h-8">
-                        <span class="sr-only">Open menu</span>
-                        <!-- Hamburger Icon -->
-                        <div id="hamburgerIcon" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 transition-all duration-300">
-                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 transition-all duration-300"></span>
-                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 transition-all duration-300"></span>
-                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 transition-all duration-300"></span>
-                        </div>
-                        <!-- Close Icon (X) - скрыт по умолчанию -->
-                        <div id="closeIcon" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 opacity-0 pointer-events-none transition-all duration-300">
-                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 rotate-45 transition-all duration-300"></span>
-                            <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-white transform -translate-y-1/2 -rotate-45 transition-all duration-300"></span>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-cyan-500/10">
-            <div class="px-4 py-6">
-                <ul class="space-y-4">
-                    <li class="animate-fade-in-up delay-100">
-                        <a href="{% url 'services' %}" 
-                           class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
-                            <div class="flex items-center justify-between">
-                                <span class="text-base font-medium tracking-wide text-white group-hover:text-zinc-500 transition-colors">{% trans "Services" %}</span>
-                                <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    {% comment %} <li class="animate-fade-in-up delay-200">
-                        <a href="{% url 'accessories' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
-                            <div class="flex items-center justify-between">
-                                <span class="text-base font-medium tracking-wide text-white group-hover:text-zinc-500 transition-colors">{% trans "Accessories" %}</span>
-                                <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </a>
-                    </li> {% endcomment %}
-                
-                    <li class="animate-fade-in-up delay-200">
-                        <a href="{% url 'apps_list' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
-                            <div class="flex items-center justify-between">
-                                <span class="text-base font-medium tracking-wide text-white group-hover:text-zinc-500 transition-colors">{% trans "Applications" %}</span>
-                                <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    {% comment %} <li class="animate-fade-in-up delay-200">
-                        <a href="{% url 'cars:knowledge_base' %}" class="block py-3 px-4 rounded-lg hover:bg-cyan-900/20 transition-all hover-galaxy group">
-                            <div class="flex items-center justify-between">
-                                <span class="text-base font-medium tracking-wide text-white group-hover:text-zinc-500 transition-colors">{% trans "Knowledge Base" %}</span>
-                                <svg class="w-4 h-4 text-white/60 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </a>
-                    </li> {% endcomment %}
-                    <li class="pt-4 border-t border-cyan-500/10 animate-fade-in-up delay-300">
-                        <a href="{% url "contact" %}"
-                           class="block w-full text-center border border-cyan-500/30 py-3 px-6 rounded-lg hover:bg-cyan-900/30 hover:text-zinc-100 transition-all hover-galaxy animate-pulse-glow text-white">
-                            {% trans "Contact Us" %}
-                    </a>
-                    </li>
-                </ul>
-                
-                <!-- Contact Info Mobile -->
-                <div class="mt-8 pt-6 border-t border-cyan-500/10 animate-fade-in-up delay-400">
-                    <p class="text-sm text-white/80 mb-2">{% trans "Call us directly:" %}</p>
-                    <a href="tel:+994518400012" class="block text-lg font-medium text-white hover:text-cyan-400 transition-colors">
-                        +994 51 840 00 12
-                    </a>
-                    <p class="text-xs text-white/60 mt-2">{% trans "Mon-Fri: 9:00-18:00" %}</p>
                 </div>
             </div>
         </div>
@@ -365,7 +369,7 @@
                 <!-- Logo and Description -->
                 <div class="animate-fade-in-up delay-100">
                     <div class="flex items-center space-x-3 mb-4">
-                        <span class="text-lg tracking-[0.2em] font-semibold  bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"><img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767743516/galaxylog5_xwtpty.png" class='w-[100px]' alt=""></span>
+                        <span class="">Galaxy Motors Pro</span>
                     </div>
                     <p class="text-white/80 text-sm">
                         {% trans "Professional auto service with years of experience. Quality, trust, and speed are our priorities." %}
@@ -374,25 +378,24 @@
 
                 <!-- Quick Links -->
                 <div class="animate-fade-in-up delay-200">
-                    <h3 class="text-sm font-semibold  tracking-widest mb-4 text-white">{% trans "Quick Links" %}</h3>
+                    <h3 class="text-sm font-semibold tracking-widest mb-4 text-white">{% trans "Quick Links" %}</h3>
                     <ul class="space-y-2">
-                        <li><a href="{% url 'services' %}" class="text-white/80 hover:text-zinc-500 text-sm transition">{% trans "Services" %}</a></li>
-                        <li><button id="openModalFooter" class="text-white/80 hover:text-zinc-100 text-sm transition">{% trans "Contact" %}</button></li>
+                        <li><a href="{% url 'services' %}" class="text-white/80 hover:text-cyan-400 text-sm transition">{% trans "Services" %}</a></li>
+                        <li><button id="openModalFooter" class="text-white/80 hover:text-cyan-100 text-sm transition">{% trans "Contact" %}</button></li>
                     </ul>
                 </div>
 
                 <!-- Contact Info -->
                 <div class="animate-fade-in-up delay-300">
-                    <h3 class="text-sm font-semibold  tracking-widest mb-4 text-white">{% trans "Contact" %}</h3>
+                    <h3 class="text-sm font-semibold tracking-widest mb-4 text-white">{% trans "Contact" %}</h3>
                     <ul class="space-y-2 text-white/80 text-sm">
-                  
                         <li class="flex items-center space-x-2">
                             <span class="text-cyan-400">📞</span>
-                            <button id="openModalFooterPhone" class="hover:text-zinc-500 transition">+994 51 840 00 12</button>
+                            <button id="openModalFooterPhone" class="hover:text-cyan-400 transition">+994 51 840 00 12</button>
                         </li>
                         <li class="flex items-center space-x-2">
                             <span class="text-cyan-400">✉️</span>
-                            <button id="openModalFooterEmail" class="hover:text-zinc-500 transition">info@galaxymotors.pro</button>
+                            <button id="openModalFooterEmail" class="hover:text-cyan-400 transition">info@galaxymotors.pro</button>
                         </li>
                     </ul>
                 </div>
@@ -404,6 +407,33 @@
             </div>
         </div>
     </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION BAR -->
+    <div id="mobileBottomNav" class="mobile-bottom-nav">
+        <!-- Home -->
+        <a href="/" class="mobile-nav-item {% if request.path == '/' %}active{% endif %}" id="nav-home">
+            <span class="mobile-nav-icon">🏠</span>
+            
+        </a>
+
+        <!-- Services -->
+        <a href="{% url 'services' %}" class="mobile-nav-item {% if 'services' in request.path %}active{% endif %}" id="nav-services">
+            <span class="mobile-nav-icon">🔧</span>
+            <span class="mobile-nav-label">{% trans "Services" %}</span>
+        </a>
+
+        <!-- Applications -->
+        <a href="{% url 'apps_list' %}" class="mobile-nav-item {% if 'apps' in request.path %}active{% endif %}" id="nav-apps">
+            <span class="mobile-nav-icon">📱</span>
+            <span class="mobile-nav-label">{% trans "Applications" %}</span>
+        </a>
+
+        <!-- Contact (открывает модалку) -->
+        <button class="mobile-nav-item" id="openModalMobileNav">
+            <span class="mobile-nav-icon">📞</span>
+            <span class="mobile-nav-label">{% trans "Contact" %}</span>
+        </button>
+    </div>
 
     <!-- CONTACT MODAL -->
     <div id="contactModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
@@ -424,7 +454,7 @@
                 <div class="space-y-6">
                     <!-- Header -->
                     <div class="text-center">
-                        <h3 class="text-2xl font-bold tracking-wider  mb-2 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                        <h3 class="text-2xl font-bold tracking-wider mb-2 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                             {% trans "Contact Us" %}
                         </h3>
                     </div>
@@ -436,7 +466,7 @@
                            class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-cyan-900/20 border border-cyan-500/20 hover:border-cyan-400/40 transition-all hover-galaxy hover:scale-[1.02] delay-100">
                             <div class="flex items-center space-x-4">
                                 <div class="p-3 rounded-lg bg-cyan-900/30 group-hover:bg-cyan-900/50 transition-all">
-                                    <span class="text-2xl text-zinc-500">📞</span>
+                                    <span class="text-2xl text-cyan-400">📞</span>
                                 </div>
                                 <div class="text-left">
                                     <p class="text-sm text-white/80">
@@ -444,7 +474,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-white/40 group-hover:text-zinc-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -455,7 +485,7 @@
                            class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-cyan-900/20 border border-cyan-500/20 hover:border-cyan-400/40 transition-all hover-galaxy hover:scale-[1.02] delay-200">
                             <div class="flex items-center space-x-4">
                                 <div class="p-3 rounded-lg bg-cyan-900/30 group-hover:bg-cyan-900/50 transition-all">
-                                    <span class="text-2xl text-zinc-500">💬</span>
+                                    <span class="text-2xl text-cyan-400">💬</span>
                                 </div>
                                 <div class="text-left">
                                     <h4 class="font-semibold text-white group-hover:text-cyan-400 transition-colors">
@@ -463,7 +493,7 @@
                                     </h4>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-white/40 group-hover:text-zinc-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -473,7 +503,7 @@
                            class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-cyan-900/20 border border-cyan-500/20 hover:border-cyan-400/40 transition-all hover-galaxy hover:scale-[1.02] delay-300">
                             <div class="flex items-center space-x-4">
                                 <div class="p-3 rounded-lg bg-cyan-900/30 group-hover:bg-cyan-900/50 transition-all">
-                                    <span class="text-2xl text-zinc-500">✉️</span>
+                                    <span class="text-2xl text-cyan-400">✉️</span>
                                 </div>
                                 <div class="text-left">
                                     <h4 class="font-semibold text-white group-hover:text-cyan-400 transition-colors">
@@ -484,7 +514,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <svg class="w-5 h-5 text-white/40 group-hover:text-zinc-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -508,6 +538,8 @@
         // Создание звездного фона
         function createStars() {
             const container = document.getElementById('stars-container');
+            if (!container) return;
+            
             const starCount = 100;
             
             for (let i = 0; i < starCount; i++) {
@@ -532,168 +564,33 @@
             }
         }
 
+        // Показ нижней навигации только на мобильных устройствах
+        function initMobileBottomNav() {
+            const mobileNav = document.getElementById('mobileBottomNav');
+            
+            // Показываем навигацию с небольшой задержкой для плавности
+            setTimeout(() => {
+                mobileNav.classList.add('show');
+            }, 1000);
+            
+            // Добавляем обработчики для активных пунктов
+            const currentPath = window.location.pathname;
+            const navItems = document.querySelectorAll('.mobile-nav-item');
+            
+            navItems.forEach(item => {
+                const href = item.getAttribute('href');
+                if (href && (currentPath === href || (href !== '/' && currentPath.startsWith(href)))) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             createStars();
             
-            const preloader = document.getElementById('preloader');
-            const mainContent = document.getElementById('mainContent');
+            // Инициализация мобильной навигации
+            initMobileBottomNav();
             
-            if (preloader) {
-                setTimeout(() => {
-                    preloader.style.opacity = '0';
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                        mainContent.classList.remove('hidden');
-                        
-                        const elements = document.querySelectorAll('.animate-fade-in-up');
-                        elements.forEach((el, index) => {
-                            el.style.animationDelay = `${index * 100 + 300}ms`;
-                            el.style.opacity = '0';
-                        });
-                    }, 800);
-                }, 2500);
-            }
-            
-            // Mobile menu functionality
-            const menuBtn = document.getElementById('menuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const hamburgerIcon = document.getElementById('hamburgerIcon');
-            const closeIcon = document.getElementById('closeIcon');
-            
-            if (menuBtn && mobileMenu && hamburgerIcon && closeIcon) {
-                menuBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const isHidden = mobileMenu.classList.contains('hidden');
-                    
-                    if (isHidden) {
-                        // Open menu
-                        mobileMenu.classList.remove('hidden');
-                        mobileMenu.classList.remove('menu-slide-up');
-                        mobileMenu.classList.add('menu-slide-down');
-                        
-                        // Switch icons
-                        hamburgerIcon.style.opacity = '0';
-                        hamburgerIcon.style.pointerEvents = 'none';
-                        closeIcon.style.opacity = '1';
-                        closeIcon.style.pointerEvents = 'auto';
-                        
-                        // Animate hamburger to X
-                        const lines = hamburgerIcon.querySelectorAll('span');
-                        lines[0].style.transform = 'translateY(-1px) rotate(45deg)';
-                        lines[1].style.opacity = '0';
-                        lines[2].style.transform = 'translateY(-1px) rotate(-45deg)';
-                        
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        // Close menu
-                        mobileMenu.classList.remove('menu-slide-down');
-                        mobileMenu.classList.add('menu-slide-up');
-                        
-                        setTimeout(() => {
-                            mobileMenu.classList.add('hidden');
-                        }, 300);
-                        
-                        // Switch icons back
-                        hamburgerIcon.style.opacity = '1';
-                        hamburgerIcon.style.pointerEvents = 'auto';
-                        closeIcon.style.opacity = '0';
-                        closeIcon.style.pointerEvents = 'none';
-                        
-                        // Animate X back to hamburger
-                        const lines = hamburgerIcon.querySelectorAll('span');
-                        lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
-                        lines[1].style.opacity = '1';
-                        lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
-                        lines[2].style.transform = 'translateY(4px) rotate(0deg)';
-                        
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-                
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                            // Close menu
-                            mobileMenu.classList.remove('menu-slide-down');
-                            mobileMenu.classList.add('menu-slide-up');
-                            
-                            setTimeout(() => {
-                                mobileMenu.classList.add('hidden');
-                            }, 300);
-                            
-                            // Reset icons
-                            hamburgerIcon.style.opacity = '1';
-                            hamburgerIcon.style.pointerEvents = 'auto';
-                            closeIcon.style.opacity = '0';
-                            closeIcon.style.pointerEvents = 'none';
-                            
-                            const lines = hamburgerIcon.querySelectorAll('span');
-                            lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
-                            lines[1].style.opacity = '1';
-                            lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
-                            lines[2].style.transform = 'translateY(4px) rotate(0deg)';
-                            
-                            document.body.style.overflow = 'auto';
-                        }
-                    }
-                });
-                
-                // Close mobile menu on escape key
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.remove('menu-slide-down');
-                        mobileMenu.classList.add('menu-slide-up');
-                        
-                        setTimeout(() => {
-                            mobileMenu.classList.add('hidden');
-                        }, 300);
-                        
-                        hamburgerIcon.style.opacity = '1';
-                        hamburgerIcon.style.pointerEvents = 'auto';
-                        closeIcon.style.opacity = '0';
-                        closeIcon.style.pointerEvents = 'none';
-                        
-                        const lines = hamburgerIcon.querySelectorAll('span');
-                        lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
-                        lines[1].style.opacity = '1';
-                        lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
-                        lines[2].style.transform = 'translateY(4px) rotate(0deg)';
-                        
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-                
-                // Close mobile menu when clicking on a link
-                mobileMenu.querySelectorAll('a, button').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (link.id !== 'openModalMobile') {
-                            mobileMenu.classList.remove('menu-slide-down');
-                            mobileMenu.classList.add('menu-slide-up');
-                            
-                            setTimeout(() => {
-                                mobileMenu.classList.add('hidden');
-                            }, 300);
-                            
-                            hamburgerIcon.style.opacity = '1';
-                            hamburgerIcon.style.pointerEvents = 'auto';
-                            closeIcon.style.opacity = '0';
-                            closeIcon.style.pointerEvents = 'none';
-                            
-                            const lines = hamburgerIcon.querySelectorAll('span');
-                            lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
-                            lines[1].style.opacity = '1';
-                            lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
-                            lines[2].style.transform = 'translateY(4px) rotate(0deg)';
-                            
-                            document.body.style.overflow = 'auto';
-                        }
-                    });
-                });
-            }
-
             // Contact Modal functionality
             const contactModal = document.getElementById('contactModal');
             const modalBackdrop = document.getElementById('modalBackdrop');
@@ -739,33 +636,37 @@
                 }
             });
 
-            document.querySelectorAll('[id^="openModal"]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const mobileMenu = document.getElementById('mobileMenu');
-                    const hamburgerIcon = document.getElementById('hamburgerIcon');
-                    const closeIcon = document.getElementById('closeIcon');
-                    
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        if (hamburgerIcon) {
-                            hamburgerIcon.style.opacity = '1';
-                            hamburgerIcon.style.pointerEvents = 'auto';
-                            closeIcon.style.opacity = '0';
-                            closeIcon.style.pointerEvents = 'none';
-                            
-                            const lines = hamburgerIcon.querySelectorAll('span');
-                            lines[0].style.transform = 'translateY(-6px) rotate(0deg)';
-                            lines[1].style.opacity = '1';
-                            lines[1].style.transform = 'translateY(-1px) rotate(0deg)';
-                            lines[2].style.transform = 'translateY(4px) rotate(0deg)';
-                        }
-                    }
-                });
-            });
-
+            // Закрытие модального окна при клике вне его
             contactModal.querySelector('.inline-block').addEventListener('click', (e) => {
                 e.stopPropagation();
             });
+
+            // Анимация появления элементов
+            const elements = document.querySelectorAll('.animate-fade-in-up');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 100 + 300}ms`;
+                el.style.opacity = '0';
+            });
+        });
+
+        // Скрываем верхнее меню на мобильных при скролле вниз, показываем при скролле вверх
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Скролл вниз - скрываем navbar
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    // Скролл вверх - показываем navbar
+                    navbar.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            }
         });
     </script>
     
