@@ -149,7 +149,7 @@
         <textarea id="description" placeholder="Описание приложения *"
 class="w-full border px-4 py-2 rounded-lg h-24" required></textarea>
 
-<input id="version" placeholder="Версия (например 1.2.0) — необязательно"
+<input id="version" placeholder="Версия (например 1.2.0)"
 class="w-full border px-4 py-2 rounded-lg">
 
         <div>
@@ -396,7 +396,7 @@ class="w-full border px-4 py-2 rounded-lg">
     const token = localStorage.getItem('adminToken');
     
     // Если нет токена и мы не на странице входа, показываем ошибку
-    if (!token && loginPage.classList.contains('hidden')) {
+    if (!token && !loginPage.classList.contains('hidden')) {
       showToast('Требуется авторизация', false);
       return null;
     }
@@ -590,18 +590,10 @@ class="w-full border px-4 py-2 rounded-lg">
         body: formData
       });
       
-      // Проверяем, не HTML ли вернулся
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('text/html')) {
-        const text = await response.text();
-        console.error('Получен HTML вместо JSON:', text.substring(0, 200));
-        throw new Error('Сервер вернул HTML (возможно 404)');
-      }
-      
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.error || 'Ошибка обновления');
+        throw new Error(data.error || data.message || 'Ошибка обновления');
       }
       
       showToast('Приложение успешно обновлено');
@@ -731,19 +723,10 @@ class="w-full border px-4 py-2 rounded-lg">
         body: formData
       });
 
-      // Проверяем, не HTML ли вернулся
-      const contentType = res.headers.get('content-type');
-      if (contentType && contentType.includes('text/html')) {
-        const text = await res.text();
-        console.error('Получен HTML вместо JSON:', text.substring(0, 200));
-        throw new Error('Сервер вернул HTML (возможно 404)');
-      }
-
       const data = await res.json();
 
       if (!res.ok) {
-        showToast(data.error || "Ошибка загрузки", false);
-        return;
+        throw new Error(data.error || data.message || "Ошибка загрузки");
       }
 
       showToast("APK успешно загружен", true);
@@ -817,7 +800,7 @@ class="w-full border px-4 py-2 rounded-lg">
     resetTokenTimer();
     
     loadApks().catch(() => {
-      console.log('Ошибка загрузки данных');
+      console.log('Ошибка загрузки данных, возможно требуется повторный вход');
     });
   }
 
