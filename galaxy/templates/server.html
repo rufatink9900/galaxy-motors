@@ -73,6 +73,19 @@
       max-height: 90vh;
       overflow-y: auto;
     }
+
+    .version-input-group {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .version-input-group input {
+      flex: 2;
+    }
+    
+    .version-input-group input[type="number"] {
+      flex: 1;
+    }
   </style>
 </head>
 
@@ -149,8 +162,15 @@
         <textarea id="description" placeholder="Описание приложения *"
 class="w-full border px-4 py-2 rounded-lg h-24" required></textarea>
 
-<input id="version" placeholder="Версия (например 1.2.0)"
-class="w-full border px-4 py-2 rounded-lg">
+        <div class="version-input-group">
+          <input id="version" placeholder="Версия (например 1.2.0) *"
+                 class="w-full border px-4 py-2 rounded-lg" required>
+          <input id="versionCode" type="number" placeholder="Code (например 120) *"
+                 class="w-full border px-4 py-2 rounded-lg" required>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">
+          Version Code должен быть числом (например: для версии 1.2.0 используйте 120)
+        </p>
 
         <div>
           <label for="packageName" class="block text-sm font-medium text-gray-700 mb-1">
@@ -257,9 +277,15 @@ class="w-full border px-4 py-2 rounded-lg">
         <textarea id="editDescription" class="w-full border rounded-lg px-4 py-2 h-24" required></textarea>
       </div>
       
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Версия</label>
-        <input id="editVersion" type="text" class="w-full border rounded-lg px-4 py-2">
+      <div class="version-input-group">
+        <div class="flex-1">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Версия *</label>
+          <input id="editVersion" type="text" class="w-full border rounded-lg px-4 py-2" required>
+        </div>
+        <div class="flex-1">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Version Code *</label>
+          <input id="editVersionCode" type="number" class="w-full border rounded-lg px-4 py-2" required>
+        </div>
       </div>
       
       <div>
@@ -267,14 +293,19 @@ class="w-full border px-4 py-2 rounded-lg">
         <input id="editPackageName" type="text" class="w-full border rounded-lg px-4 py-2 font-mono" required>
       </div>
       
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Новый APK файл (оставьте пустым, если не нужно менять)</label>
-        <input id="editApk" type="file" accept=".apk" class="w-full">
-      </div>
-      
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Новая иконка (оставьте пустым, если не нужно менять)</label>
-        <input id="editIcon" type="file" accept="image/*" class="w-full">
+      <div class="border-t pt-4 mt-4">
+        <h3 class="text-lg font-semibold mb-2">Обновление файлов</h3>
+        <p class="text-xs text-gray-400 mb-4">Оставьте поля пустыми, если не хотите менять файлы</p>
+        
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Новый APK файл</label>
+          <input id="editApk" type="file" accept=".apk" class="w-full">
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Новая иконка</label>
+          <input id="editIcon" type="file" accept="image/*" class="w-full">
+        </div>
       </div>
       
       <div class="flex gap-3 pt-4">
@@ -328,6 +359,7 @@ class="w-full border px-4 py-2 rounded-lg">
   const editTitle = document.getElementById('editTitle');
   const editDescription = document.getElementById('editDescription');
   const editVersion = document.getElementById('editVersion');
+  const editVersionCode = document.getElementById('editVersionCode');
   const editPackageName = document.getElementById('editPackageName');
   const editApk = document.getElementById('editApk');
   const editIcon = document.getElementById('editIcon');
@@ -366,36 +398,25 @@ class="w-full border px-4 py-2 rounded-lg">
       clearTimeout(tokenRefreshTimer);
     }
     
-    // Устанавливаем таймер на 50 минут (чуть меньше чем 1 час на сервере)
     tokenRefreshTimer = setTimeout(() => {
       showToast('Сессия скоро истечет. Сохраните изменения.', false);
-    }, 50 * 60 * 1000); // 50 минут
+    }, 50 * 60 * 1000);
   }
 
-  // Функция для полного уничтожения токена
   function destroyToken() {
-    // Очищаем таймер
     if (tokenRefreshTimer) {
       clearTimeout(tokenRefreshTimer);
       tokenRefreshTimer = null;
     }
     
-    // Удаляем токен из localStorage
     localStorage.removeItem('adminToken');
-    // Также удаляем логин для безопасности
     localStorage.removeItem('adminLogin');
-    
-    // Очищаем все возможные следы токена в памяти
     sessionStorage.clear();
-    
-    console.log('Токен полностью уничтожен');
   }
 
-  // Функция для API запросов с обработкой ошибок
   async function apiRequest(endpoint, options = {}) {
     const token = localStorage.getItem('adminToken');
     
-    // Если нет токена и мы не на странице входа, показываем ошибку
     if (!token && !loginPage.classList.contains('hidden')) {
       showToast('Требуется авторизация', false);
       return null;
@@ -414,11 +435,8 @@ class="w-full border px-4 py-2 rounded-lg">
       });
 
       if (response.status === 401) {
-        // При 401 ошибке уничтожаем токен и показываем сообщение
         destroyToken();
         showToast('Сессия истекла. Войдите снова', false);
-        
-        // Перенаправляем на страницу входа
         adminPage.classList.add('hidden');
         loginPage.classList.remove('hidden');
         return null;
@@ -429,9 +447,7 @@ class="w-full border px-4 py-2 rounded-lg">
         throw new Error(errorData.error || errorData.message || 'Ошибка запроса');
       }
 
-      // Сбрасываем таймер при успешном запросе
       resetTokenTimer();
-      
       return await response.json();
     } catch (error) {
       showToast(error.message, false);
@@ -443,12 +459,10 @@ class="w-full border px-4 py-2 rounded-lg">
 
   // Загрузка списка приложений
   async function loadApks() {
-    // Проверяем, не происходит ли выход
     if (isLoggingOut) return;
     
     const token = localStorage.getItem('adminToken');
     if (!token) {
-      // Если нет токена, показываем страницу входа
       adminPage.classList.add('hidden');
       loginPage.classList.remove('hidden');
       return;
@@ -494,7 +508,10 @@ class="w-full border px-4 py-2 rounded-lg">
           <div class="min-w-0">
             <strong class="block truncate">${app.title}</strong>
             <div class="text-xs text-gray-500 font-mono truncate">${app.packageName}</div>
-            ${app.version ? `<div class="text-xs text-green-600">v${app.version}</div>` : ''}
+            <div class="text-xs">
+              <span class="text-green-600">v${app.version}</span>
+              <span class="text-gray-400 ml-2">(code: ${app.versionCode})</span>
+            </div>
             <div class="text-xs text-gray-400 mt-1">
               ID: ${app._id.slice(-6)}
             </div>
@@ -528,7 +545,6 @@ class="w-full border px-4 py-2 rounded-lg">
       tabletGrid.appendChild(tabletItem);
     });
     
-    // Сбрасываем таймер после успешной загрузки
     resetTokenTimer();
   }
 
@@ -542,9 +558,9 @@ class="w-full border px-4 py-2 rounded-lg">
         editTitle.value = app.title || '';
         editDescription.value = app.description || '';
         editVersion.value = app.version || '';
+        editVersionCode.value = app.versionCode || '';
         editPackageName.value = app.packageName || '';
         
-        // Очищаем поля для файлов
         editApk.value = '';
         editIcon.value = '';
         
@@ -561,14 +577,25 @@ class="w-full border px-4 py-2 rounded-lg">
   editForm.onsubmit = async (e) => {
     e.preventDefault();
     
+    // Валидация
+    if (!editTitle.value.trim() || !editDescription.value.trim() || 
+        !editVersion.value.trim() || !editVersionCode.value.trim() || 
+        !editPackageName.value.trim()) {
+      showToast('Заполните все обязательные поля', false);
+      return;
+    }
+
+    if (isNaN(parseInt(editVersionCode.value))) {
+      showToast('Version Code должен быть числом', false);
+      return;
+    }
+
     const formData = new FormData();
     formData.append('title', editTitle.value.trim());
     formData.append('description', editDescription.value.trim());
+    formData.append('version', editVersion.value.trim());
+    formData.append('versionCode', parseInt(editVersionCode.value.trim()));
     formData.append('packageName', editPackageName.value.trim());
-    
-    if (editVersion.value.trim()) {
-      formData.append('version', editVersion.value.trim());
-    }
     
     if (editApk.files[0]) {
       formData.append('apk', editApk.files[0]);
@@ -612,7 +639,6 @@ class="w-full border px-4 py-2 rounded-lg">
     editModal.classList.remove('active');
   });
 
-  // Закрытие по клику вне модального окна
   editModal.addEventListener('click', (e) => {
     if (e.target === editModal) {
       editModal.classList.remove('active');
@@ -661,7 +687,6 @@ class="w-full border px-4 py-2 rounded-lg">
         throw new Error(data.error || data.message || 'Ошибка входа');
       }
 
-      // Сохраняем новый токен
       localStorage.setItem('adminToken', data.token);
       localStorage.setItem('adminLogin', login);
 
@@ -669,10 +694,7 @@ class="w-full border px-4 py-2 rounded-lg">
       adminPage.classList.remove('hidden');
 
       showToast('Вход выполнен успешно');
-      
-      // Запускаем таймер сессии
       resetTokenTimer();
-      
       await loadApks();
     } catch (error) {
       showToast(error.message, false);
@@ -685,25 +707,30 @@ class="w-full border px-4 py-2 rounded-lg">
   uploadForm.onsubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-
     const title = document.getElementById('title').value.trim();
     const packageName = document.getElementById('packageName').value.trim();
     const description = document.getElementById('description').value.trim();
     const version = document.getElementById('version').value.trim();
-
+    const versionCode = document.getElementById('versionCode').value.trim();
     const apkFile = document.getElementById('apk').files[0];
     const iconFile = document.getElementById('icon').files[0];
 
-    if (!title || !packageName || !apkFile || !description) {
+    if (!title || !packageName || !apkFile || !description || !version || !versionCode) {
       showToast('Заполните все обязательные поля', false);
       return;
     }
 
+    if (isNaN(parseInt(versionCode))) {
+      showToast('Version Code должен быть числом', false);
+      return;
+    }
+
+    const formData = new FormData();
     formData.append("title", title);
     formData.append("packageName", packageName);
     formData.append("description", description);
-    if (version) formData.append("version", version);
+    formData.append("version", version);
+    formData.append("versionCode", parseInt(versionCode));
     formData.append("apk", apkFile);
 
     if (iconFile) {
@@ -731,10 +758,7 @@ class="w-full border px-4 py-2 rounded-lg">
 
       showToast("APK успешно загружен", true);
       uploadForm.reset();
-      
-      // Сбрасываем таймер после успешной загрузки
       resetTokenTimer();
-      
       await loadApks();
 
     } catch (err) {
@@ -745,22 +769,16 @@ class="w-full border px-4 py-2 rounded-lg">
     }
   };
 
-  // Выход из системы с полным уничтожением токена
   function handleLogout() {
     isLoggingOut = true;
-    
-    // Полностью уничтожаем токен
     destroyToken();
     
-    // Очищаем все данные
     adminPage.classList.add('hidden');
     loginPage.classList.remove('hidden');
     
-    // Очищаем поля
     passwordInput.value = '';
     usernameInput.value = '';
     
-    // Очищаем списки
     apkList.innerHTML = '';
     tabletGrid.innerHTML = '';
     appsCount.textContent = '0';
@@ -777,7 +795,6 @@ class="w-full border px-4 py-2 rounded-lg">
     handleLogout();
   });
 
-  // Обновление списка
   refreshBtn.addEventListener('click', async () => {
     await loadApks();
     showToast('Список обновлен');
@@ -792,19 +809,14 @@ class="w-full border px-4 py-2 rounded-lg">
   }
 
   if (existingToken) {
-    // Пробуем загрузить данные с существующим токеном
     loginPage.classList.add('hidden');
     adminPage.classList.remove('hidden');
-    
-    // Запускаем таймер сессии
     resetTokenTimer();
-    
     loadApks().catch(() => {
-      console.log('Ошибка загрузки данных, возможно требуется повторный вход');
+      console.log('Ошибка загрузки данных');
     });
   }
 
-  // Защита от восстановления сессии через history
   window.addEventListener('pageshow', function(event) {
     if (event.persisted) {
       const token = localStorage.getItem('adminToken');
@@ -812,13 +824,11 @@ class="w-full border px-4 py-2 rounded-lg">
         adminPage.classList.add('hidden');
         loginPage.classList.remove('hidden');
       } else if (token) {
-        // Если токен есть, запускаем таймер
         resetTokenTimer();
       }
     }
   });
 
-  // Добавляем слушатели событий для сброса таймера при активности пользователя
   ['click', 'keypress', 'scroll', 'mousemove'].forEach(eventType => {
     document.addEventListener(eventType, () => {
       if (localStorage.getItem('adminToken') && !adminPage.classList.contains('hidden')) {
