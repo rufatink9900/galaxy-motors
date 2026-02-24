@@ -3,65 +3,65 @@
 {% block content %}
 
 <!-- HERO SECTION -->
+<!-- HERO SECTION -->
 <section class="relative overflow-hidden text-white">
-    {% comment %} <marquee behavior="scroll" direction="left" scrollamount="8" loop="infinite">
-   {% trans "Lixiang owners, DO NOT update your vehicle to version 8.1 or higher!" %}
-</marquee> {% endcomment %}
-    <div class="relative z-10 max-w-7xl mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             <!-- Text -->
-            <div class="space-y-6">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-snug text-center lg:text-left">
-                    {% trans "Professional auto service with years of experience. Quality, trust, and speed are our priorities." %}
+            <div class="space-y-6 text-center lg:text-left">
+                <h1
+                    class="font-bold leading-tight
+                           text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+                    {% trans "Galaxy Store. It is an application store designed specifically for Li Auto vehicles." %}
                 </h1>
-           
+
+                <p
+                    class="text-base sm:text-lg md:text-xl
+                           text-white/80 max-w-2xl mx-auto lg:mx-0">
+                    {% trans "It allows users to browse, download, install, and update applications optimized for the Li Auto infotainment system." %}
+                </p>
             </div>
 
-          <!-- Image with overlay -->
-<div class="relative flex justify-center lg:justify-end">
-    <!-- Background gradient -->
-    <div class="absolute inset-0 bg-gradient-to-l from-blue-500/5 via-transparent to-purple-500/5 
-                -translate-x-1/4 translate-y-1/4 rounded-full blur-2xl"></div>
-    
-    <!-- Main image with subtle animation -->
-    <img 
-        src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767743516/galaxylog5_xwtpty.png"
-        alt="logo"
-        class="relative w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl object-contain 
-               drop-shadow-xl hover:drop-shadow-2xl hover:scale-[1.02] transition-all duration-300 
-               animate-float-subtle z-10"
-        loading="eager"
-    >
-    
-    <!-- Decorative element -->
-    <div class="absolute -top-8 -right-8 w-32 h-32 sm:w-42 sm:h-42 mt-12">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 
-                    rounded-full blur-xl"></div>
-        <div class="absolute inset-4 border border-white/5 rounded-full animate-ping-slow"></div>
-    </div>
-</div>
+            <!-- Image -->
+            <div class="relative flex justify-center lg:justify-end">
+                <!-- Background glow -->
+                <div
+                    class="absolute inset-0
+                           bg-gradient-to-l from-blue-500/10 via-transparent to-purple-500/10
+                           -translate-x-1/4 translate-y-1/4
+                           rounded-full blur-3xl">
+                </div>
 
-<style>
-@keyframes float-subtle {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
+                <!-- Image -->
+                <img
+                    src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1771918398/galaxy-logo-final_hyougb.png"
+                    alt="Galaxy logo"
+                    loading="eager"
+                    class="relative z-10
+                           w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80
+                           h-auto object-contain
+                           rounded-xl
+                           drop-shadow-xl
+                           hover:scale-105 hover:drop-shadow-2xl
+                           transition-all duration-500 ease-out
+                           animate-float-subtle"
+                >
 
-@keyframes ping-slow {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(1.5); opacity: 0; }
-}
-
-.animate-float-subtle {
-    animation: float-subtle 6s ease-in-out infinite;
-}
-
-.animate-ping-slow {
-    animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-</style>
-
+                <!-- Decorative ring -->
+                <div class="absolute -top-6 -right-6 sm:-top-8 sm:-right-8">
+                    <div
+                        class="w-24 h-24 sm:w-32 sm:h-32
+                               bg-gradient-to-br from-blue-600/20 to-purple-600/20
+                               rounded-full blur-2xl">
+                    </div>
+                    <div
+                        class="absolute inset-2
+                               rounded-full border border-white/10
+                               animate-ping-slow">
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

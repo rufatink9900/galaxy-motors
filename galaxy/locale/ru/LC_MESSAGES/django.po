@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-21 20:57+0400\n"
+"POT-Creation-Date: 2026-02-24 11:16+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "Найдите аксессуары по категории, модел�
 
 #: .\templates\accessories.html:44 .\templates\accessories.html:63
 #: .\templates\apps_list.html:17 .\templates\catalog.html:43
-#: .\templates\catalog.html:62 .\templates\services.html:14
+#: .\templates\catalog.html:62 .\templates\services.html:25
 msgid "Search"
 msgstr "Поиск"
 
@@ -73,7 +73,7 @@ msgid "Selected"
 msgstr "Выбрано"
 
 #: .\templates\accessories.html:246 .\templates\accessory_detail.html:117
-#: .\templates\service_detail.html:101 .\templates\services.html:160
+#: .\templates\service_detail.html:101 .\templates\services.html:172
 msgid "Price on request"
 msgstr "Цена по запросу"
 
@@ -161,12 +161,12 @@ msgid "Show all apps"
 msgstr ""
 
 #: .\templates\base.html:312 .\templates\base.html:383
-#: .\templates\base.html:422 .\templates\index.html:79
+#: .\templates\base.html:422 .\templates\index.html:83
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Услуги"
 
-#: .\templates\base.html:313
+#: .\templates\base.html:313 .\templates\base.html:428
 msgid "Applications"
 msgstr "Приложения"
 
@@ -175,7 +175,7 @@ msgstr "Приложения"
 msgid "Contact"
 msgstr "Связаться"
 
-#: .\templates\base.html:375 .\templates\index.html:17 .\templates\li.html:15
+#: .\templates\base.html:375 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
@@ -190,14 +190,6 @@ msgstr "Быстрые ссылки"
 #: .\templates\base.html:406
 msgid "All rights reserved."
 msgstr "Все права защищены"
-
-#: .\templates\base.html:416
-msgid "Home"
-msgstr "Главная страница"
-
-#: .\templates\base.html:428
-msgid "Apps"
-msgstr ""
 
 #: .\templates\base.html:458
 msgid "Contact Us"
@@ -261,27 +253,39 @@ msgstr "Приложений пока нет"
 msgid "Related cars"
 msgstr ""
 
-#: .\templates\index.html:90
+#: .\templates\index.html:18
+msgid ""
+"Galaxy Store. It is an application store designed specifically "
+"for Li Auto vehicles."
+msgstr "Galaxy Store - это магазин приложений, разработанный специально для автомобилей Li Auto."
+
+#: .\templates\index.html:21
+msgid ""
+"It allows users to browse, download, install, and update applications "
+"optimized for the Li Auto infotainment system."
+msgstr "Он позволяет пользователям просматривать, скачивать, устанавливать и обновлять приложения, оптимизированные для мультимедийной системы Li Auto."
+
+#: .\templates\index.html:94
 msgid "Battery Diagnostics"
 msgstr "Диагностика батареи"
 
-#: .\templates\index.html:93
+#: .\templates\index.html:97
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr "Полная проверка и оценка состояния аккумуляторов электромобиля."
 
-#: .\templates\index.html:100
+#: .\templates\index.html:104
 msgid "Electric Motor Repair"
 msgstr "Ремонт электродвигателя"
 
-#: .\templates\index.html:103
+#: .\templates\index.html:107
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Профессиональный ремонт и обслуживание опытными мастерами."
 
-#: .\templates\index.html:110
+#: .\templates\index.html:114
 msgid "Software & Diagnostics"
 msgstr "Программное обеспечение и диагностика"
 
-#: .\templates\index.html:113
+#: .\templates\index.html:117
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Обновления системы, диагностика ошибок и оптимизация программного "
@@ -291,7 +295,7 @@ msgstr ""
 msgid "Info"
 msgstr "Информация"
 
-#: .\templates\service_detail.html:64 .\templates\services.html:89
+#: .\templates\service_detail.html:64 .\templates\services.html:101
 msgid "Make"
 msgstr "Марка"
 
@@ -349,63 +353,66 @@ msgstr "Прозрачно"
 msgid "Fixed prices"
 msgstr "Услуги"
 
-#: .\templates\services.html:11
+#: .\templates\services.html:12
 msgid "Search services…"
 msgstr "Поиск услуг..."
 
-#: .\templates\services.html:23
+#: .\templates\services.html:35
 msgid "Makes"
 msgstr "Марки"
 
-#: .\templates\services.html:63
+#: .\templates\services.html:75
 msgid "No models"
 msgstr ""
 
-#: .\templates\services.html:98
+#: .\templates\services.html:110
 #, fuzzy
 #| msgid "Services"
 msgid "services"
 msgstr "Услуги"
 
-#: .\templates\services.html:125
+#: .\templates\services.html:137
 msgid "No image"
 msgstr ""
 
-#: .\templates\services.html:182
+#: .\templates\services.html:194
 msgid "No services found"
 msgstr "Услуги не найдены"
 
-#: .\templates\services.html:184
+#: .\templates\services.html:196
 msgid "Try selecting a different category or check back later"
 msgstr "Попробуйте выбрать другую категорию или зайдите позже"
 
-#: .\templates\services.html:191
+#: .\templates\services.html:203
 msgid "All services"
 msgstr "Услуги"
 
-#: .\templates\services.html:210
+#: .\templates\services.html:222
 msgid "Fast execution"
 msgstr "Быстрое выполнение"
 
-#: .\templates\services.html:211
+#: .\templates\services.html:223
 msgid "Average completion time - 2-4 hours"
 msgstr "Среднее время выполнения – 2–4 часа"
 
-#: .\templates\services.html:219
+#: .\templates\services.html:231
 msgid "Quality guarantee"
 msgstr "Гарантия качества"
 
-#: .\templates\services.html:220
+#: .\templates\services.html:232
 msgid "Warranty on all types of work 1 year"
 msgstr "Гарантия на все виды работ 1 год"
 
-#: .\templates\services.html:228
+#: .\templates\services.html:240
 msgid "Professionals"
 msgstr "Профессионалы"
 
-#: .\templates\services.html:229
+#: .\templates\services.html:241
 msgid "Experienced masters with over 5 years of experience"
 msgstr "Опытные мастера с более чем 5-летним стажем"
+
+#~ msgid "Home"
+#~ msgstr "Главная страница"
 
 #~ msgid "Lixiang owners, DO NOT update your vehicle to version 8.1 or higher!"
 #~ msgstr ""
