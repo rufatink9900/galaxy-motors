@@ -36,6 +36,6 @@ def server(request):
     return render(request, 'server.html')
 
 
-@login_required
+
 def links(request):
     return render(request, 'links.html')
