@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import App
 from django.db.models import Q
 from django.http import HttpResponse
-
+from django.http import FileResponse
 
 def apps_list(request):
     query = request.GET.get('q', '')  # текст поиска
