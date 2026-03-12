@@ -3,8 +3,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name="index"),
     path('services/', include('services.urls')),
-    path('applications/', include('apps.urls')),
-    path('apps/', include('apps.urls')),
+    path('apps/', views.apps, name="apps"),
     # path('accessories/', include('accessories.urls')),
     path('contact/', views.contact, name="contact"),
     path('accounts/', include('django.contrib.auth.urls')),

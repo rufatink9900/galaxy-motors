@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-24 11:16+0400\n"
+"POT-Creation-Date: 2026-03-12 17:20+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,8 +39,8 @@ msgid "Find accessories by category, model, or name."
 msgstr ""
 
 #: .\templates\accessories.html:44 .\templates\accessories.html:63
-#: .\templates\apps_list.html:17 .\templates\catalog.html:43
-#: .\templates\catalog.html:62 .\templates\services.html:25
+#: .\templates\catalog.html:43 .\templates\catalog.html:62
+#: .\templates\services.html:25
 msgid "Search"
 msgstr ""
 
@@ -74,11 +74,11 @@ msgid "Price on request"
 msgstr ""
 
 #: .\templates\accessories.html:254 .\templates\app_detail.html:140
-#: .\templates\apps_list.html:105 .\templates\catalog.html:157
+#: .\templates\catalog.html:157
 msgid "Details"
 msgstr ""
 
-#: .\templates\accessories.html:272 .\templates\apps_list.html:157
+#: .\templates\accessories.html:272
 msgid "Previous"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 msgid "of"
 msgstr ""
 
-#: .\templates\accessories.html:283 .\templates\apps_list.html:179
+#: .\templates\accessories.html:283
 msgid "Next"
 msgstr ""
 
@@ -130,32 +130,20 @@ msgstr ""
 msgid "Premium"
 msgstr ""
 
-#: .\templates\apps_list.html:12
-msgid "Search applications..."
+#: .\templates\apps_list.html:8
+msgid "Applications in Galaxy Store"
 msgstr ""
 
-#: .\templates\apps_list.html:125
+#: .\templates\apps_list.html:66
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:127
+#: .\templates\apps_list.html:68
 msgid "No applications available"
 msgstr ""
 
-#: .\templates\apps_list.html:132
-msgid "Try another search query"
-msgstr ""
-
-#: .\templates\apps_list.html:134
-msgid "Check back later for new applications"
-msgstr ""
-
-#: .\templates\apps_list.html:140
-msgid "Show all apps"
-msgstr ""
-
 #: .\templates\base.html:312 .\templates\base.html:383
-#: .\templates\base.html:422 .\templates\index.html:83
+#: .\templates\base.html:422 .\templates\index.html:78
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr ""
@@ -239,39 +227,39 @@ msgstr ""
 msgid "Related cars"
 msgstr ""
 
-#: .\templates\index.html:18
+#: .\templates\index.html:16
 msgid ""
-"Galaxy Store for Li Auto. It is an application store designed specifically "
-"for Li Auto vehicles."
+"Galaxy Store. It is an application store designed specifically for Li Auto "
+"vehicles."
 msgstr ""
 
-#: .\templates\index.html:21
+#: .\templates\index.html:22
 msgid ""
 "It allows users to browse, download, install, and update applications "
 "optimized for the Li Auto infotainment system."
 msgstr ""
 
-#: .\templates\index.html:94
+#: .\templates\index.html:89
 msgid "Battery Diagnostics"
 msgstr ""
 
-#: .\templates\index.html:97
+#: .\templates\index.html:92
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr ""
 
-#: .\templates\index.html:104
+#: .\templates\index.html:99
 msgid "Electric Motor Repair"
 msgstr ""
 
-#: .\templates\index.html:107
+#: .\templates\index.html:102
 msgid "Professional repair and maintenance by experienced masters."
 msgstr ""
 
-#: .\templates\index.html:114
+#: .\templates\index.html:109
 msgid "Software & Diagnostics"
 msgstr ""
 
-#: .\templates\index.html:117
+#: .\templates\index.html:112
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 

@@ -310,7 +310,7 @@
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-10 delay-300 desktop-menu-items">
                     <ul class="flex items-center space-x-6 lg:space-x-10 text-sm tracking-widest">
                         <li><a href="{% url 'services' %}" class="text-white hover:text-cyan-400 transition-colors py-2 px-1">{% trans "Services" %}</a></li>
-                        <li><a href="{% url 'apps_list' %}" class="text-white hover:text-cyan-400 transition-colors py-2 px-1">{% trans "Applications" %}</a></li>
+                        <li><a href="{% url 'apps' %}" class="text-white hover:text-cyan-400 transition-colors py-2 px-1">{% trans "Applications" %}</a></li>
                     </ul>
                     
                     <!-- Language Selector Desktop -->
@@ -423,7 +423,7 @@
         </a>
 
         <!-- Applications -->
-        <a href="{% url 'apps_list' %}" class="mobile-nav-item {% if 'apps' in request.path %}active{% endif %}" id="nav-apps">
+        <a href="{% url 'apps' %}" class="mobile-nav-item {% if 'apps' in request.path %}active{% endif %}" id="nav-apps">
             <span class="mobile-nav-icon">📱</span>
             <span class="mobile-nav-label">{% trans "Applications" %}</span>
         </a>

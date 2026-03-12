@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-24 11:16+0400\n"
+"POT-Creation-Date: 2026-03-12 17:20+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,8 +39,8 @@ msgid "Find accessories by category, model, or name."
 msgstr "Aksessuarları kateqoriya, model və ya ad üzrə tapın."
 
 #: .\templates\accessories.html:44 .\templates\accessories.html:63
-#: .\templates\apps_list.html:17 .\templates\catalog.html:43
-#: .\templates\catalog.html:62 .\templates\services.html:25
+#: .\templates\catalog.html:43 .\templates\catalog.html:62
+#: .\templates\services.html:25
 msgid "Search"
 msgstr "Axtar"
 
@@ -76,11 +76,11 @@ msgid "Price on request"
 msgstr "Qiymət sorğu üzrə"
 
 #: .\templates\accessories.html:254 .\templates\app_detail.html:140
-#: .\templates\apps_list.html:105 .\templates\catalog.html:157
+#: .\templates\catalog.html:157
 msgid "Details"
 msgstr "Ətraflı"
 
-#: .\templates\accessories.html:272 .\templates\apps_list.html:157
+#: .\templates\accessories.html:272
 msgid "Previous"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 msgid "of"
 msgstr ""
 
-#: .\templates\accessories.html:283 .\templates\apps_list.html:179
+#: .\templates\accessories.html:283
 msgid "Next"
 msgstr ""
 
@@ -134,34 +134,22 @@ msgstr "Digər Tətbiqlər"
 msgid "Premium"
 msgstr ""
 
-#: .\templates\apps_list.html:12
-msgid "Search applications..."
-msgstr "Tətbiqləri axtar…"
+#: .\templates\apps_list.html:8
 
-#: .\templates\apps_list.html:125
+msgid "Applications in Galaxy Store"
+msgstr "Galaxy Store-dəki tətbiqlərin siyahısı"
+
+#: .\templates\apps_list.html:66
 msgid "Nothing found"
 msgstr ""
 
-#: .\templates\apps_list.html:127
-#, fuzzy
-#| msgid "No programs available yet"
+#: .\templates\apps_list.html:68
+
 msgid "No applications available"
 msgstr "Hələlik proqram yoxdur"
 
-#: .\templates\apps_list.html:132
-msgid "Try another search query"
-msgstr ""
-
-#: .\templates\apps_list.html:134
-msgid "Check back later for new applications"
-msgstr ""
-
-#: .\templates\apps_list.html:140
-msgid "Show all apps"
-msgstr ""
-
 #: .\templates\base.html:312 .\templates\base.html:383
-#: .\templates\base.html:422 .\templates\index.html:83
+#: .\templates\base.html:422 .\templates\index.html:78
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Xidmətlər"
@@ -255,41 +243,45 @@ msgstr "Hələlik proqram yoxdur"
 msgid "Related cars"
 msgstr ""
 
-#: .\templates\index.html:18
+#: .\templates\index.html:16
 msgid ""
-"Galaxy Store. It is an application store designed specifically "
-"for Li Auto vehicles."
-msgstr "Galaxy Store - Li Auto avtomobilləri üçün xüsusi olaraq hazırlanmış tətbiq dükanıdır."
+"Galaxy Store. It is an application store designed specifically for Li Auto "
+"vehicles."
+msgstr ""
+"Galaxy Store - Li Auto avtomobilləri üçün xüsusi olaraq hazırlanmış tətbiq "
+"dükanıdır."
 
-#: .\templates\index.html:21
+#: .\templates\index.html:22
 msgid ""
 "It allows users to browse, download, install, and update applications "
 "optimized for the Li Auto infotainment system."
-msgstr "İstifadəçilərə Li Auto multimedia sistemi üçün optimallaşdırılmış tətbiqləri axtarmağa, yükləməyə, quraşdırmağa və yeniləməyə imkan verir."
+msgstr ""
+"İstifadəçilərə Li Auto multimedia sistemi üçün optimallaşdırılmış tətbiqləri "
+"axtarmağa, yükləməyə, quraşdırmağa və yeniləməyə imkan verir."
 
-#: .\templates\index.html:94
+#: .\templates\index.html:89
 msgid "Battery Diagnostics"
 msgstr "Batareya diaqnostikası"
 
-#: .\templates\index.html:97
+#: .\templates\index.html:92
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr ""
 "Elektrik avtomobillərinin batareyalarının tam yoxlanışı və sağlamlıq "
 "yoxlaması"
 
-#: .\templates\index.html:104
+#: .\templates\index.html:99
 msgid "Electric Motor Repair"
 msgstr "Elektrik mühərrikinin təmiri"
 
-#: .\templates\index.html:107
+#: .\templates\index.html:102
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Təcrübəli ustalar tərəfindən peşəkar təmir və xidmət."
 
-#: .\templates\index.html:114
+#: .\templates\index.html:109
 msgid "Software & Diagnostics"
 msgstr "Proqram təminatı və diaqnostika"
 
-#: .\templates\index.html:117
+#: .\templates\index.html:112
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Sistem yeniləmələri, səhv diaqnostikası və proqram təminatının "
@@ -414,6 +406,9 @@ msgstr "Peşəkarlar"
 #: .\templates\services.html:241
 msgid "Experienced masters with over 5 years of experience"
 msgstr "5 ildən çox təcrübəyə malik təcrübəli ustalar"
+
+#~ msgid "Search applications..."
+#~ msgstr "Tətbiqləri axtar…"
 
 #~ msgid "Home"
 #~ msgstr "Ana səhifə"
