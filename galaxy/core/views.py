@@ -34,3 +34,8 @@ def apps(request):
 @login_required(login_url='login')
 def server(request):
     return render(request, 'server.html')
+
+
+@login_required
+def links(request):
+    return render(request, 'links.html')
