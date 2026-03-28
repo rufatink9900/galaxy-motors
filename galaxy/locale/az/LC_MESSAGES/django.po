@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-12 17:20+0400\n"
+"POT-Creation-Date: 2026-03-28 04:22+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,7 +76,7 @@ msgid "Price on request"
 msgstr "Qiymət sorğu üzrə"
 
 #: .\templates\accessories.html:254 .\templates\app_detail.html:140
-#: .\templates\catalog.html:157
+#: .\templates\catalog.html:157 .\templates\index.html:35
 msgid "Details"
 msgstr "Ətraflı"
 
@@ -135,7 +135,6 @@ msgid "Premium"
 msgstr ""
 
 #: .\templates\apps_list.html:8
-
 msgid "Applications in Galaxy Store"
 msgstr "Galaxy Store-dəki tətbiqlərin siyahısı"
 
@@ -144,12 +143,11 @@ msgid "Nothing found"
 msgstr ""
 
 #: .\templates\apps_list.html:68
-
 msgid "No applications available"
 msgstr "Hələlik proqram yoxdur"
 
 #: .\templates\base.html:312 .\templates\base.html:383
-#: .\templates\base.html:422 .\templates\index.html:78
+#: .\templates\base.html:422 .\templates\index.html:92
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Xidmətlər"
@@ -243,15 +241,14 @@ msgstr "Hələlik proqram yoxdur"
 msgid "Related cars"
 msgstr ""
 
-#: .\templates\index.html:16
-msgid ""
-"Galaxy Store. It is an application store designed specifically for Li Auto "
-"vehicles."
+#: .\templates\index.html:23
+
+msgid "It is an application store designed specifically for Li Auto vehicles."
 msgstr ""
-"Galaxy Store - Li Auto avtomobilləri üçün xüsusi olaraq hazırlanmış tətbiq "
+"Li Auto avtomobilləri üçün xüsusi olaraq hazırlanmış tətbiq "
 "dükanıdır."
 
-#: .\templates\index.html:22
+#: .\templates\index.html:29
 msgid ""
 "It allows users to browse, download, install, and update applications "
 "optimized for the Li Auto infotainment system."
@@ -259,29 +256,29 @@ msgstr ""
 "İstifadəçilərə Li Auto multimedia sistemi üçün optimallaşdırılmış tətbiqləri "
 "axtarmağa, yükləməyə, quraşdırmağa və yeniləməyə imkan verir."
 
-#: .\templates\index.html:89
+#: .\templates\index.html:103
 msgid "Battery Diagnostics"
 msgstr "Batareya diaqnostikası"
 
-#: .\templates\index.html:92
+#: .\templates\index.html:106
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr ""
 "Elektrik avtomobillərinin batareyalarının tam yoxlanışı və sağlamlıq "
 "yoxlaması"
 
-#: .\templates\index.html:99
+#: .\templates\index.html:113
 msgid "Electric Motor Repair"
 msgstr "Elektrik mühərrikinin təmiri"
 
-#: .\templates\index.html:102
+#: .\templates\index.html:116
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Təcrübəli ustalar tərəfindən peşəkar təmir və xidmət."
 
-#: .\templates\index.html:109
+#: .\templates\index.html:123
 msgid "Software & Diagnostics"
 msgstr "Proqram təminatı və diaqnostika"
 
-#: .\templates\index.html:112
+#: .\templates\index.html:126
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Sistem yeniləmələri, səhv diaqnostikası və proqram təminatının "

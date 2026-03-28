@@ -8,6 +8,7 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('server/', views.server, name='server'),
-    path('links/', views.links, name="links")
+    path('galaxy-store/', views.galaxy_store, name="galaxy-store")
+    # path('links/', views.links, name="links")
     # path('knowledge-base/', include('catalog.urls'))
 ]

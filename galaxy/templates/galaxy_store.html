@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto my-10 px-6 py-8 flex flex-col md:flex-row items-center gap-8 relative">
+    <!-- Текст слева, смещён вниз -->
+    <div class="md:w-1/2 text-white relative md:-top-12">
+        <h1 class="text-3xl font-bold mb-4">Galaxy Store для Li Auto</h1>
+        <p class="mb-4">
+            После обновления OTA до версии 8 и выше, порт <span class="font-semibold">ADB</span> закрывается, и скачивание приложений напрямую на автомобиль становится практически невозможным. Поэтому использование официального магазина приложений — наиболее удобное и безопасное решение.
+        </p>
+        <p class="mb-4">
+            <span class="font-semibold">Galaxy Store</span> — это магазин приложений, разработанный специально для автомобилей Li Auto. Он позволяет пользователям просматривать, скачивать, устанавливать и обновлять приложения, полностью оптимизированные для мультимедийной системы Li Auto.
+        </p>
+        <p class="font-bold mb-4">
+            Стоимость доступа: <span class="text-indigo-400">300 AZN</span>
+        </p>
+          <a href="tel:+994518400012" 
+                           class="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-black to-cyan-900/20 border border-cyan-500/20 hover:border-cyan-400/40 transition-all hover-galaxy hover:scale-[1.02] delay-100">
+                            <div class="flex items-center space-x-4">
+                                <div class="p-3 rounded-lg bg-cyan-900/30 group-hover:bg-cyan-900/50 transition-all">
+                                    <span class="text-2xl text-cyan-400">📞</span>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm text-white/80">
+                                        +994 51 840 00 12
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-5 h-5 text-white/40 group-hover:text-cyan-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+    </div>
+
+    <!-- Картинка справа -->
+    <div class="md:w-1/2 xl:w-2/3">
+        <img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1774656559/photo_2026-03-28_04-09-08_zdnsbx.jpg" alt="Li Auto Galaxy Store" class="w-full rounded-lg shadow-md object-cover">
+    </div>
+</div>
+{% endblock %}

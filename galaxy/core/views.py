@@ -36,6 +36,5 @@ def server(request):
     return render(request, 'server.html')
 
 
-
-def links(request):
-    return render(request, 'links.html')
+def galaxy_store(request):
+    return render(request, "galaxy_store.html")

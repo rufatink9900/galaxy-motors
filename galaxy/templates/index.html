@@ -5,69 +5,78 @@
 <!-- HERO SECTION -->
 <!-- HERO SECTION -->
 <section class="relative overflow-hidden text-white">
-    <div class="p-7">
-        <a href="{% url "links" %}">Нажми сюда</a>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
+
+    <!-- Text -->
+    <div class="space-y-6 text-center lg:text-left relative">
+        <!-- Indicator / Glow above title -->
+        <span class="inline-block px-3 py-1 mb-2 text-indigo-400 font-semibold text-sm uppercase tracking-wider
+                     bg-indigo-500/20 backdrop-blur-sm rounded-full shadow-md animate-pulse">
+            Galaxy Store
+        </span>
+
+        <h1
+            class="font-bold leading-tight
+                   text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white">
+            {% trans "It is an application store designed specifically for Li Auto vehicles." %}
+        </h1>
+
+        <p
+            class="text-base text-sm
+                   text-white/80 max-w-2xl mx-auto lg:mx-0">
+            {% trans "It allows users to browse, download, install, and update applications optimized for the Li Auto infotainment system." %}
+        </p>
+
+        <!-- Button / Link to Galaxy Store section -->
+        <a href="{% url "galaxy-store" %}"
+           class="inline-block mt-4 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow hover:bg-indigo-700 transition">
+            {% trans "Details" %}
+        </a>
     </div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-20">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-            <!-- Text -->
-            <div class="space-y-6 text-center lg:text-left">
-                <h1
-                    class="font-bold leading-tight
-                           text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
-                    {% trans "Galaxy Store. It is an application store designed specifically for Li Auto vehicles." %}
-                </h1>
+    <!-- Image -->
+    <div class="relative flex justify-center lg:justify-end">
+        <!-- Background glow -->
+        <div
+            class="absolute inset-0
+                   bg-gradient-to-l from-blue-500/10 via-transparent to-purple-500/10
+                   -translate-x-1/4 translate-y-1/4
+                   rounded-full blur-3xl">
+        </div>
 
-                <p
-                    class="text-base sm:text-lg md:text-xl
-                           text-white/80 max-w-2xl mx-auto lg:mx-0">
-                    {% trans "It allows users to browse, download, install, and update applications optimized for the Li Auto infotainment system." %}
-                </p>
+        <!-- Image -->
+        <a href="#galaxy-store" class="relative z-10">
+            <img
+                src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1771918398/galaxy-logo-final_hyougb.png"
+                alt="Galaxy logo"
+                loading="eager"
+                class="w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80
+                       h-auto object-contain
+                       rounded-xl
+                       drop-shadow-xl
+                       hover:scale-105 hover:drop-shadow-2xl
+                       transition-all duration-500 ease-out
+                       animate-float-subtle"
+            >
+        </a>
+
+        <!-- Decorative ring -->
+        <div class="absolute -top-6 -right-6 sm:-top-8 sm:-right-8">
+            <div
+                class="w-24 h-24 sm:w-32 sm:h-32
+                       bg-gradient-to-br from-blue-600/20 to-purple-600/20
+                       rounded-full blur-2xl">
             </div>
-
-            <!-- Image -->
-            <div class="relative flex justify-center lg:justify-end">
-                <!-- Background glow -->
-                <div
-                    class="absolute inset-0
-                           bg-gradient-to-l from-blue-500/10 via-transparent to-purple-500/10
-                           -translate-x-1/4 translate-y-1/4
-                           rounded-full blur-3xl">
-                </div>
-
-                <!-- Image -->
-                <img
-                    src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1771918398/galaxy-logo-final_hyougb.png"
-                    alt="Galaxy logo"
-                    loading="eager"
-                    class="relative z-10
-                           w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80
-                           h-auto object-contain
-                           rounded-xl
-                           drop-shadow-xl
-                           hover:scale-105 hover:drop-shadow-2xl
-                           transition-all duration-500 ease-out
-                           animate-float-subtle"
-                >
-
-                <!-- Decorative ring -->
-                <div class="absolute -top-6 -right-6 sm:-top-8 sm:-right-8">
-                    <div
-                        class="w-24 h-24 sm:w-32 sm:h-32
-                               bg-gradient-to-br from-blue-600/20 to-purple-600/20
-                               rounded-full blur-2xl">
-                    </div>
-                    <div
-                        class="absolute inset-2
-                               rounded-full border border-white/10
-                               animate-ping-slow">
-                    </div>
-                </div>
+            <div
+                class="absolute inset-2
+                       rounded-full border border-white/10
+                       animate-ping-slow">
             </div>
-
         </div>
     </div>
+</div>
 </section>
 
 <!-- SERVICES SECTION -->
