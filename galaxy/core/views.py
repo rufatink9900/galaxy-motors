@@ -38,3 +38,12 @@ def server(request):
 
 def galaxy_store(request):
     return render(request, "galaxy_store.html")
+
+
+# def proshivki(request):
+#     firmwares = [
+#         {"title": "Huawei HiCar Unlock", "price": 50},
+#         {"title": "Android Auto Fix", "price": 30},
+#         {"title": "CarPlay Activation", "price": 70},
+#     ]
+#     return render(request, "proshivki.html", {"firmwares": firmwares})
