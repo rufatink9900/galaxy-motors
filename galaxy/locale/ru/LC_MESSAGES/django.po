@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-28 04:22+0400\n"
+"POT-Creation-Date: 2026-04-23 18:18+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,22 +146,26 @@ msgstr ""
 msgid "No applications available"
 msgstr "Приложений пока нет"
 
-#: .\templates\base.html:312 .\templates\base.html:383
-#: .\templates\base.html:422 .\templates\index.html:92
+#: .\templates\base.html:352 .\templates\base.html:418
+#: .\templates\base.html:446 .\templates\index.html:90
 #: .\templates\service_detail.html:11
 msgid "Services"
 msgstr "Услуги"
 
-#: .\templates\base.html:313 .\templates\base.html:428
+#: .\templates\base.html:353 .\templates\base.html:419
 msgid "Applications"
 msgstr "Приложения"
 
-#: .\templates\base.html:333 .\templates\base.html:384
-#: .\templates\base.html:390 .\templates\base.html:434
+#: .\templates\base.html:373 .\templates\base.html:420
+#: .\templates\base.html:447 .\templates\base.html:453
 msgid "Contact"
 msgstr "Связаться"
 
-#: .\templates\base.html:375 .\templates\li.html:15
+#: .\templates\base.html:417
+msgid "Home"
+msgstr "Главная страница"
+
+#: .\templates\base.html:438 .\templates\li.html:15
 msgid ""
 "Professional auto service with years of experience. Quality, trust, and "
 "speed are our priorities."
@@ -169,23 +173,23 @@ msgstr ""
 "Профессиональный автосервис с многолетним опытом. Качество, доверие и "
 "скорость — наши приоритеты."
 
-#: .\templates\base.html:381
+#: .\templates\base.html:444
 msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
-#: .\templates\base.html:406
+#: .\templates\base.html:469
 msgid "All rights reserved."
 msgstr "Все права защищены"
 
-#: .\templates\base.html:458
+#: .\templates\base.html:494
 msgid "Contact Us"
 msgstr "Свяжитесь с нами"
 
-#: .\templates\base.html:510
+#: .\templates\base.html:546
 msgid "Email"
 msgstr ""
 
-#: .\templates\base.html:527
+#: .\templates\base.html:563
 msgid "Mon-Fri: 9:00-18:00"
 msgstr "Понедельник–суббота: 12:00–18:00"
 
@@ -235,16 +239,42 @@ msgstr "Файл отсутствует"
 msgid "No description available"
 msgstr "Приложений пока нет"
 
-#: .\templates\details.html:143
-msgid "Related cars"
+
+
+#: .\templates\galaxy_store.html:13
+msgid "for Li Auto"
+msgstr "для Li Auto"
+
+#: .\templates\galaxy_store.html:19
+msgid ""
+"After OTA update to version 8 and above, the ADB port is closed, and "
+"downloading apps directly to the car becomes practically impossible. "
+"Therefore, using the official app store is the most convenient and safe "
+"solution."
 msgstr ""
+"После обновления OTA до версии 8 и выше, порт ADB закрывается, и скачивание "
+"приложений напрямую на автомобиль становится практически невозможным. "
+"Поэтому использование официального магазина приложений — наиболее удобное и "
+"безопасное решение."
+
+#: .\templates\galaxy_store.html:25
+msgid ""
+"is an app store developed specifically for Li Auto vehicles. It allows users "
+"to browse, download, install and update applications fully optimized for the "
+"Li Auto multimedia system."
+msgstr ""
+"это магазин приложений, разработанный специально для автомобилей Li Auto. "
+"Он позволяет пользователям просматривать, скачивать, устанавливать и "
+"обновлять приложения, полностью оптимизированные для мультимедийной системы Li Auto."
+
+#: .\templates\galaxy_store.html:41
+msgid "Contacts"
+msgstr "Контакты"
 
 #: .\templates\index.html:23
-
 msgid "It is an application store designed specifically for Li Auto vehicles."
 msgstr ""
-"Это магазин приложений, разработанный специально для "
-"автомобилей Li Auto."
+"Это магазин приложений, разработанный специально для автомобилей Li Auto."
 
 #: .\templates\index.html:29
 msgid ""
@@ -254,27 +284,27 @@ msgstr ""
 "Он позволяет пользователям просматривать, скачивать, устанавливать и "
 "обновлять приложения, оптимизированные для мультимедийной системы Li Auto."
 
-#: .\templates\index.html:103
+#: .\templates\index.html:101
 msgid "Battery Diagnostics"
 msgstr "Диагностика батареи"
 
-#: .\templates\index.html:106
+#: .\templates\index.html:104
 msgid "Full inspection and health check of electric vehicle batteries."
 msgstr "Полная проверка и оценка состояния аккумуляторов электромобиля."
 
-#: .\templates\index.html:113
+#: .\templates\index.html:111
 msgid "Electric Motor Repair"
 msgstr "Ремонт электродвигателя"
 
-#: .\templates\index.html:116
+#: .\templates\index.html:114
 msgid "Professional repair and maintenance by experienced masters."
 msgstr "Профессиональный ремонт и обслуживание опытными мастерами."
 
-#: .\templates\index.html:123
+#: .\templates\index.html:121
 msgid "Software & Diagnostics"
 msgstr "Программное обеспечение и диагностика"
 
-#: .\templates\index.html:126
+#: .\templates\index.html:124
 msgid "System updates, error diagnostics, and software optimization."
 msgstr ""
 "Обновления системы, диагностика ошибок и оптимизация программного "
@@ -402,9 +432,6 @@ msgstr "Опытные мастера с более чем 5-летним ста
 
 #~ msgid "Search applications..."
 #~ msgstr "Поиск приложений…"
-
-#~ msgid "Home"
-#~ msgstr "Главная страница"
 
 #~ msgid "Lixiang owners, DO NOT update your vehicle to version 8.1 or higher!"
 #~ msgstr ""
