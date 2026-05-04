@@ -2,168 +2,171 @@
 {% load i18n %}
 {% block content %}
 
-<!-- HERO SECTION -->
-<!-- HERO SECTION -->
+<!-- HERO + MARQUEE -->
+<section class="py-8 sm:py-10 bg-gradient-to-r from-indigo-950/30 via-purple-950/20 to-indigo-950/30 border-y border-indigo-500/20 overflow-hidden">
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-track">
+
+            <!-- ORIGINAL -->
+            <span class="brand-item">Li Auto</span>
+            <span class="brand-item">BYD Leopard 7</span>
+            <span class="brand-item">Zeekr 9x</span>
+            <span class="brand-item">Zeekr 001</span>
+            <span class="brand-item">Changan Q07</span>
+            <span class="brand-item">Changan Deepal S07</span>
+            <span class="brand-item">BYD Rox 01</span>
+            <span class="brand-item">Geely Monjaro</span>
+            <span class="brand-item">Toyota Camry</span>
+            <span class="brand-item">Toyota Avalon</span>
+            <span class="brand-item">Lynk&Co 900</span>
+            <span class="brand-item">Volkswagen ID 4</span>
+            <span class="brand-item">Volkswagen ID 6</span>
+
+            <!-- DUPLICATE (IMPORTANT FOR LOOP) -->
+            <span class="brand-item">Li Auto</span>
+            <span class="brand-item">BYD Leopard 7</span>
+            <span class="brand-item">Zeekr 9x</span>
+            <span class="brand-item">Zeekr 001</span>
+            <span class="brand-item">Changan Q07</span>
+            <span class="brand-item">Changan Deepal S07</span>
+            <span class="brand-item">BYD Rox 01</span>
+            <span class="brand-item">Geely Monjaro</span>
+            <span class="brand-item">Toyota Camry</span>
+            <span class="brand-item">Toyota Avalon</span>
+            <span class="brand-item">Lynk&Co 900</span>
+            <span class="brand-item">Volkswagen ID 4</span>
+            <span class="brand-item">Volkswagen ID 6</span>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- HERO CONTENT -->
 <section class="relative overflow-hidden text-white">
-
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-    <!-- Text -->
-    <div class="space-y-6 text-center lg:text-left relative">
-        <!-- Indicator / Glow above title -->
-        <span class="inline-block px-3 py-1 mb-2 text-indigo-400 font-semibold text-sm uppercase tracking-wider
-                     bg-indigo-500/20 backdrop-blur-sm rounded-full shadow-md animate-pulse">
-            Galaxy Store
-        </span>
+            <!-- TEXT -->
+            <div class="space-y-6 text-center lg:text-left">
+                <span class="inline-block px-3 py-1 mb-2 text-indigo-400 font-semibold text-sm uppercase tracking-wider bg-indigo-500/20 backdrop-blur-sm rounded-full animate-pulse">
+                    Galaxy Store
+                </span>
 
-        <h1
-            class="font-bold leading-tight
-                   text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white">
-            {% trans "It is an application store designed specifically for Li Auto vehicles." %}
-        </h1>
+                <h1 class="font-bold leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+                    {% trans "It is an application store designed specifically for Li Auto vehicles." %}
+                </h1>
 
-        <p
-            class="text-base text-sm
-                   text-white/80 max-w-2xl mx-auto lg:mx-0">
-            {% trans "It allows users to browse, download, install, and update applications optimized for the Li Auto infotainment system." %}
-        </p>
-
-        <!-- Button / Link to Galaxy Store section -->
-        <a href="{% url "galaxy-store" %}"
-           class="inline-block mt-4 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow hover:bg-indigo-700 transition">
-            {% trans "Details" %}
-        </a>
-    </div>
-
-    <!-- Image -->
-    <div class="relative flex justify-center lg:justify-end">
-        <!-- Background glow -->
-        <div
-            class="absolute inset-0
-                   bg-gradient-to-l from-blue-500/10 via-transparent to-purple-500/10
-                   -translate-x-1/4 translate-y-1/4
-                   rounded-full blur-3xl">
-        </div>
-
-        <!-- Image -->
-        <a href="#galaxy-store" class="relative z-10">
-            <img
-                src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1771918398/galaxy-logo-final_hyougb.png"
-                alt="Galaxy logo"
-                loading="eager"
-                class="w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80
-                       h-auto object-contain
-                       rounded-xl
-                       drop-shadow-xl
-                       hover:scale-105 hover:drop-shadow-2xl
-                       transition-all duration-500 ease-out
-                       animate-float-subtle"
-            >
-        </a>
-
-        <!-- Decorative ring -->
-        <div class="absolute -top-6 -right-6 sm:-top-8 sm:-right-8">
-            <div
-                class="w-24 h-24 sm:w-32 sm:h-32
-                       bg-gradient-to-br from-blue-600/20 to-purple-600/20
-                       rounded-full blur-2xl">
-            </div>
-            <div
-                class="absolute inset-2
-                       rounded-full border border-white/10
-                       animate-ping-slow">
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-
-<!-- SERVICES SECTION -->
-<section class="text-white py-16 sm:py-20 ">
-    <div class="max-w-7xl mx-auto px-4">
-
-        <!-- Title -->
-        <div class="text-center mb-12">
-            <a href="services/" class="underline">
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-wide">
-                {% trans "Services" %}
-            </h2>
-            </a>
-        </div>
-
-        <!-- Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- Card 1 -->
-            <div class="border border-cyan-500/20 rounded-2xl p-6 bg-white/5 backdrop-blur-sm hover:scale-105 hover:border-cyan-400 transition-transform duration-300 shadow-lg">
-                <h3 class="text-lg font-semibold mb-3">
-                    {% trans "Battery Diagnostics" %}
-                </h3>
-                <p class="text-sm text-gray-400 leading-relaxed">
-                    {% trans "Full inspection and health check of electric vehicle batteries." %}
+                <p class="text-base text-white/80 max-w-2xl mx-auto lg:mx-0">
+                    {% trans "It allows users to browse, download, install, and update applications optimized for the Li Auto infotainment system." %}
                 </p>
+
+                <a href="{% url "galaxy-store" %}" class="inline-block mt-4 px-6 py-3 bg-indigo-600 font-semibold rounded-lg hover:bg-indigo-700 transition">
+                    {% trans "Details" %}
+                </a>
             </div>
 
-            <!-- Card 2 -->
-            <div class="border border-cyan-500/20 rounded-2xl p-6 bg-white/5 backdrop-blur-sm hover:scale-105 hover:border-cyan-400 transition-transform duration-300 shadow-lg">
-                <h3 class="text-lg font-semibold mb-3">
-                    {% trans "Electric Motor Repair" %}
-                </h3>
-                <p class="text-sm text-gray-400 leading-relaxed">
-                    {% trans "Professional repair and maintenance by experienced masters." %}
-                </p>
-            </div>
+            <!-- IMAGE -->
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="absolute inset-0 bg-gradient-to-l from-blue-500/10 via-transparent to-purple-500/10 -translate-x-1/4 translate-y-1/4 rounded-full blur-3xl"></div>
 
-            <!-- Card 3 -->
-            <div class="border border-cyan-500/20 rounded-2xl p-6 bg-white/5 backdrop-blur-sm hover:scale-105 hover:border-cyan-400 transition-transform duration-300 shadow-lg">
-                <h3 class="text-lg font-semibold mb-3">
-                    {% trans "Software & Diagnostics" %}
-                </h3>
-                <p class="text-sm text-gray-400 leading-relaxed">
-                    {% trans "System updates, error diagnostics, and software optimization." %}
-                </p>
-            </div>
+                <img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1771918398/galaxy-logo-final_hyougb.png"
+                     alt="Galaxy logo"
+                     class="relative z-10 w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80 object-contain rounded-xl hover:scale-105 transition duration-500">
 
+            </div>
         </div>
     </div>
 </section>
 
-{% comment %} 
-<div class="py-24 sm:py-32">
-  <div class="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
-    <div class="max-w-xl">
-      <h2 class="text-3xl font-semibold tracking-tight text-pretty text-white sm:text-4xl">{% trans "Our Team" %}</h2>
-      <p class="mt-6 text-lg/8 text-gray-400">{% trans "We are a dynamic team, passionate about what we do and committed to delivering the best results for our clients." %}</p>
-    </div>
-    <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-  
- 
+<!-- STYLES -->
+<style>
 
-        <li>
-        <div class="flex items-center gap-x-6">
-          <img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767279841/WhatsApp_Image_2025-12-24_at_20.38.38_3_ilgjyz.jpg" alt="" class="size-16 rounded-full outline-1 -outline-offset-1 outline-white/10" />
-          <div>
-            <h3 class="text-base/7 font-semibold tracking-tight text-white">Kazım Heydərov</h3>
-            <p class="text-sm/6 font-semibold text-indigo-400">Electric Vehicle Specialist</p>
-            <p><a href="https://www.instagram.com/kazim_heydarov/" class="underline">Instagram</a></p>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="flex items-center gap-x-6">
-          <img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1767280097/photo_5382328517590191801_y_2_whjlzq.jpg" alt="" class="size-16 rounded-full outline-1 -outline-offset-1 outline-white/10" />
-          <div>
-            <h3 class="text-base/7 font-semibold tracking-tight text-white">Rüfət Bağırov</h3>
-            <p class="text-sm/6 font-semibold text-indigo-400">Software Developer</p>
-            <p><a href="https://www.instagram.com/rufatbgrvv/" class="underline">Instagram</a></p>
-          </div>
-        </div>
-      </li>
-   
-    </ul>
-  </div>
-</div> {% endcomment %}
+.marquee {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    --speed: 35s;
+}
 
+/* fade edges */
+.marquee::before,
+.marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee::before {
+    left: 0;
+    background: linear-gradient(to right, #0f172a, transparent);
+}
+
+.marquee::after {
+    right: 0;
+    background: linear-gradient(to left, #0f172a, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll var(--speed) linear infinite;
+    will-change: transform;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translate3d(0,0,0);
+    }
+    100% {
+        transform: translate3d(-50%,0,0);
+    }
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.brand-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.6rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 500;
+    white-space: nowrap;
+
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.15));
+    border: 1px solid rgba(99,102,241,0.35);
+
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.brand-item:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(139,92,246,0.25));
+    box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+}
+
+/* mobile */
+@media (max-width: 640px) {
+    .brand-item {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.9rem;
+        margin: 0 0.35rem;
+    }
+}
+
+</style>
 
 {% endblock %}
