@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <!-- Картинка справа с улучшенным эффектом -->
+        <!-- Картинка справа с возможностью увеличения -->
         <div class="lg:w-1/2 animate-fade-in-up delay-300">
             <div class="relative group">
                 <!-- Glow эффект -->
@@ -59,9 +59,17 @@
                 
                 <!-- Рамка -->
                 <div class="relative bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-2xl p-2 border border-cyan-500/20">
-                    <img src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1774656559/photo_2026-03-28_04-09-08_zdnsbx.jpg" 
+                    <img id="clickableImage" 
+                         src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1774656559/photo_2026-03-28_04-09-08_zdnsbx.jpg" 
                          alt="Li Auto Galaxy Store" 
-                         class="w-full rounded-xl shadow-2xl object-cover transform transition duration-500 group-hover:scale-[1.02]">
+                         class="w-full rounded-xl shadow-2xl object-cover transform transition duration-500 group-hover:scale-[1.02] cursor-pointer">
+                    
+                    <!-- Иконка увеличения -->
+                    <div class="absolute bottom-3 right-3 bg-black/60 hover:bg-black/80 rounded-full p-2 backdrop-blur-sm transition-all cursor-pointer opacity-0 group-hover:opacity-100">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                        </svg>
+                    </div>
                 </div>
                 
                 <!-- Декоративные элементы -->
@@ -70,8 +78,36 @@
             </div>
         </div>
     </div>
-    
-  
+</div>
+
+<!-- Модальное окно для увеличенного изображения -->
+<div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 backdrop-blur-lg" style="display: none;">
+    <div class="relative w-full h-full flex items-center justify-center p-4">
+        <!-- Кнопка закрытия -->
+        <button id="closeModal" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:text-cyan-400 transition-colors z-10">
+            <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        
+        <!-- Увеличенное изображение -->
+        <img id="modalImage" 
+             src="https://res.cloudinary.com/dzclcwqjg/image/upload/v1774656559/photo_2026-03-28_04-09-08_zdnsbx.jpg" 
+             alt="Увеличенное фото" 
+             class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+        
+        <!-- Кнопка уменьшения масштаба (опционально) -->
+        <button id="zoomOut" class="absolute bottom-4 left-4 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur-sm transition-all hidden sm:block">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"></path>
+            </svg>
+        </button>
+        
+        {% comment %} <!-- Подсказка -->
+        <div class="absolute bottom-4 right-4 text-white/40 text-xs sm:text-sm bg-black/40 px-3 py-1 rounded-full">
+            Кликните в любом месте для закрытия
+        </div> {% endcomment %}
+    </div>
 </div>
 
 <style>
@@ -94,5 +130,207 @@
     .delay-100 { animation-delay: 100ms; }
     .delay-300 { animation-delay: 300ms; }
     .delay-500 { animation-delay: 500ms; }
+    
+    /* Анимация для модального окна */
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    #modalImage {
+        animation: zoomIn 0.3s ease-out;
+    }
 </style>
+
+<script>
+    const image = document.getElementById('clickableImage');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModalBtn = document.getElementById('closeModal');
+    const zoomOutBtn = document.getElementById('zoomOut');
+    
+    let currentScale = 1;
+    let isDragging = false;
+    let startX, startY, translateX = 0, translateY = 0;
+    
+    // Функция открытия модального окна
+    function openModal() {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+        
+        // Сбрасываем масштаб и позицию при открытии
+        currentScale = 1;
+        translateX = 0;
+        translateY = 0;
+        updateImageTransform();
+    }
+    
+    // Функция закрытия модального окна
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // Возвращаем скролл
+        currentScale = 1;
+        translateX = 0;
+        translateY = 0;
+        updateImageTransform();
+    }
+    
+    // Обновление трансформации изображения
+    function updateImageTransform() {
+        modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+        modalImage.style.transition = isDragging ? 'none' : 'transform 0.2s ease';
+    }
+    
+    // Уменьшение масштаба
+    function zoomOutImage() {
+        if (currentScale > 1) {
+            currentScale = Math.max(1, currentScale - 0.5);
+            translateX = 0;
+            translateY = 0;
+            updateImageTransform();
+        } else {
+            closeModal();
+        }
+    }
+    
+    // Обработчики событий для увеличения (клик по изображению)
+    image.addEventListener('click', openModal);
+    
+    // Клик по кнопке закрытия
+    closeModalBtn.addEventListener('click', closeModal);
+    
+    // Клик по затемнению (фону модального окна) - закрытие
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Кнопка уменьшения / закрытия
+    zoomOutBtn.addEventListener('click', zoomOutImage);
+    
+    // Колесико мыши для масштабирования в модальном окне
+    modal.addEventListener('wheel', (e) => {
+        if (modal.style.display === 'flex') {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            const newScale = Math.min(3, Math.max(1, currentScale + delta));
+            
+            if (newScale !== currentScale) {
+                currentScale = newScale;
+                // При масштабировании сбрасываем позицию если масштаб 1
+                if (currentScale === 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateImageTransform();
+            }
+        }
+    });
+    
+    // Drag-and-drop для панорамирования при увеличенном изображении
+    modalImage.addEventListener('mousedown', (e) => {
+        if (currentScale > 1) {
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            modalImage.style.cursor = 'grabbing';
+            e.preventDefault();
+        }
+    });
+    
+    window.addEventListener('mousemove', (e) => {
+        if (isDragging && currentScale > 1) {
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            
+            // Ограничения для панорамирования
+            const maxTranslateX = (modalImage.clientWidth * (currentScale - 1)) / 2;
+            const maxTranslateY = (modalImage.clientHeight * (currentScale - 1)) / 2;
+            
+            translateX = Math.min(maxTranslateX, Math.max(-maxTranslateX, translateX));
+            translateY = Math.min(maxTranslateY, Math.max(-maxTranslateY, translateY));
+            
+            updateImageTransform();
+        }
+    });
+    
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        if (modalImage.style.cursor) {
+            modalImage.style.cursor = '';
+        }
+    });
+    
+    // Закрытие по клавише Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+    
+    // Touch-события для мобильных устройств
+    let touchStartDistance = 0;
+    let touchStartScale = 1;
+    
+    modalImage.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            // Масштабирование двумя пальцами
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            touchStartDistance = Math.hypot(dx, dy);
+            touchStartScale = currentScale;
+            e.preventDefault();
+        } else if (e.touches.length === 1 && currentScale > 1) {
+            // Панорамирование одним пальцем
+            isDragging = true;
+            startX = e.touches[0].clientX - translateX;
+            startY = e.touches[0].clientY - translateY;
+            e.preventDefault();
+        }
+    });
+    
+    modalImage.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2 && touchStartDistance > 0) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            const distance = Math.hypot(dx, dy);
+            let newScale = touchStartScale * (distance / touchStartDistance);
+            newScale = Math.min(3, Math.max(1, newScale));
+            
+            if (newScale !== currentScale) {
+                currentScale = newScale;
+                if (currentScale === 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateImageTransform();
+            }
+            e.preventDefault();
+        } else if (isDragging && e.touches.length === 1) {
+            translateX = e.touches[0].clientX - startX;
+            translateY = e.touches[0].clientY - startY;
+            
+            const maxTranslateX = (modalImage.clientWidth * (currentScale - 1)) / 2;
+            const maxTranslateY = (modalImage.clientHeight * (currentScale - 1)) / 2;
+            
+            translateX = Math.min(maxTranslateX, Math.max(-maxTranslateX, translateX));
+            translateY = Math.min(maxTranslateY, Math.max(-maxTranslateY, translateY));
+            
+            updateImageTransform();
+            e.preventDefault();
+        }
+    });
+    
+    modalImage.addEventListener('touchend', () => {
+        isDragging = false;
+        touchStartDistance = 0;
+    });
+</script>
 {% endblock %}
